@@ -1,7 +1,8 @@
-"""Traffic Sign Recognition Model Training Script.
+"""Traffic Sign Recognition & Detection Model Training Script.
 
-Trains a Convolutional Neural Network (CNN) on traffic sign datasets
-such as the German Traffic Sign Recognition Benchmark (GTSRB).
+Supports both:
+1. Object Detection using Ultralytics YOLO (detecting bounding boxes and classes)
+2. Custom Deep CNN for multi-class traffic sign image classification
 """
 
 import argparse
@@ -18,7 +19,7 @@ from torchvision import datasets, transforms
 
 
 class TrafficSignCNN(nn.Module):
-    """Custom Convolutional Neural Network for 32x32 to 64x64 traffic sign images."""
+    """Custom Convolutional Neural Network for traffic sign image classification."""
 
     def __init__(self, num_classes: int = 43):
         super().__init__()
@@ -78,78 +79,36 @@ def get_data_transforms():
     return train_transform, val_transform
 
 
-def train_epoch(model, loader, criterion, optimizer, device):
-    model.train()
-    running_loss = 0.0
-    correct = 0
-    total = 0
+def train_yolo(data_yaml: str, model_name: str = "yolov8n.pt", epochs: int = 30, imgsz: int = 640):
+    """Trains a YOLO object detection model on traffic sign datasets."""
+    try:
+        from ultralytics import YOLO
+    except ImportError:
+        print("[ERROR] ultralytics is not installed. Please run: pip install -r requirements.txt")
+        return
 
-    for images, targets in loader:
-        images, targets = images.to(device), targets.to(device)
-
-        optimizer.zero_grad()
-        outputs = model(images)
-        loss = criterion(outputs, targets)
-        loss.backward()
-        optimizer.step()
-
-        running_loss += loss.item() * images.size(0)
-        _, predicted = outputs.max(1)
-        total += targets.size(0)
-        correct += predicted.eq(targets).sum().item()
-
-    epoch_loss = running_loss / max(total, 1)
-    epoch_acc = 100.0 * correct / max(total, 1)
-    return epoch_loss, epoch_acc
+    print(f"Loading YOLO model '{model_name}' for traffic sign detection...")
+    model = YOLO(model_name)
+    results = model.train(data=data_yaml, epochs=epochs, imgsz=imgsz)
+    print("YOLO Training complete. Best weights saved in runs/detect/train/weights/best.pt")
+    return results
 
 
-def validate(model, loader, criterion, device):
-    model.eval()
-    running_loss = 0.0
-    correct = 0
-    total = 0
-
-    with torch.no_grad():
-        for images, targets in loader:
-            images, targets = images.to(device), targets.to(device)
-            outputs = model(images)
-            loss = criterion(outputs, targets)
-
-            running_loss += loss.item() * images.size(0)
-            _, predicted = outputs.max(1)
-            total += targets.size(0)
-            correct += predicted.eq(targets).sum().item()
-
-    epoch_loss = running_loss / max(total, 1)
-    epoch_acc = 100.0 * correct / max(total, 1)
-    return epoch_loss, epoch_acc
-
-
-def main():
-    parser = argparse.ArgumentParser(description="Train Traffic Sign Recognition CNN")
-    parser.add_argument("--data-dir", type=str, default="../data/processed", help="Path to processed dataset")
-    parser.add_argument("--output-dir", type=str, default="checkpoints", help="Directory to save model checkpoints")
-    parser.add_argument("--epochs", type=int, default=25, help="Number of training epochs")
-    parser.add_argument("--batch-size", type=int, default=64, help="Batch size")
-    parser.add_argument("--lr", type=float, default=1e-3, help="Initial learning rate")
-    parser.add_argument("--num-classes", type=int, default=43, help="Number of traffic sign classes")
-    args = parser.parse_args()
-
+def train_cnn(data_dir: str, output_dir: str, epochs: int, batch_size: int, lr: float, num_classes: int):
+    """Trains custom CNN on class-folder dataset."""
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    print(f"Training on device: {device}")
+    print(f"Training CNN on device: {device}")
 
-    output_dir = Path(args.output_dir)
-    output_dir.mkdir(parents=True, exist_ok=True)
+    out_path = Path(output_dir)
+    out_path.mkdir(parents=True, exist_ok=True)
 
-    train_tf, val_tf = get_data_transforms()
-    data_path = Path(args.data_dir)
-
+    data_path = Path(data_dir)
     if not data_path.exists() or not any(data_path.iterdir()):
         print(f"[WARNING] Dataset directory '{data_path}' is empty or does not exist.")
         print("Please place the GTSRB dataset into data/processed/ or specify --data-dir.")
-        print("Example: python train.py --data-dir ../data/processed --epochs 20")
-        sys.exit(0)
+        return
 
+    train_tf, val_tf = get_data_transforms()
     full_dataset = datasets.ImageFolder(root=str(data_path), transform=train_tf)
     val_size = int(0.2 * len(full_dataset))
     train_size = len(full_dataset) - val_size
@@ -157,40 +116,90 @@ def main():
     train_set, val_set = random_split(full_dataset, [train_size, val_size])
     val_set.dataset.transform = val_tf
 
-    train_loader = DataLoader(train_set, batch_size=args.batch_size, shuffle=True, num_workers=2)
-    val_loader = DataLoader(val_set, batch_size=args.batch_size, shuffle=False, num_workers=2)
+    train_loader = DataLoader(train_set, batch_size=batch_size, shuffle=True, num_workers=2)
+    val_loader = DataLoader(val_set, batch_size=batch_size, shuffle=False, num_workers=2)
 
-    model = TrafficSignCNN(num_classes=args.num_classes).to(device)
+    model = TrafficSignCNN(num_classes=num_classes).to(device)
     criterion = nn.CrossEntropyLoss()
-    optimizer = optim.AdamW(model.parameters(), lr=args.lr, weight_decay=1e-4)
-    scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=args.epochs)
+    optimizer = optim.AdamW(model.parameters(), lr=lr, weight_decay=1e-4)
+    scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=epochs)
 
     best_val_acc = 0.0
-    print(f"Starting training for {args.epochs} epochs...")
+    print(f"Starting CNN training for {epochs} epochs...")
 
-    for epoch in range(1, args.epochs + 1):
+    for epoch in range(1, epochs + 1):
         start_time = time.time()
-        train_loss, train_acc = train_epoch(model, train_loader, criterion, optimizer, device)
-        val_loss, val_acc = validate(model, val_loader, criterion, device)
-        scheduler.step()
-        elapsed = time.time() - start_time
+        model.train()
+        running_loss, correct, total = 0.0, 0, 0
 
-        print(f"Epoch [{epoch:02d}/{args.epochs:02d}] ({elapsed:.1f}s) | "
-              f"Train Loss: {train_loss:.4f}, Train Acc: {train_acc:.2f}% | "
-              f"Val Loss: {val_loss:.4f}, Val Acc: {val_acc:.2f}%")
+        for images, targets in train_loader:
+            images, targets = images.to(device), targets.to(device)
+            optimizer.zero_grad()
+            outputs = model(images)
+            loss = criterion(outputs, targets)
+            loss.backward()
+            optimizer.step()
+
+            running_loss += loss.item() * images.size(0)
+            _, predicted = outputs.max(1)
+            total += targets.size(0)
+            correct += predicted.eq(targets).sum().item()
+
+        train_loss = running_loss / max(total, 1)
+        train_acc = 100.0 * correct / max(total, 1)
+
+        # Validation
+        model.eval()
+        v_loss, v_correct, v_total = 0.0, 0, 0
+        with torch.no_grad():
+            for images, targets in val_loader:
+                images, targets = images.to(device), targets.to(device)
+                outputs = model(images)
+                loss = criterion(outputs, targets)
+                v_loss += loss.item() * images.size(0)
+                _, predicted = outputs.max(1)
+                v_total += targets.size(0)
+                v_correct += predicted.eq(targets).sum().item()
+
+        val_loss = v_loss / max(v_total, 1)
+        val_acc = 100.0 * v_correct / max(v_total, 1)
+        scheduler.step()
+
+        elapsed = time.time() - start_time
+        print(f"Epoch [{epoch:02d}/{epochs:02d}] ({elapsed:.1f}s) | "
+              f"Train Loss: {train_loss:.4f}, Acc: {train_acc:.2f}% | "
+              f"Val Loss: {val_loss:.4f}, Acc: {val_acc:.2f}%")
 
         if val_acc > best_val_acc:
             best_val_acc = val_acc
-            best_model_path = output_dir / "best_model.pt"
+            best_model_path = out_path / "best_model.pt"
             torch.save({
                 "epoch": epoch,
                 "model_state_dict": model.state_dict(),
                 "val_acc": val_acc,
-                "num_classes": args.num_classes,
+                "num_classes": num_classes,
             }, best_model_path)
-            print(f"  --> Saved new best model checkpoint to {best_model_path} (Acc: {val_acc:.2f}%)")
+            print(f"  --> Saved new best checkpoint: {best_model_path} ({val_acc:.2f}%)")
 
     print(f"\nTraining completed. Best Validation Accuracy: {best_val_acc:.2f}%")
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Train Traffic Sign Recognition & Detection")
+    parser.add_argument("--mode", choices=["cnn", "yolo"], default="cnn", help="Model type: 'cnn' (classifier) or 'yolo' (detector)")
+    parser.add_argument("--data-dir", type=str, default="../data/processed", help="Path to processed image folders (for CNN)")
+    parser.add_argument("--data-yaml", type=str, default="data.yaml", help="Path to dataset YAML (for YOLO)")
+    parser.add_argument("--output-dir", type=str, default="checkpoints", help="Directory to save checkpoints")
+    parser.add_argument("--epochs", type=int, default=25, help="Number of training epochs")
+    parser.add_argument("--batch-size", type=int, default=64, help="Batch size")
+    parser.add_argument("--lr", type=float, default=1e-3, help="Learning rate")
+    parser.add_argument("--num-classes", type=int, default=43, help="Number of classes")
+    args = parser.parse_args()
+
+    if args.mode == "yolo":
+        train_yolo(args.data_yaml, epochs=args.epochs)
+    else:
+        train_cnn(args.data_dir, args.output_dir, args.epochs, args.batch_size, args.lr, args.num_classes)
 
 
 if __name__ == "__main__":
