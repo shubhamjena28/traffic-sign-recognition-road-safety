@@ -1,53 +1,35 @@
-# Compiled Java class files and build directories
+# Java / Maven
 target/
 *.class
 *.jar
-*.war
-*.ear
 
-# Eclipse & IntelliJ IDE files
-.idea/
-*.iml
-.project
-.classpath
-.settings/
-.vscode/
-
-# Python bytecode and caches
+# Python
 __pycache__/
 *.py[cod]
-*$py.class
-*.so
-.pytest_cache/
-
-# Virtual Environments
-venv/
 .venv/
-env/
-ENV/
-.env
+venv/
 
-# Large model weights and checkpoints
+# Model artifacts
+*.onnx
 *.pt
 *.pth
-*.onnx
-train/checkpoints/*
-!train/checkpoints/.gitkeep
+*.weights
 
-# Datasets and large binary files (preserve gitkeeps)
+# Dataset files
 data/raw/*
-!data/raw/.gitkeep
 data/processed/*
-!data/processed/.gitkeep
 data/annotations/*
+
+# Preserve documentation inside data
+!data/raw/.gitkeep
+!data/processed/.gitkeep
 !data/annotations/.gitkeep
 
-# Evaluation output logs
-evaluation_report.txt
-output.jpg
-output.png
+# IDE and environment files
+.idea/
+.vscode/
+.env
 
-# Operating system files
+# OS files
 .DS_Store
 Thumbs.db
-desktop.ini
