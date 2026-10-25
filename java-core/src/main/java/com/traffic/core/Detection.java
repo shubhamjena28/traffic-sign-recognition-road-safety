@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
  * Represents a traffic sign detection result produced by the perception model.
  */
 public class Detection {
-    private static final Pattern SPEED_PATTERN = Pattern.compile("(?i)speed\\s*limit\\s*\\(?(\\d+)\\s*(?:km/?h)?\\)?");
+    private static final Pattern SPEED_PATTERN = Pattern.compile("(?i)speed(?:\\s*limit)?\\s*\\(?(\\d+)?\\s*(?:km/?h)?\\)?");
 
     private final int classId;
     private final String label;
@@ -35,6 +35,10 @@ public class Detection {
 
     public Detection(int classId, String label, double confidence) {
         this(classId, label, confidence, 0.0, 0.0, 0.0, 0.0, System.currentTimeMillis());
+    }
+
+    public Detection(String label, double confidence, double x, double y, double width, double height) {
+        this(0, label, confidence, x, y, width, height, System.currentTimeMillis());
     }
 
     public int getClassId() {
@@ -70,10 +74,11 @@ public class Detection {
     }
 
     /**
-     * Checks if this sign represents a speed limit sign.
+     * Checks if this sign represents a speed-related sign.
      */
     public boolean isSpeedLimit() {
-        return label.toLowerCase().contains("speed limit");
+        String lower = label.toLowerCase();
+        return lower.contains("speed") || lower.contains("limit");
     }
 
     /**
@@ -82,7 +87,7 @@ public class Detection {
      */
     public int getSpeedLimitValue() {
         Matcher matcher = SPEED_PATTERN.matcher(label);
-        if (matcher.find()) {
+        if (matcher.find() && matcher.group(1) != null) {
             try {
                 return Integer.parseInt(matcher.group(1));
             } catch (NumberFormatException ignored) {
@@ -96,14 +101,14 @@ public class Detection {
      * Checks if this sign is a Stop sign.
      */
     public boolean isStopSign() {
-        return label.equalsIgnoreCase("stop") || label.toLowerCase().contains("stop sign");
+        return label.toLowerCase().contains("stop");
     }
 
     /**
      * Checks if this sign is a Yield sign.
      */
     public boolean isYieldSign() {
-        return label.equalsIgnoreCase("yield") || label.toLowerCase().contains("yield");
+        return label.toLowerCase().contains("yield");
     }
 
     /**

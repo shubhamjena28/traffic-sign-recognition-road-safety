@@ -76,6 +76,19 @@ public class SafetyMonitor {
     }
 
     /**
+     * Determines whether a detection should trigger a road safety warning.
+     */
+    public boolean shouldWarn(Detection detection) {
+        if (detection == null || detection.getConfidence() < confidenceThreshold) {
+            return false;
+        }
+        return detection.isStopSign()
+                || detection.isSpeedLimit()
+                || detection.isYieldSign()
+                || detection.isWarningSign();
+    }
+
+    /**
      * Evaluates a single traffic sign detection against current telemetry.
      * Returns an Optional containing SafetyAlert if an alert is triggered.
      */
