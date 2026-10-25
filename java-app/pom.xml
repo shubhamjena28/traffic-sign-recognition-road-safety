@@ -21,8 +21,8 @@
     <dependencies>
         <dependency>
             <groupId>com.traffic</groupId>
-            <artifactId>traffic-core</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <artifactId>java-core</artifactId>
+            <version>1.0.0</version>
         </dependency>
     </dependencies>
 
