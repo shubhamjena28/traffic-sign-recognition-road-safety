@@ -1,14 +1,15 @@
-"""Traffic Sign Recognition Inference Pipeline.
+"""Traffic Sign Recognition & Detection Inference Pipeline.
 
 Runs predictions on static images or video streams using trained
-PyTorch or ONNX models and outputs detected signs with confidence scores.
+YOLO (Ultralytics), PyTorch CNN, or ONNX models and outputs detected signs
+with bounding boxes and confidence scores.
 """
 
 import argparse
 import json
 import sys
 from pathlib import Path
-from typing import Optional, Tuple
+from typing import List, Optional, Tuple
 
 import cv2
 import numpy as np
@@ -19,16 +20,17 @@ from utils import get_label_name, preprocess_image, draw_detection, to_java_dete
 
 
 class TrafficSignPredictor:
-    """Predictor supporting PyTorch and ONNX backends."""
+    """Predictor supporting YOLO (Ultralytics), PyTorch CNN, and ONNX backends."""
 
     def __init__(self, model_path: str):
         self.model_path = Path(model_path)
         self.backend = None
         self.session = None
+        self.yolo_model = None
         self.torch_model = None
 
         if not self.model_path.exists():
-            print(f"[WARNING] Model file '{model_path}' not found. Initializing in DEMO mode.")
+            print(f"[NOTE] Model file '{model_path}' not found on disk. Initializing in DEMO mode.")
             self.backend = "demo"
             return
 
@@ -40,57 +42,68 @@ class TrafficSignPredictor:
                 self.backend = "onnx"
                 print(f"Loaded ONNX model from: {self.model_path}")
             except ImportError:
-                print("[WARNING] onnxruntime not installed. Please install onnxruntime to run .onnx models.")
+                print("[WARNING] onnxruntime not installed. Running in DEMO mode.")
                 self.backend = "demo"
         elif suffix in [".pt", ".pth"]:
+            # Check if this is an Ultralytics YOLO model
             try:
-                import torch
-                from train.train import TrafficSignCNN
-                ckpt = torch.load(str(self.model_path), map_location="cpu")
-                num_classes = ckpt.get("num_classes", 43)
-                self.torch_model = TrafficSignCNN(num_classes=num_classes)
-                self.torch_model.load_state_dict(ckpt["model_state_dict"])
-                self.torch_model.eval()
-                self.backend = "torch"
-                print(f"Loaded PyTorch model from: {self.model_path}")
-            except Exception as e:
-                print(f"[WARNING] Could not load PyTorch checkpoint ({e}). Running in DEMO mode.")
-                self.backend = "demo"
+                from ultralytics import YOLO
+                self.yolo_model = YOLO(str(self.model_path))
+                self.backend = "yolo"
+                print(f"Loaded Ultralytics YOLO model from: {self.model_path}")
+            except Exception:
+                try:
+                    import torch
+                    from train.train import TrafficSignCNN
+                    ckpt = torch.load(str(self.model_path), map_location="cpu")
+                    num_classes = ckpt.get("num_classes", 43)
+                    self.torch_model = TrafficSignCNN(num_classes=num_classes)
+                    self.torch_model.load_state_dict(ckpt["model_state_dict"])
+                    self.torch_model.eval()
+                    self.backend = "torch"
+                    print(f"Loaded PyTorch CNN model from: {self.model_path}")
+                except Exception as e:
+                    print(f"[WARNING] Could not load checkpoint ({e}). Running in DEMO mode.")
+                    self.backend = "demo"
         else:
             self.backend = "demo"
 
-    def predict(self, image: np.ndarray) -> Tuple[int, str, float]:
-        """Runs inference on a single BGR image crop containing a traffic sign.
+    def predict_detections(self, image: np.ndarray, conf_threshold: float = 0.50) -> List[dict]:
+        """Runs full-image detection, returning a list of detections matching Java Detection format."""
+        detections = []
 
-        Returns (class_id, label_name, confidence).
-        """
-        if self.backend == "demo":
+        if self.backend == "yolo":
+            results = self.yolo_model.predict(image, conf=conf_threshold, verbose=False)[0]
+            boxes = results.boxes
+            for box in boxes:
+                cls_id = int(box.cls[0].item())
+                label = results.names.get(cls_id, f"class_{cls_id}")
+                conf = float(box.conf[0].item())
+                xyxy = box.xyxy[0].cpu().numpy()
+                x1, y1, x2, y2 = xyxy
+                w, h = x2 - x1, y2 - y1
+                detections.append(to_java_detection_payload(cls_id, label, conf, (int(x1), int(y1), int(w), int(h))))
+            return detections
+
+        elif self.backend == "demo":
             # Return realistic simulated detection for demonstration
-            return 2, get_label_name(2), 0.94
+            detections.append(to_java_detection_payload(0, "stop", 0.95, (10, 20, 40, 40)))
+            return detections
 
-        tensor = preprocess_image(image)
-
-        if self.backend == "onnx":
+        elif self.backend == "onnx":
+            tensor = preprocess_image(image)
             input_name = self.session.get_inputs()[0].name
             outputs = self.session.run(None, {input_name: tensor})
             logits = outputs[0][0]
             exp_logits = np.exp(logits - np.max(logits))
             probs = exp_logits / exp_logits.sum()
-            class_id = int(np.argmax(probs))
-            conf = float(probs[class_id])
-            return class_id, get_label_name(class_id), conf
+            cls_id = int(np.argmax(probs))
+            conf = float(probs[cls_id])
+            if conf >= conf_threshold:
+                detections.append(to_java_detection_payload(cls_id, get_label_name(cls_id), conf))
+            return detections
 
-        elif self.backend == "torch":
-            import torch
-            with torch.no_grad():
-                t = torch.from_numpy(tensor)
-                out = self.torch_model(t)
-                probs = torch.softmax(out, dim=1).cpu().numpy()[0]
-                class_id = int(np.argmax(probs))
-                conf = float(probs[class_id])
-                return class_id, get_label_name(class_id), conf
-
-        return -1, "Unknown", 0.0
+        return detections
 
 
 def run_image_inference(predictor: TrafficSignPredictor, image_path: str, output_path: Optional[str] = None):
@@ -99,26 +112,29 @@ def run_image_inference(predictor: TrafficSignPredictor, image_path: str, output
         print(f"[ERROR] Could not load image from '{image_path}'")
         return
 
-    class_id, label, conf = predictor.predict(img)
-    payload = to_java_detection_payload(class_id, label, conf)
+    detections = predictor.predict_detections(img)
+    print(f"\n--- Detection Results ({len(detections)} signs found) ---")
+    for d in detections:
+        print(f"  • Sign: {d['label']:<10} | Confidence: {d['confidence']*100:.1f}% | Box: ({d['x']}, {d['y']}, {d['width']}, {d['height']})")
 
-    print("\n--- Detection Result ---")
-    print(f"Class ID:   {class_id}")
-    print(f"Sign Label: {label}")
-    print(f"Confidence: {conf * 100:.2f}%")
-    print(f"Java JSON:  {json.dumps(payload)}")
+    print("\nPayload for Java SafetyMonitor:")
+    print(json.dumps(detections, indent=2))
 
-    annotated = draw_detection(img, label, conf)
     if output_path:
+        annotated = img.copy()
+        for d in detections:
+            box = (int(d["x"]), int(d["y"]), int(d["x"] + d["width"]), int(d["y"] + d["height"]))
+            annotated = draw_detection(annotated, d["label"], d["confidence"], box)
         cv2.imwrite(output_path, annotated)
-        print(f"Saved annotated image to: {output_path}")
+        print(f"\nSaved annotated image to: {output_path}")
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Run Traffic Sign Recognition Inference")
-    parser.add_argument("--model", type=str, default="../train/checkpoints/best_model.pt", help="Path to .pt or .onnx model")
+    parser = argparse.ArgumentParser(description="Run Traffic Sign Recognition & Detection Inference")
+    parser.add_argument("--model", type=str, default="yolov8n.pt", help="Path to .pt or .onnx model (default: yolov8n.pt)")
     parser.add_argument("--image", type=str, help="Path to input image file")
     parser.add_argument("--output", type=str, default="output.jpg", help="Path to save annotated image")
+    parser.add_argument("--conf", type=float, default=0.50, help="Confidence threshold")
     args = parser.parse_args()
 
     predictor = TrafficSignPredictor(args.model)
@@ -126,12 +142,11 @@ def main():
     if args.image:
         run_image_inference(predictor, args.image, args.output)
     else:
-        print("No input image specified. Running demo test inference:")
-        dummy_img = np.zeros((100, 100, 3), dtype=np.uint8)
-        class_id, label, conf = predictor.predict(dummy_img)
-        payload = to_java_detection_payload(class_id, label, conf)
-        print(f"Demo Detection: {label} (conf: {conf:.2f})")
-        print(f"JSON Payload:   {json.dumps(payload, indent=2)}")
+        print("No input image specified. Running demo test detection:")
+        dummy_img = np.zeros((200, 200, 3), dtype=np.uint8)
+        detections = predictor.predict_detections(dummy_img, conf_threshold=args.conf)
+        print("Demo Detections Output (Java compatible JSON):")
+        print(json.dumps(detections, indent=2))
 
 
 if __name__ == "__main__":
