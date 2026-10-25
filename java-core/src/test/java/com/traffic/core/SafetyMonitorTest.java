@@ -3,11 +3,15 @@ package com.traffic.core;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@DisplayName("SafetyMonitor Core Logic and JUnit 5 Test Suite")
 class SafetyMonitorTest {
 
     private SafetyMonitor monitor;
@@ -17,14 +21,30 @@ class SafetyMonitorTest {
         monitor = new SafetyMonitor(0.60);
     }
 
-    @Test
-    @DisplayName("Detections with confidence below threshold should be ignored")
-    void testLowConfidenceDetectionIgnored() {
-        Detection lowConf = new Detection(1, "Speed limit (50km/h)", 0.45);
+    @ParameterizedTest(name = "Confidence {0} should be filtered out")
+    @ValueSource(doubles = {0.10, 0.35, 0.45, 0.59})
+    @DisplayName("Detections with confidence below threshold must be filtered")
+    void testLowConfidenceDetectionIgnored(double lowConfidence) {
+        Detection lowConf = new Detection(1, "Speed limit (50km/h)", lowConfidence);
         Optional<SafetyMonitor.SafetyAlert> alert = monitor.processDetection(lowConf);
 
-        assertTrue(alert.isEmpty(), "Low confidence detection should not trigger an alert");
+        assertTrue(alert.isEmpty(), "Detection with confidence " + lowConfidence + " should not trigger an alert");
         assertEquals(0, monitor.getAlertHistory().size());
+    }
+
+    @ParameterizedTest(name = "Sign: {0} -> Expected limit: {1} km/h")
+    @CsvSource({
+            "'Speed limit (30km/h)', 30",
+            "'Speed limit (50km/h)', 50",
+            "'Speed limit (70km/h)', 70",
+            "'Speed limit (80km/h)', 80",
+            "'Speed limit (100km/h)', 100",
+            "'Speed limit (120km/h)', 120"
+    })
+    @DisplayName("Extracts numerical speed limits correctly from detection labels")
+    void testSpeedLimitExtraction(String label, int expectedLimit) {
+        Detection sign = new Detection(1, label, 0.90);
+        assertEquals(expectedLimit, sign.getSpeedLimitValue());
     }
 
     @Test
