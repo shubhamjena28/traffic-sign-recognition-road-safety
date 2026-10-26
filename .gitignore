@@ -15,18 +15,31 @@ venv/
 *.pth
 *.weights
 
-# Dataset files
-data/raw/*
-data/processed/*
-data/annotations/*
+# Dataset files and binary archives
+*.zip
+*.tar.gz
+*.tgz
+*.ppm
+data/raw/**/*.ppm
+data/raw/**/*.jpg
+data/raw/**/*.jpeg
+data/raw/**/*.png
+data/raw/**/*.zip
+data/processed/**/*.jpg
+data/processed/**/*.jpeg
+data/processed/**/*.png
 data/images/
 data/labels/
 runs/
 
-# Preserve documentation inside data
-!data/raw/.gitkeep
-!data/processed/.gitkeep
-!data/annotations/.gitkeep
+# Preserve dataset documentation, manifests, and configs
+!data/**/.gitkeep
+!data/**/README.md
+!data/**/*.csv
+!data/**/*.yaml
+!data/**/*.yml
+!data/**/*.txt
+!data/**/*.py
 
 # IDE and environment files
 .idea/

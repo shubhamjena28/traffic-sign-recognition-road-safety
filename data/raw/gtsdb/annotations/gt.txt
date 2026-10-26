@@ -1,0 +1,9 @@
+# GTSDB Ground Truth Annotations Sample
+# Format: Filename;LeftCol;TopRow;RightCol;BottomRow;ClassID
+00000.ppm;774;411;815;451;14
+00001.ppm;983;388;1024;432;1
+00002.ppm;386;494;442;552;18
+00003.ppm;640;320;685;365;5
+00004.ppm;512;400;550;440;25
+00005.ppm;820;410;860;450;38
+00006.ppm;700;350;740;390;9

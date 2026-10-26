@@ -1,0 +1,1001 @@
+filename,mask_filename,split,sequence_id,image_width,image_height,mask_width,mask_height,dimensions_match,valid_mask_labels,time_of_day,weather,scene,sampling_seed
+437d6782-e3f1f84a.jpg,437d6782-e3f1f84a.png,train,437d6782,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+9c112b8d-88d684eb.jpg,9c112b8d-88d684eb.png,train,9c112b8d,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+9c112b8d-31cc65f1.jpg,9c112b8d-31cc65f1.png,train,9c112b8d,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+b9433f23-14fab383.jpg,b9433f23-14fab383.png,train,b9433f23,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+be380fe6-5776e5f2.jpg,be380fe6-5776e5f2.png,train,be380fe6,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+770ea5b2-480e8be6.jpg,770ea5b2-480e8be6.png,val,770ea5b2,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+b1dd4ee9-5b3f6bee.jpg,b1dd4ee9-5b3f6bee.png,train,b1dd4ee9,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+4b433fb9-68199623.jpg,4b433fb9-68199623.png,val,4b433fb9,1280,720,1280,720,True,"[0, 1, 2]",daytime,snowy,city street,42
+4b433fb9-c412797d.jpg,4b433fb9-c412797d.png,val,4b433fb9,1280,720,1280,720,True,"[0, 1, 2]",daytime,snowy,city street,42
+03416ae6-0dc83268.jpg,03416ae6-0dc83268.png,train,03416ae6,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,highway,42
+03416ae6-6613644d.jpg,03416ae6-6613644d.png,train,03416ae6,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,highway,42
+bb4f38db-6fd32c71.jpg,bb4f38db-6fd32c71.png,train,bb4f38db,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+ffd92062-caa16aec.jpg,ffd92062-caa16aec.png,train,ffd92062,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+c774c902-27634eb2.jpg,c774c902-27634eb2.png,train,c774c902,1280,720,1280,720,True,"[0, 1, 2]",daytime,snowy,highway,42
+cfc5796a-4224531c.jpg,cfc5796a-4224531c.png,train,cfc5796a,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+73fb4989-129eb043.jpg,73fb4989-129eb043.png,val,73fb4989,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,highway,42
+5d8ddd41-11cc2e53.jpg,5d8ddd41-11cc2e53.png,train,5d8ddd41,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+9cb54433-b4ee76b9.jpg,9cb54433-b4ee76b9.png,train,9cb54433,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,highway,42
+9cb54433-fb94b3f4.jpg,9cb54433-fb94b3f4.png,train,9cb54433,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,highway,42
+9cb54433-49a37786.jpg,9cb54433-49a37786.png,train,9cb54433,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,highway,42
+20ccdfb2-abed9cad.jpg,20ccdfb2-abed9cad.png,train,20ccdfb2,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+20ccdfb2-81bcedc3.jpg,20ccdfb2-81bcedc3.png,train,20ccdfb2,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+20ccdfb2-75adedeb.jpg,20ccdfb2-75adedeb.png,train,20ccdfb2,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+b2e6a23d-c2ef9964.jpg,b2e6a23d-c2ef9964.png,train,b2e6a23d,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+f1bbafea-6c30f80f.jpg,f1bbafea-6c30f80f.png,train,f1bbafea,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+f1bbafea-0e6790d2.jpg,f1bbafea-0e6790d2.png,train,f1bbafea,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+f1bbafea-a5e615c4.jpg,f1bbafea-a5e615c4.png,train,f1bbafea,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+d76b9f59-73ffb3ec.jpg,d76b9f59-73ffb3ec.png,train,d76b9f59,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+3d4db05f-aa67e495.jpg,3d4db05f-aa67e495.png,train,3d4db05f,1280,720,1280,720,True,"[0, 1, 2]",daytime,snowy,residential,42
+3d4db05f-761df319.jpg,3d4db05f-761df319.png,train,3d4db05f,1280,720,1280,720,True,"[0, 1, 2]",daytime,snowy,residential,42
+3d4db05f-df53154e.jpg,3d4db05f-df53154e.png,train,3d4db05f,1280,720,1280,720,True,"[0, 1, 2]",daytime,snowy,residential,42
+1507816e-a8c903f9.jpg,1507816e-a8c903f9.png,train,1507816e,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+1507816e-9353f9d3.jpg,1507816e-9353f9d3.png,train,1507816e,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+ba2757a7-4cbad06d.jpg,ba2757a7-4cbad06d.png,train,ba2757a7,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+058213c7-6a77b3f2.jpg,058213c7-6a77b3f2.png,val,058213c7,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+1ce8453d-17acd5e6.jpg,1ce8453d-17acd5e6.png,val,1ce8453d,1280,720,1280,720,True,"[0, 1, 2]",night,rainy,city street,42
+596b5fd1-2c19f9ad.jpg,596b5fd1-2c19f9ad.png,train,596b5fd1,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+9ba28aec-ee38950a.jpg,9ba28aec-ee38950a.png,train,9ba28aec,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,overcast,highway,42
+bcd3b436-cd09da81.jpg,bcd3b436-cd09da81.png,train,bcd3b436,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,snowy,city street,42
+edd5683b-6d2f5276.jpg,edd5683b-6d2f5276.png,train,edd5683b,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,city street,42
+92bc782c-d2505b98.jpg,92bc782c-d2505b98.png,train,92bc782c,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+c4fd5f6f-add14032.jpg,c4fd5f6f-add14032.png,train,c4fd5f6f,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+52a935a8-7b6bc76d.jpg,52a935a8-7b6bc76d.png,val,52a935a8,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+ad1511a5-27451cbb.jpg,ad1511a5-27451cbb.png,train,ad1511a5,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+b46c3be0-7fd3ad15.jpg,b46c3be0-7fd3ad15.png,train,b46c3be0,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,residential,42
+8f672616-1e39cd2b.jpg,8f672616-1e39cd2b.png,train,8f672616,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+8e7093fd-c7e626c2.jpg,8e7093fd-c7e626c2.png,val,8e7093fd,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+c2b8fb79-94fb3f81.jpg,c2b8fb79-94fb3f81.png,train,c2b8fb79,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+195e75df-45429888.jpg,195e75df-45429888.png,train,195e75df,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+2892e706-0198c731.jpg,2892e706-0198c731.png,train,2892e706,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+2892e706-8b0726dc.jpg,2892e706-8b0726dc.png,train,2892e706,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+bc7f75b5-12b54483.jpg,bc7f75b5-12b54483.png,train,bc7f75b5,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+d363bc6b-53acfcee.jpg,d363bc6b-53acfcee.png,val,d363bc6b,1280,720,1280,720,True,"[0, 1, 2]",daytime,snowy,highway,42
+75af8811-5f6e9b93.jpg,75af8811-5f6e9b93.png,val,75af8811,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+75af8811-a4d861a4.jpg,75af8811-a4d861a4.png,val,75af8811,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+75af8811-c1e4ddf8.jpg,75af8811-c1e4ddf8.png,val,75af8811,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+54deecbb-49a141e8.jpg,54deecbb-49a141e8.png,train,54deecbb,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+727f5c9c-a8995770.jpg,727f5c9c-a8995770.png,train,727f5c9c,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+727f5c9c-2dadce3a.jpg,727f5c9c-2dadce3a.png,train,727f5c9c,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+2c8d552b-9c5aff84.jpg,2c8d552b-9c5aff84.png,val,2c8d552b,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+db39ac74-ec3e1d5c.jpg,db39ac74-ec3e1d5c.png,val,db39ac74,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+a7b08896-e81f50f2.jpg,a7b08896-e81f50f2.png,train,a7b08896,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,residential,42
+07c02f3e-22e83385.jpg,07c02f3e-22e83385.png,train,07c02f3e,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+04985943-b66d7e43.jpg,04985943-b66d7e43.png,train,04985943,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,highway,42
+04985943-7d47a3dd.jpg,04985943-7d47a3dd.png,train,04985943,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,highway,42
+02f294c8-6da87d16.jpg,02f294c8-6da87d16.png,train,02f294c8,1280,720,1280,720,True,"[0, 1, 2]",daytime,snowy,city street,42
+2daee29e-82a890c5.jpg,2daee29e-82a890c5.png,train,2daee29e,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+6f1a1ce0-5e375478.jpg,6f1a1ce0-5e375478.png,train,6f1a1ce0,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+6f1a1ce0-202e9fd6.jpg,6f1a1ce0-202e9fd6.png,train,6f1a1ce0,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+a5a1c36b-b2018762.jpg,a5a1c36b-b2018762.png,val,a5a1c36b,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+f841bdff-4b90c1d3.jpg,f841bdff-4b90c1d3.png,val,f841bdff,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+f841bdff-89b6bf6e.jpg,f841bdff-89b6bf6e.png,val,f841bdff,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+b0222804-ad49ad13.jpg,b0222804-ad49ad13.png,train,b0222804,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,rainy,city street,42
+59d96637-f8ac1615.jpg,59d96637-f8ac1615.png,val,59d96637,1280,720,1280,720,True,"[0, 1, 2]",night,snowy,city street,42
+8c6a4d4a-3e983855.jpg,8c6a4d4a-3e983855.png,train,8c6a4d4a,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+6392c3d0-30784ff8.jpg,6392c3d0-30784ff8.png,train,6392c3d0,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+2e5a208e-3e1873d6.jpg,2e5a208e-3e1873d6.png,val,2e5a208e,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+2e5a208e-04b2f18c.jpg,2e5a208e-04b2f18c.png,val,2e5a208e,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+83c1226b-8278eb03.jpg,83c1226b-8278eb03.png,train,83c1226b,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+83c1226b-bb6e8674.jpg,83c1226b-bb6e8674.png,train,83c1226b,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+b5c37c0d-ffd474af.jpg,b5c37c0d-ffd474af.png,train,b5c37c0d,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+6379f023-bfe74545.jpg,6379f023-bfe74545.png,val,6379f023,1280,720,1280,720,True,"[0, 1, 2]",night,rainy,city street,42
+c83de0ac-3f022d3b.jpg,c83de0ac-3f022d3b.png,train,c83de0ac,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,overcast,residential,42
+ff71ad85-e25f601e.jpg,ff71ad85-e25f601e.png,val,ff71ad85,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+1c889359-36d4112c.jpg,1c889359-36d4112c.png,val,1c889359,1280,720,1280,720,True,"[0, 1, 2]",night,clear,residential,42
+db271f6d-2e710d40.jpg,db271f6d-2e710d40.png,val,db271f6d,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,city street,42
+db271f6d-38bd286a.jpg,db271f6d-38bd286a.png,val,db271f6d,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,city street,42
+db271f6d-44c13121.jpg,db271f6d-44c13121.png,val,db271f6d,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,city street,42
+31cda466-24a9e069.jpg,31cda466-24a9e069.png,train,31cda466,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,overcast,residential,42
+c054d8a6-057d7d87.jpg,c054d8a6-057d7d87.png,val,c054d8a6,1280,720,1280,720,True,"[0, 1, 2]",night,clear,residential,42
+4a23020e-bad68d4b.jpg,4a23020e-bad68d4b.png,val,4a23020e,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+62ce9076-6fb9b4ea.jpg,62ce9076-6fb9b4ea.png,train,62ce9076,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+d0d24f98-23c3a03d.jpg,d0d24f98-23c3a03d.png,val,d0d24f98,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+d0d24f98-682958d6.jpg,d0d24f98-682958d6.png,val,d0d24f98,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+d0d24f98-0cecbcb6.jpg,d0d24f98-0cecbcb6.png,val,d0d24f98,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+6a1b71b8-e7d558ad.jpg,6a1b71b8-e7d558ad.png,val,6a1b71b8,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,residential,42
+8a3d6c93-641cad4f.jpg,8a3d6c93-641cad4f.png,train,8a3d6c93,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+8a3d6c93-c2831d06.jpg,8a3d6c93-c2831d06.png,train,8a3d6c93,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+8a3d6c93-b9f57390.jpg,8a3d6c93-b9f57390.png,train,8a3d6c93,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+9f1dcef8-06a42de9.jpg,9f1dcef8-06a42de9.png,train,9f1dcef8,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+120da11b-3530a55d.jpg,120da11b-3530a55d.png,train,120da11b,1280,720,1280,720,True,"[0, 1, 2]",night,clear,residential,42
+219f6198-3f9a0fc3.jpg,219f6198-3f9a0fc3.png,train,219f6198,1280,720,1280,720,True,"[0, 1, 2]",night,rainy,city street,42
+219f6198-32a9332f.jpg,219f6198-32a9332f.png,train,219f6198,1280,720,1280,720,True,"[0, 1, 2]",night,rainy,city street,42
+d1a70527-aacddb72.jpg,d1a70527-aacddb72.png,train,d1a70527,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+0b4951ad-493c5018.jpg,0b4951ad-493c5018.png,train,0b4951ad,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+f98c1b1e-0fc59f8f.jpg,f98c1b1e-0fc59f8f.png,train,f98c1b1e,1280,720,1280,720,True,"[0, 1, 2]",daytime,snowy,highway,42
+abbe1d1b-5cc99487.jpg,abbe1d1b-5cc99487.png,val,abbe1d1b,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+ff13db62-903456bd.jpg,ff13db62-903456bd.png,train,ff13db62,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+5f9751df-7652bd8c.jpg,5f9751df-7652bd8c.png,train,5f9751df,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+c3f03758-b1de6beb.jpg,c3f03758-b1de6beb.png,train,c3f03758,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+f0db6b85-a7b16ef9.jpg,f0db6b85-a7b16ef9.png,val,f0db6b85,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+f0db6b85-8940442e.jpg,f0db6b85-8940442e.png,val,f0db6b85,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+235e563a-dd32126b.jpg,235e563a-dd32126b.png,train,235e563a,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+a8b935a4-b66c6677.jpg,a8b935a4-b66c6677.png,train,a8b935a4,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+0c620375-674f8835.jpg,0c620375-674f8835.png,train,0c620375,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+bd9d2ef1-60ffaa7a.jpg,bd9d2ef1-60ffaa7a.png,train,bd9d2ef1,1280,720,1280,720,True,"[0, 1, 2]",daytime,snowy,highway,42
+450ad65c-58a41ef8.jpg,450ad65c-58a41ef8.png,train,450ad65c,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+24a33b6a-927202cb.jpg,24a33b6a-927202cb.png,train,24a33b6a,1280,720,1280,720,True,"[0, 1, 2]",daytime,snowy,residential,42
+24a33b6a-438f7052.jpg,24a33b6a-438f7052.png,train,24a33b6a,1280,720,1280,720,True,"[0, 1, 2]",daytime,snowy,residential,42
+24a33b6a-263d0f02.jpg,24a33b6a-263d0f02.png,train,24a33b6a,1280,720,1280,720,True,"[0, 1, 2]",daytime,snowy,residential,42
+cba1bf65-82d8bdf6.jpg,cba1bf65-82d8bdf6.png,train,cba1bf65,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+cba1bf65-672e0698.jpg,cba1bf65-672e0698.png,train,cba1bf65,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+268ff2d0-c2d745aa.jpg,268ff2d0-c2d745aa.png,val,268ff2d0,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+268ff2d0-cc615295.jpg,268ff2d0-cc615295.png,val,268ff2d0,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+081ac596-2f616814.jpg,081ac596-2f616814.png,train,081ac596,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+081ac596-1f411704.jpg,081ac596-1f411704.png,train,081ac596,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+0b4c360b-1e9276fe.jpg,0b4c360b-1e9276fe.png,train,0b4c360b,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+a3c63b61-5bbfb65e.jpg,a3c63b61-5bbfb65e.png,train,a3c63b61,1280,720,1280,720,True,"[0, 1, 2]",night,rainy,city street,42
+fccf5b02-5e405649.jpg,fccf5b02-5e405649.png,train,fccf5b02,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+4307e1f4-505849ef.jpg,4307e1f4-505849ef.png,val,4307e1f4,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,highway,42
+994bbd24-2bb99de4.jpg,994bbd24-2bb99de4.png,train,994bbd24,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,residential,42
+18aa0508-bacbc668.jpg,18aa0508-bacbc668.png,val,18aa0508,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+934561e2-10fcea31.jpg,934561e2-10fcea31.png,train,934561e2,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+0dd2d9a7-c9d4f587.jpg,0dd2d9a7-c9d4f587.png,train,0dd2d9a7,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+2cd64e2e-f7acb9df.jpg,2cd64e2e-f7acb9df.png,train,2cd64e2e,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+3d25da3d-45dfdf80.jpg,3d25da3d-45dfdf80.png,train,3d25da3d,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+a7cb359a-31da49e2.jpg,a7cb359a-31da49e2.png,train,a7cb359a,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+97e5a818-76a54fcc.jpg,97e5a818-76a54fcc.png,val,97e5a818,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+9212c576-70e72279.jpg,9212c576-70e72279.png,val,9212c576,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,highway,42
+178ede32-0e04465b.jpg,178ede32-0e04465b.png,train,178ede32,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+178ede32-6a6bdc13.jpg,178ede32-6a6bdc13.png,train,178ede32,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+178ede32-23c1d04f.jpg,178ede32-23c1d04f.png,train,178ede32,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+93e2c118-3c5aaf3a.jpg,93e2c118-3c5aaf3a.png,train,93e2c118,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+77391b98-e707d42d.jpg,77391b98-e707d42d.png,train,77391b98,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,city street,42
+7413b666-4cfa47ab.jpg,7413b666-4cfa47ab.png,val,7413b666,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+7413b666-4a5387a7.jpg,7413b666-4a5387a7.png,val,7413b666,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+7413b666-a11d303b.jpg,7413b666-a11d303b.png,val,7413b666,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+8d9bb1bd-ed4c28ee.jpg,8d9bb1bd-ed4c28ee.png,train,8d9bb1bd,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+8d9bb1bd-5820fc5c.jpg,8d9bb1bd-5820fc5c.png,train,8d9bb1bd,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+8d9bb1bd-ce4954ee.jpg,8d9bb1bd-ce4954ee.png,train,8d9bb1bd,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+4acabb78-15465c07.jpg,4acabb78-15465c07.png,train,4acabb78,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,residential,42
+3db45177-5c8a8450.jpg,3db45177-5c8a8450.png,train,3db45177,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,overcast,city street,42
+6e1d62ba-6947a8f3.jpg,6e1d62ba-6947a8f3.png,train,6e1d62ba,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+73632872-efa1a403.jpg,73632872-efa1a403.png,val,73632872,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,rainy,highway,42
+299e1155-c2e1726b.jpg,299e1155-c2e1726b.png,train,299e1155,1280,720,1280,720,True,"[0, 1, 2]",night,snowy,city street,42
+77c33473-d275d6da.jpg,77c33473-d275d6da.png,val,77c33473,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+2fd4f658-962401f7.jpg,2fd4f658-962401f7.png,train,2fd4f658,1280,720,1280,720,True,"[0, 1, 2]",night,clear,residential,42
+2fd4f658-e560e645.jpg,2fd4f658-e560e645.png,train,2fd4f658,1280,720,1280,720,True,"[0, 1, 2]",night,clear,residential,42
+67e394c3-2f078291.jpg,67e394c3-2f078291.png,train,67e394c3,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+2d4cc11d-b5fd2954.jpg,2d4cc11d-b5fd2954.png,val,2d4cc11d,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+24da826c-601740c0.jpg,24da826c-601740c0.png,val,24da826c,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+24da826c-7a03d518.jpg,24da826c-7a03d518.png,val,24da826c,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+25273207-c7889c3d.jpg,25273207-c7889c3d.png,train,25273207,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+25273207-7675da31.jpg,25273207-7675da31.png,train,25273207,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+0b2518c3-3970392a.jpg,0b2518c3-3970392a.png,train,0b2518c3,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+87322913-56276467.jpg,87322913-56276467.png,train,87322913,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+7d7791da-4cb7f79f.jpg,7d7791da-4cb7f79f.png,train,7d7791da,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+7d7791da-38211884.jpg,7d7791da-38211884.png,train,7d7791da,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+1582d24a-6f291817.jpg,1582d24a-6f291817.png,train,1582d24a,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+5697c533-49e542ae.jpg,5697c533-49e542ae.png,train,5697c533,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+901a63a8-3fd2687e.jpg,901a63a8-3fd2687e.png,val,901a63a8,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+d035da70-dec6a4ca.jpg,d035da70-dec6a4ca.png,train,d035da70,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+0331084f-80bb5713.jpg,0331084f-80bb5713.png,val,0331084f,1280,720,1280,720,True,"[0, 1, 2]",night,clear,residential,42
+9d599ab8-b4161ccf.jpg,9d599ab8-b4161ccf.png,train,9d599ab8,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+9d599ab8-6690f007.jpg,9d599ab8-6690f007.png,train,9d599ab8,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+8f9b6bd4-c2fdb6b3.jpg,8f9b6bd4-c2fdb6b3.png,train,8f9b6bd4,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,highway,42
+ce521dbd-e01c0b01.jpg,ce521dbd-e01c0b01.png,train,ce521dbd,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+4637feb5-d27205b0.jpg,4637feb5-d27205b0.png,train,4637feb5,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,highway,42
+9802fd2d-58584443.jpg,9802fd2d-58584443.png,train,9802fd2d,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+9802fd2d-3bfe7a91.jpg,9802fd2d-3bfe7a91.png,train,9802fd2d,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+5b1bec5f-19e45a20.jpg,5b1bec5f-19e45a20.png,train,5b1bec5f,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,highway,42
+5b1bec5f-c161be96.jpg,5b1bec5f-c161be96.png,train,5b1bec5f,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,highway,42
+97cfbfc0-27eeb48c.jpg,97cfbfc0-27eeb48c.png,train,97cfbfc0,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+97cfbfc0-c45d2d75.jpg,97cfbfc0-c45d2d75.png,train,97cfbfc0,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+37e0ab08-2af47482.jpg,37e0ab08-2af47482.png,train,37e0ab08,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+8fd8f9d7-69e955f5.jpg,8fd8f9d7-69e955f5.png,train,8fd8f9d7,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+62debcee-1c4cae74.jpg,62debcee-1c4cae74.png,train,62debcee,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,highway,42
+baf60577-b8adfecc.jpg,baf60577-b8adfecc.png,train,baf60577,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,highway,42
+464cb790-7c18b776.jpg,464cb790-7c18b776.png,train,464cb790,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+464cb790-a93537a2.jpg,464cb790-a93537a2.png,train,464cb790,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+464cb790-0d56b0aa.jpg,464cb790-0d56b0aa.png,train,464cb790,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+92db3a2b-4f72673c.jpg,92db3a2b-4f72673c.png,train,92db3a2b,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+92db3a2b-10916333.jpg,92db3a2b-10916333.png,train,92db3a2b,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+5597c076-4627cbc4.jpg,5597c076-4627cbc4.png,train,5597c076,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+e9d2d5d1-9f9d142e.jpg,e9d2d5d1-9f9d142e.png,train,e9d2d5d1,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+b21d668e-21d29567.jpg,b21d668e-21d29567.png,train,b21d668e,1280,720,1280,720,True,"[0, 1, 2]",night,rainy,residential,42
+b21d668e-b493dcad.jpg,b21d668e-b493dcad.png,train,b21d668e,1280,720,1280,720,True,"[0, 1, 2]",night,rainy,residential,42
+b21d668e-beb82029.jpg,b21d668e-beb82029.png,train,b21d668e,1280,720,1280,720,True,"[0, 1, 2]",night,rainy,residential,42
+afd9c33f-a49ce3a9.jpg,afd9c33f-a49ce3a9.png,val,afd9c33f,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+ac255350-784a25a9.jpg,ac255350-784a25a9.png,train,ac255350,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,highway,42
+ad284f33-a358b786.jpg,ad284f33-a358b786.png,train,ad284f33,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+dc2d5b15-650afa10.jpg,dc2d5b15-650afa10.png,train,dc2d5b15,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+dc2d5b15-9d24dbc8.jpg,dc2d5b15-9d24dbc8.png,train,dc2d5b15,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+c4e07e31-3091e34e.jpg,c4e07e31-3091e34e.png,val,c4e07e31,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+c4e07e31-4fa2b8f5.jpg,c4e07e31-4fa2b8f5.png,val,c4e07e31,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+e1253009-550089e8.jpg,e1253009-550089e8.png,train,e1253009,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+e1253009-aeee698f.jpg,e1253009-aeee698f.png,train,e1253009,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+e1253009-94c1c7c8.jpg,e1253009-94c1c7c8.png,train,e1253009,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+db8fc846-eeb2220b.jpg,db8fc846-eeb2220b.png,train,db8fc846,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+e5d9f16f-6b155219.jpg,e5d9f16f-6b155219.png,train,e5d9f16f,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+519aed19-96992796.jpg,519aed19-96992796.png,val,519aed19,1280,720,1280,720,True,"[0, 1, 2]",night,clear,residential,42
+09f8ec51-7c80b9ab.jpg,09f8ec51-7c80b9ab.png,train,09f8ec51,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,highway,42
+690bd3fe-ed1140d9.jpg,690bd3fe-ed1140d9.png,train,690bd3fe,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+690bd3fe-4d7db783.jpg,690bd3fe-4d7db783.png,train,690bd3fe,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+690bd3fe-23e605df.jpg,690bd3fe-23e605df.png,train,690bd3fe,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+175f538b-2064dfec.jpg,175f538b-2064dfec.png,val,175f538b,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+be0350e8-16737b17.jpg,be0350e8-16737b17.png,val,be0350e8,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+be0350e8-df310268.jpg,be0350e8-df310268.png,val,be0350e8,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+be0350e8-eef96e7b.jpg,be0350e8-eef96e7b.png,val,be0350e8,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+6663df41-6aa77be2.jpg,6663df41-6aa77be2.png,val,6663df41,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,overcast,city street,42
+96561d2e-65942c5a.jpg,96561d2e-65942c5a.png,train,96561d2e,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,highway,42
+abbecac1-fe0b2911.jpg,abbecac1-fe0b2911.png,train,abbecac1,1280,720,1280,720,True,"[0, 1, 2]",daytime,snowy,city street,42
+8aa10014-3b329abd.jpg,8aa10014-3b329abd.png,train,8aa10014,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,highway,42
+41f3dd84-2dbadc3e.jpg,41f3dd84-2dbadc3e.png,train,41f3dd84,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,highway,42
+75769ea1-e403569d.jpg,75769ea1-e403569d.png,train,75769ea1,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+75769ea1-cc45eb47.jpg,75769ea1-cc45eb47.png,train,75769ea1,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+e82bc0cb-d051c259.jpg,e82bc0cb-d051c259.png,val,e82bc0cb,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,residential,42
+32c09ef7-5e65ea97.jpg,32c09ef7-5e65ea97.png,train,32c09ef7,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,residential,42
+dd35d170-152aed7f.jpg,dd35d170-152aed7f.png,val,dd35d170,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+9aa91b4a-7184003d.jpg,9aa91b4a-7184003d.png,train,9aa91b4a,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+adf1fd9f-dfb5780e.jpg,adf1fd9f-dfb5780e.png,train,adf1fd9f,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,residential,42
+c3c429c8-9b8d7113.jpg,c3c429c8-9b8d7113.png,val,c3c429c8,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,highway,42
+9d27601d-52d86b70.jpg,9d27601d-52d86b70.png,val,9d27601d,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,residential,42
+9216bab5-fc019f7d.jpg,9216bab5-fc019f7d.png,val,9216bab5,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+9216bab5-7f73e4ce.jpg,9216bab5-7f73e4ce.png,val,9216bab5,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+92fbbcee-a959b882.jpg,92fbbcee-a959b882.png,val,92fbbcee,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,city street,42
+3ab3f4ce-de2e4edc.jpg,3ab3f4ce-de2e4edc.png,train,3ab3f4ce,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+4381e2b4-76192a6c.jpg,4381e2b4-76192a6c.png,train,4381e2b4,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+4381e2b4-103a37bf.jpg,4381e2b4-103a37bf.png,train,4381e2b4,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+935681a3-a94866d0.jpg,935681a3-a94866d0.png,train,935681a3,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+580c91ed-baee9a3f.jpg,580c91ed-baee9a3f.png,train,580c91ed,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,residential,42
+d52f11b6-512bd57a.jpg,d52f11b6-512bd57a.png,train,d52f11b6,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+2a022b68-bcc74452.jpg,2a022b68-bcc74452.png,train,2a022b68,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+bd4d165a-3ded8574.jpg,bd4d165a-3ded8574.png,train,bd4d165a,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,highway,42
+24108ff0-9c6ca7e4.jpg,24108ff0-9c6ca7e4.png,val,24108ff0,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,rainy,city street,42
+c532a026-a4806682.jpg,c532a026-a4806682.png,train,c532a026,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+9ab45e14-1aaaecb6.jpg,9ab45e14-1aaaecb6.png,train,9ab45e14,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+9ab45e14-0b8de72f.jpg,9ab45e14-0b8de72f.png,train,9ab45e14,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+9ab45e14-84dc095f.jpg,9ab45e14-84dc095f.png,train,9ab45e14,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+8ea74ed6-727c04ef.jpg,8ea74ed6-727c04ef.png,train,8ea74ed6,1280,720,1280,720,True,"[0, 1, 2]",night,rainy,highway,42
+6fdba9f1-44293f79.jpg,6fdba9f1-44293f79.png,train,6fdba9f1,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,highway,42
+6fdba9f1-02c06102.jpg,6fdba9f1-02c06102.png,train,6fdba9f1,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,highway,42
+841856e3-eaed8c2e.jpg,841856e3-eaed8c2e.png,train,841856e3,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+7e90ee5f-b4e885fa.jpg,7e90ee5f-b4e885fa.png,train,7e90ee5f,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+7e90ee5f-f9148fe9.jpg,7e90ee5f-f9148fe9.png,train,7e90ee5f,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+701ae408-48c3ddbe.jpg,701ae408-48c3ddbe.png,val,701ae408,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,overcast,city street,42
+3384e299-b1fb5ca1.jpg,3384e299-b1fb5ca1.png,val,3384e299,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,city street,42
+b97fd130-7205dbd6.jpg,b97fd130-7205dbd6.png,train,b97fd130,1280,720,1280,720,True,"[0, 1, 2]",daytime,snowy,residential,42
+b97fd130-0257102b.jpg,b97fd130-0257102b.png,train,b97fd130,1280,720,1280,720,True,"[0, 1, 2]",daytime,snowy,residential,42
+b97fd130-53a0d8de.jpg,b97fd130-53a0d8de.png,train,b97fd130,1280,720,1280,720,True,"[0, 1, 2]",daytime,snowy,residential,42
+afc0fd47-989ab614.jpg,afc0fd47-989ab614.png,train,afc0fd47,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,overcast,city street,42
+afc0fd47-9b37306e.jpg,afc0fd47-9b37306e.png,train,afc0fd47,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,overcast,city street,42
+afc0fd47-138d99a0.jpg,afc0fd47-138d99a0.png,train,afc0fd47,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,overcast,city street,42
+59a63dd1-6a4ede3a.jpg,59a63dd1-6a4ede3a.png,train,59a63dd1,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+be75ec5d-b7c4886f.jpg,be75ec5d-b7c4886f.png,train,be75ec5d,1280,720,1280,720,True,"[0, 1, 2]",night,snowy,city street,42
+ae305934-6e8c5154.jpg,ae305934-6e8c5154.png,train,ae305934,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,rainy,residential,42
+4636a24b-9195f73c.jpg,4636a24b-9195f73c.png,train,4636a24b,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,city street,42
+9b9e46cc-4a920ed3.jpg,9b9e46cc-4a920ed3.png,train,9b9e46cc,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+49df6251-b210ad36.jpg,49df6251-b210ad36.png,train,49df6251,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+49df6251-1432aa68.jpg,49df6251-1432aa68.png,train,49df6251,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+92c0db75-adc432c0.jpg,92c0db75-adc432c0.png,train,92c0db75,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+92c0db75-75c29d9a.jpg,92c0db75-75c29d9a.png,train,92c0db75,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+92c0db75-9e134171.jpg,92c0db75-9e134171.png,train,92c0db75,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+29d2600c-d37b3e34.jpg,29d2600c-d37b3e34.png,train,29d2600c,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+9592e5df-5284b1bd.jpg,9592e5df-5284b1bd.png,train,9592e5df,1280,720,1280,720,True,"[0, 1, 2]",daytime,snowy,residential,42
+b42e23ee-d92ca995.jpg,b42e23ee-d92ca995.png,train,b42e23ee,1280,720,1280,720,True,"[0, 1, 2]",daytime,snowy,city street,42
+daefdb4b-71adfa7e.jpg,daefdb4b-71adfa7e.png,train,daefdb4b,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+ed39c8d3-1302668f.jpg,ed39c8d3-1302668f.png,train,ed39c8d3,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+0088a55d-448985c4.jpg,0088a55d-448985c4.png,train,0088a55d,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+f67e3a5b-49eb89e7.jpg,f67e3a5b-49eb89e7.png,train,f67e3a5b,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+ae31a61b-27ffd40c.jpg,ae31a61b-27ffd40c.png,val,ae31a61b,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+c4f0b045-fd9fb1f1.jpg,c4f0b045-fd9fb1f1.png,train,c4f0b045,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+56c10910-44eb08b5.jpg,56c10910-44eb08b5.png,train,56c10910,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+cddd7833-43bee54b.jpg,cddd7833-43bee54b.png,train,cddd7833,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+535a3fd8-dcaa18b2.jpg,535a3fd8-dcaa18b2.png,train,535a3fd8,1280,720,1280,720,True,"[0, 1, 2]",daytime,snowy,city street,42
+ba966bd8-9642b0a0.jpg,ba966bd8-9642b0a0.png,train,ba966bd8,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+ba966bd8-3b28a026.jpg,ba966bd8-3b28a026.png,train,ba966bd8,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+ab877deb-3b3907c3.jpg,ab877deb-3b3907c3.png,train,ab877deb,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+8c57a095-e8a74dd5.jpg,8c57a095-e8a74dd5.png,val,8c57a095,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+a6583fc4-ac7c1ea0.jpg,a6583fc4-ac7c1ea0.png,train,a6583fc4,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+49c28d04-c93ce4e6.jpg,49c28d04-c93ce4e6.png,train,49c28d04,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+36b5b968-8b4cb417.jpg,36b5b968-8b4cb417.png,val,36b5b968,1280,720,1280,720,True,"[0, 1, 2]",night,rainy,city street,42
+c956d001-11773b8b.jpg,c956d001-11773b8b.png,train,c956d001,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+f523e799-74a911a0.jpg,f523e799-74a911a0.png,train,f523e799,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+37c29208-aa27378a.jpg,37c29208-aa27378a.png,val,37c29208,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+39f23ffc-78d7ef0a.jpg,39f23ffc-78d7ef0a.png,train,39f23ffc,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,highway,42
+39f23ffc-cb8e593d.jpg,39f23ffc-cb8e593d.png,train,39f23ffc,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,highway,42
+54a5387b-57833b09.jpg,54a5387b-57833b09.png,train,54a5387b,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,highway,42
+ebdb5a98-81af087b.jpg,ebdb5a98-81af087b.png,val,ebdb5a98,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,rainy,city street,42
+ebdb5a98-249f0df8.jpg,ebdb5a98-249f0df8.png,val,ebdb5a98,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,rainy,city street,42
+80044b33-67a8c7ed.jpg,80044b33-67a8c7ed.png,train,80044b33,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+93642c72-c52bb6de.jpg,93642c72-c52bb6de.png,val,93642c72,1280,720,1280,720,True,"[0, 1, 2]",night,rainy,highway,42
+dfd6a6bc-8ae0a9f2.jpg,dfd6a6bc-8ae0a9f2.png,val,dfd6a6bc,1280,720,1280,720,True,"[0, 1, 2]",night,rainy,highway,42
+dfd6a6bc-ce07bb59.jpg,dfd6a6bc-ce07bb59.png,val,dfd6a6bc,1280,720,1280,720,True,"[0, 1, 2]",night,rainy,highway,42
+dfd6a6bc-09230cef.jpg,dfd6a6bc-09230cef.png,val,dfd6a6bc,1280,720,1280,720,True,"[0, 1, 2]",night,rainy,highway,42
+bda11908-e731b09a.jpg,bda11908-e731b09a.png,train,bda11908,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+bda11908-e2f2161b.jpg,bda11908-e2f2161b.png,train,bda11908,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+bda11908-0b76e831.jpg,bda11908-0b76e831.png,train,bda11908,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+bb15bbbe-b64eee9a.jpg,bb15bbbe-b64eee9a.png,train,bb15bbbe,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+f30b3790-aeca21c0.jpg,f30b3790-aeca21c0.png,train,f30b3790,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+c7c19a29-9a3f6162.jpg,c7c19a29-9a3f6162.png,train,c7c19a29,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+1910399d-000436ae.jpg,1910399d-000436ae.png,train,1910399d,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+1910399d-37aa1129.jpg,1910399d-37aa1129.png,train,1910399d,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+03607dfd-0e074abe.jpg,03607dfd-0e074abe.png,train,03607dfd,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+977b0de6-48ebaaff.jpg,977b0de6-48ebaaff.png,train,977b0de6,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+e31f7e93-aa569dca.jpg,e31f7e93-aa569dca.png,train,e31f7e93,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+93a82112-f8aceb7b.jpg,93a82112-f8aceb7b.png,train,93a82112,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+12c763af-3f1540ae.jpg,12c763af-3f1540ae.png,train,12c763af,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+60f2d5df-22bfa3af.jpg,60f2d5df-22bfa3af.png,train,60f2d5df,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,highway,42
+bf106d73-c3ba7b24.jpg,bf106d73-c3ba7b24.png,val,bf106d73,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+bf106d73-4254d88f.jpg,bf106d73-4254d88f.png,val,bf106d73,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+31422876-d01adb45.jpg,31422876-d01adb45.png,train,31422876,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,rainy,highway,42
+31422876-0b6162a6.jpg,31422876-0b6162a6.png,train,31422876,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,rainy,highway,42
+31422876-4ffeef2b.jpg,31422876-4ffeef2b.png,train,31422876,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,rainy,highway,42
+90917052-62c92531.jpg,90917052-62c92531.png,train,90917052,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+6329dec2-7be5812f.jpg,6329dec2-7be5812f.png,val,6329dec2,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,city street,42
+86be709f-891d0a57.jpg,86be709f-891d0a57.png,val,86be709f,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+825f9386-36c4231b.jpg,825f9386-36c4231b.png,train,825f9386,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+bff234f0-3c1a4719.jpg,bff234f0-3c1a4719.png,train,bff234f0,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,highway,42
+69e88a53-17a01a4d.jpg,69e88a53-17a01a4d.png,val,69e88a53,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+69e88a53-e9c035aa.jpg,69e88a53-e9c035aa.png,val,69e88a53,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+d1e66a70-98c4b43a.jpg,d1e66a70-98c4b43a.png,train,d1e66a70,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+d1e66a70-becb5342.jpg,d1e66a70-becb5342.png,train,d1e66a70,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+d02c3557-2faf55db.jpg,d02c3557-2faf55db.png,train,d02c3557,1280,720,1280,720,True,"[0, 1, 2]",night,clear,residential,42
+d02c3557-6204253b.jpg,d02c3557-6204253b.png,train,d02c3557,1280,720,1280,720,True,"[0, 1, 2]",night,clear,residential,42
+fd236900-c1fc5e2c.jpg,fd236900-c1fc5e2c.png,train,fd236900,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,highway,42
+f34b643d-174e4c0e.jpg,f34b643d-174e4c0e.png,train,f34b643d,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+8398cc8a-e6f1d9ae.jpg,8398cc8a-e6f1d9ae.png,train,8398cc8a,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+4972acbc-80944f57.jpg,4972acbc-80944f57.png,val,4972acbc,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,overcast,highway,42
+c1e3a8d4-30bbc9b6.jpg,c1e3a8d4-30bbc9b6.png,train,c1e3a8d4,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,residential,42
+ab7f493e-d46cc1db.jpg,ab7f493e-d46cc1db.png,train,ab7f493e,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+ab7f493e-3a62d930.jpg,ab7f493e-3a62d930.png,train,ab7f493e,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+e285e091-4cc6bea5.jpg,e285e091-4cc6bea5.png,train,e285e091,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+868db52a-be3072e3.jpg,868db52a-be3072e3.png,train,868db52a,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+12ca888a-6f289594.jpg,12ca888a-6f289594.png,train,12ca888a,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+092234cd-1c3da7f4.jpg,092234cd-1c3da7f4.png,train,092234cd,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+890bc265-a6ea5b64.jpg,890bc265-a6ea5b64.png,train,890bc265,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+b267f1bf-54f89fca.jpg,b267f1bf-54f89fca.png,train,b267f1bf,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,highway,42
+b267f1bf-c8b7b6b6.jpg,b267f1bf-c8b7b6b6.png,train,b267f1bf,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,highway,42
+b267f1bf-2a887781.jpg,b267f1bf-2a887781.png,train,b267f1bf,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,highway,42
+d41ed14c-198d8fb5.jpg,d41ed14c-198d8fb5.png,train,d41ed14c,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,rainy,city street,42
+845245b2-6a9d3c6e.jpg,845245b2-6a9d3c6e.png,train,845245b2,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+845245b2-0258f64c.jpg,845245b2-0258f64c.png,train,845245b2,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+845245b2-ef80cff7.jpg,845245b2-ef80cff7.png,train,845245b2,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+a31f2a07-3618d819.jpg,a31f2a07-3618d819.png,val,a31f2a07,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,highway,42
+b2a4e48e-2fa8da1a.jpg,b2a4e48e-2fa8da1a.png,train,b2a4e48e,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+83a1d44c-116c1f03.jpg,83a1d44c-116c1f03.png,train,83a1d44c,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+c40f1e7a-576dd5b0.jpg,c40f1e7a-576dd5b0.png,train,c40f1e7a,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+487b4510-cf3982d7.jpg,487b4510-cf3982d7.png,val,487b4510,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+487b4510-30f57a94.jpg,487b4510-30f57a94.png,val,487b4510,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+bda24eec-abe28192.jpg,bda24eec-abe28192.png,train,bda24eec,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+dbb7c71b-10c70b2b.jpg,dbb7c71b-10c70b2b.png,val,dbb7c71b,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+98e99684-91b04820.jpg,98e99684-91b04820.png,train,98e99684,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+243b1057-e5fafb26.jpg,243b1057-e5fafb26.png,train,243b1057,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+80a8920e-4af65090.jpg,80a8920e-4af65090.png,train,80a8920e,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+80a8920e-d28588b2.jpg,80a8920e-d28588b2.png,train,80a8920e,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+80a8920e-5bc435bd.jpg,80a8920e-5bc435bd.png,train,80a8920e,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+30ad3865-000f4967.jpg,30ad3865-000f4967.png,train,30ad3865,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,overcast,highway,42
+5acc1f0e-f0d413e9.jpg,5acc1f0e-f0d413e9.png,train,5acc1f0e,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,highway,42
+3a6c8860-f8e0dac9.jpg,3a6c8860-f8e0dac9.png,train,3a6c8860,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,highway,42
+3a6c8860-fb8c0fa1.jpg,3a6c8860-fb8c0fa1.png,train,3a6c8860,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,highway,42
+7f865aa0-cddbfbff.jpg,7f865aa0-cddbfbff.png,train,7f865aa0,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+7f865aa0-31f730bd.jpg,7f865aa0-31f730bd.png,train,7f865aa0,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+7f865aa0-e338435f.jpg,7f865aa0-e338435f.png,train,7f865aa0,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+3f5ea289-22f0fec8.jpg,3f5ea289-22f0fec8.png,train,3f5ea289,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+c6704320-bafb3244.jpg,c6704320-bafb3244.png,train,c6704320,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+1ec37d63-5a9f1b9f.jpg,1ec37d63-5a9f1b9f.png,val,1ec37d63,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,city street,42
+1ec37d63-f36c5a32.jpg,1ec37d63-f36c5a32.png,val,1ec37d63,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,city street,42
+69f21dce-b5e5b8a0.jpg,69f21dce-b5e5b8a0.png,train,69f21dce,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+69f21dce-089d48d2.jpg,69f21dce-089d48d2.png,train,69f21dce,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+c69e94e4-407258e2.jpg,c69e94e4-407258e2.png,train,c69e94e4,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+7323fa2b-5c9e1553.jpg,7323fa2b-5c9e1553.png,train,7323fa2b,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+7323fa2b-90dcc0ba.jpg,7323fa2b-90dcc0ba.png,train,7323fa2b,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+c2ed6a5b-39ebb008.jpg,c2ed6a5b-39ebb008.png,train,c2ed6a5b,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+e5df6d4e-a766b499.jpg,e5df6d4e-a766b499.png,train,e5df6d4e,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+e5df6d4e-2a03af39.jpg,e5df6d4e-2a03af39.png,train,e5df6d4e,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+e5df6d4e-12606332.jpg,e5df6d4e-12606332.png,train,e5df6d4e,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+01d9a1cc-afef36be.jpg,01d9a1cc-afef36be.png,train,01d9a1cc,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+f33bf47a-f73b7302.jpg,f33bf47a-f73b7302.png,train,f33bf47a,1280,720,1280,720,True,"[0, 1, 2]",daytime,snowy,city street,42
+2a531349-eca1c8ec.jpg,2a531349-eca1c8ec.png,train,2a531349,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,rainy,city street,42
+0ff8d292-95e82f21.jpg,0ff8d292-95e82f21.png,train,0ff8d292,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+a2818e0e-117bea0b.jpg,a2818e0e-117bea0b.png,train,a2818e0e,1280,720,1280,720,True,"[0, 1, 2]",night,rainy,highway,42
+0c9b5295-92d4e8c8.jpg,0c9b5295-92d4e8c8.png,train,0c9b5295,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+d0c6668d-4cce133d.jpg,d0c6668d-4cce133d.png,train,d0c6668d,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,highway,42
+d0c6668d-c6ca3d48.jpg,d0c6668d-c6ca3d48.png,train,d0c6668d,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,highway,42
+aae03a38-7938d6de.jpg,aae03a38-7938d6de.png,val,aae03a38,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+cd243d5a-6181c22e.jpg,cd243d5a-6181c22e.png,train,cd243d5a,1280,720,1280,720,True,"[0, 1, 2]",daytime,snowy,highway,42
+3adb823c-f3ea3d4f.jpg,3adb823c-f3ea3d4f.png,val,3adb823c,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+73d6fa45-c07a2d60.jpg,73d6fa45-c07a2d60.png,train,73d6fa45,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+73d6fa45-c3d70d98.jpg,73d6fa45-c3d70d98.png,train,73d6fa45,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+1a16f011-47e1f9e9.jpg,1a16f011-47e1f9e9.png,train,1a16f011,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,city street,42
+1a16f011-a5ef0709.jpg,1a16f011-a5ef0709.png,train,1a16f011,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,city street,42
+ed043b2c-355f6b4a.jpg,ed043b2c-355f6b4a.png,val,ed043b2c,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+560fd584-3f88fcfe.jpg,560fd584-3f88fcfe.png,val,560fd584,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,highway,42
+560fd584-dba93f8f.jpg,560fd584-dba93f8f.png,val,560fd584,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,highway,42
+0b7db4aa-25f45a04.jpg,0b7db4aa-25f45a04.png,train,0b7db4aa,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+72c2e85c-0e42de73.jpg,72c2e85c-0e42de73.png,train,72c2e85c,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+ef093047-c253e4dc.jpg,ef093047-c253e4dc.png,val,ef093047,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,residential,42
+eee5af18-45b42611.jpg,eee5af18-45b42611.png,val,eee5af18,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+42df9bd0-e264c7b6.jpg,42df9bd0-e264c7b6.png,train,42df9bd0,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,highway,42
+42df9bd0-55d95ead.jpg,42df9bd0-55d95ead.png,train,42df9bd0,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,highway,42
+42df9bd0-0c14b971.jpg,42df9bd0-0c14b971.png,train,42df9bd0,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,highway,42
+f3649d66-7452a565.jpg,f3649d66-7452a565.png,train,f3649d66,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+bea57861-a479801f.jpg,bea57861-a479801f.png,train,bea57861,1280,720,1280,720,True,"[0, 1, 2]",night,snowy,city street,42
+cfcfeb67-8ef45ed7.jpg,cfcfeb67-8ef45ed7.png,train,cfcfeb67,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+74af29b2-497146d7.jpg,74af29b2-497146d7.png,train,74af29b2,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+b09cc032-bb0b7a6f.jpg,b09cc032-bb0b7a6f.png,train,b09cc032,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+ba75d68e-44834522.jpg,ba75d68e-44834522.png,train,ba75d68e,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+ba75d68e-3420ecd6.jpg,ba75d68e-3420ecd6.png,train,ba75d68e,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+ba75d68e-7682d09b.jpg,ba75d68e-7682d09b.png,train,ba75d68e,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+ea414084-211464c3.jpg,ea414084-211464c3.png,train,ea414084,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+ea414084-4a6cc621.jpg,ea414084-4a6cc621.png,train,ea414084,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+999f325d-814dd5ca.jpg,999f325d-814dd5ca.png,val,999f325d,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+13bb282b-00f3f9ae.jpg,13bb282b-00f3f9ae.png,val,13bb282b,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,highway,42
+13bb282b-c6a3b137.jpg,13bb282b-c6a3b137.png,val,13bb282b,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,highway,42
+9f0afe39-559b5b6c.jpg,9f0afe39-559b5b6c.png,train,9f0afe39,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+358b3051-98283fc3.jpg,358b3051-98283fc3.png,train,358b3051,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+40f42d85-ab1d0288.jpg,40f42d85-ab1d0288.png,train,40f42d85,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+604c2c19-13a35fd4.jpg,604c2c19-13a35fd4.png,train,604c2c19,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,city street,42
+97cc1687-9a1a312d.jpg,97cc1687-9a1a312d.png,val,97cc1687,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+1dfbb9d4-239be0e7.jpg,1dfbb9d4-239be0e7.png,val,1dfbb9d4,1280,720,1280,720,True,"[0, 1, 2]",night,clear,residential,42
+1dfbb9d4-e8c76110.jpg,1dfbb9d4-e8c76110.png,val,1dfbb9d4,1280,720,1280,720,True,"[0, 1, 2]",night,clear,residential,42
+d00a2710-98be94e1.jpg,d00a2710-98be94e1.png,train,d00a2710,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+d00a2710-80df2633.jpg,d00a2710-80df2633.png,train,d00a2710,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+d00a2710-26d829fe.jpg,d00a2710-26d829fe.png,train,d00a2710,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+de9c481a-5c68383a.jpg,de9c481a-5c68383a.png,train,de9c481a,1280,720,1280,720,True,"[0, 1, 2]",night,clear,residential,42
+d4df1c3c-34b6f954.jpg,d4df1c3c-34b6f954.png,val,d4df1c3c,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,highway,42
+d4df1c3c-c6c70c8f.jpg,d4df1c3c-c6c70c8f.png,val,d4df1c3c,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,highway,42
+a78d975a-c2eaa1c1.jpg,a78d975a-c2eaa1c1.png,train,a78d975a,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+b3722000-3ade5764.jpg,b3722000-3ade5764.png,val,b3722000,1280,720,1280,720,True,"[0, 1, 2]",night,rainy,highway,42
+d0334784-9ae2576d.jpg,d0334784-9ae2576d.png,val,d0334784,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+a75b0bde-a1ec7865.jpg,a75b0bde-a1ec7865.png,train,a75b0bde,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,city street,42
+6b589025-a5431f82.jpg,6b589025-a5431f82.png,train,6b589025,1280,720,1280,720,True,"[0, 1, 2]",night,clear,residential,42
+53c39d5e-6fdc9fe3.jpg,53c39d5e-6fdc9fe3.png,train,53c39d5e,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+53c39d5e-61970470.jpg,53c39d5e-61970470.png,train,53c39d5e,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+68a77b75-6df4d9b3.jpg,68a77b75-6df4d9b3.png,train,68a77b75,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+b7ed6a53-0ac60df7.jpg,b7ed6a53-0ac60df7.png,train,b7ed6a53,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,residential,42
+b7ed6a53-bc91cace.jpg,b7ed6a53-bc91cace.png,train,b7ed6a53,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,residential,42
+e63f6ab4-ccfe1004.jpg,e63f6ab4-ccfe1004.png,train,e63f6ab4,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+6278e035-6d329d02.jpg,6278e035-6d329d02.png,train,6278e035,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+875eb446-e54ff6fd.jpg,875eb446-e54ff6fd.png,train,875eb446,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+f84c3c8d-f96b639a.jpg,f84c3c8d-f96b639a.png,train,f84c3c8d,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+b723273d-01cc0da4.jpg,b723273d-01cc0da4.png,train,b723273d,1280,720,1280,720,True,"[0, 1, 2]",daytime,snowy,highway,42
+70cc66ab-bc67da7b.jpg,70cc66ab-bc67da7b.png,val,70cc66ab,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+08174315-51c1ade7.jpg,08174315-51c1ade7.png,val,08174315,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+5da7227c-9f653c83.jpg,5da7227c-9f653c83.png,train,5da7227c,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,city street,42
+5da7227c-a57acf50.jpg,5da7227c-a57acf50.png,train,5da7227c,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,city street,42
+92fe86f2-040756bb.jpg,92fe86f2-040756bb.png,train,92fe86f2,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+e4ce3216-f997bba3.jpg,e4ce3216-f997bba3.png,train,e4ce3216,1280,720,1280,720,True,"[0, 1, 2]",daytime,snowy,highway,42
+e4ce3216-1f22692d.jpg,e4ce3216-1f22692d.png,train,e4ce3216,1280,720,1280,720,True,"[0, 1, 2]",daytime,snowy,highway,42
+a636c20d-da91585a.jpg,a636c20d-da91585a.png,train,a636c20d,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+a636c20d-6c63a446.jpg,a636c20d-6c63a446.png,train,a636c20d,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+a636c20d-69bb0739.jpg,a636c20d-69bb0739.png,train,a636c20d,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+d865769a-452de1c2.jpg,d865769a-452de1c2.png,val,d865769a,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+d865769a-3fec209e.jpg,d865769a-3fec209e.png,val,d865769a,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+00293330-65b13712.jpg,00293330-65b13712.png,train,00293330,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+ad25a66c-6096ca43.jpg,ad25a66c-6096ca43.png,train,ad25a66c,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+5350c541-ce97de2c.jpg,5350c541-ce97de2c.png,val,5350c541,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+5350c541-0f72908c.jpg,5350c541-0f72908c.png,val,5350c541,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+ae9f50b8-a72c8f13.jpg,ae9f50b8-a72c8f13.png,train,ae9f50b8,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+ae9f50b8-1957113b.jpg,ae9f50b8-1957113b.png,train,ae9f50b8,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+2d9c0a21-f1009af1.jpg,2d9c0a21-f1009af1.png,train,2d9c0a21,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+2d9c0a21-0dcd6287.jpg,2d9c0a21-0dcd6287.png,train,2d9c0a21,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+2d9c0a21-642ed2d6.jpg,2d9c0a21-642ed2d6.png,train,2d9c0a21,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+02eaea6e-bace9705.jpg,02eaea6e-bace9705.png,train,02eaea6e,1280,720,1280,720,True,"[0, 1, 2]",daytime,snowy,highway,42
+a30922b9-45730f67.jpg,a30922b9-45730f67.png,train,a30922b9,1280,720,1280,720,True,"[0, 1, 2]",night,rainy,city street,42
+175161e2-e37d6346.jpg,175161e2-e37d6346.png,train,175161e2,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+0615ff54-1549e9f2.jpg,0615ff54-1549e9f2.png,train,0615ff54,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+0615ff54-22c78b3a.jpg,0615ff54-22c78b3a.png,train,0615ff54,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+0615ff54-e950f73c.jpg,0615ff54-e950f73c.png,train,0615ff54,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+604a3df9-97f7aa40.jpg,604a3df9-97f7aa40.png,train,604a3df9,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,residential,42
+10385ade-c1ca0481.jpg,10385ade-c1ca0481.png,val,10385ade,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+10385ade-7400f197.jpg,10385ade-7400f197.png,val,10385ade,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+2f311607-0d0ad1ae.jpg,2f311607-0d0ad1ae.png,train,2f311607,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+e962fc9f-0e4b6fe3.jpg,e962fc9f-0e4b6fe3.png,val,e962fc9f,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+3e754f6b-303423d8.jpg,3e754f6b-303423d8.png,train,3e754f6b,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+ccebe7d4-1c947d78.jpg,ccebe7d4-1c947d78.png,train,ccebe7d4,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+e19e9da4-ebd22e98.jpg,e19e9da4-ebd22e98.png,train,e19e9da4,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+e19e9da4-bc772b41.jpg,e19e9da4-bc772b41.png,train,e19e9da4,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+14abd7cf-93f04105.jpg,14abd7cf-93f04105.png,train,14abd7cf,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+240462de-e05acf90.jpg,240462de-e05acf90.png,val,240462de,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,overcast,city street,42
+240462de-172dfb65.jpg,240462de-172dfb65.png,val,240462de,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,overcast,city street,42
+2448ee29-a3d37d4f.jpg,2448ee29-a3d37d4f.png,train,2448ee29,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+2448ee29-0c53eb2d.jpg,2448ee29-0c53eb2d.png,train,2448ee29,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+56b55be2-01dde962.jpg,56b55be2-01dde962.png,train,56b55be2,1280,720,1280,720,True,"[0, 1, 2]",daytime,snowy,highway,42
+52b7e95f-c53cbbbf.jpg,52b7e95f-c53cbbbf.png,train,52b7e95f,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+dee24d88-c1f6412c.jpg,dee24d88-c1f6412c.png,train,dee24d88,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+4500fc8f-dc53e84e.jpg,4500fc8f-dc53e84e.png,train,4500fc8f,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,residential,42
+4500fc8f-6f844cab.jpg,4500fc8f-6f844cab.png,train,4500fc8f,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,residential,42
+21c1e14e-1862146a.jpg,21c1e14e-1862146a.png,train,21c1e14e,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+21c1e14e-068a789e.jpg,21c1e14e-068a789e.png,train,21c1e14e,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+21c1e14e-7b14f36a.jpg,21c1e14e-7b14f36a.png,train,21c1e14e,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+e854d9c6-4d513951.jpg,e854d9c6-4d513951.png,val,e854d9c6,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,city street,42
+5b0096c2-5c99bcfb.jpg,5b0096c2-5c99bcfb.png,train,5b0096c2,1280,720,1280,720,True,"[0, 1, 2]",night,snowy,residential,42
+e868c434-21365f08.jpg,e868c434-21365f08.png,train,e868c434,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,residential,42
+e868c434-b828d834.jpg,e868c434-b828d834.png,train,e868c434,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,residential,42
+5e573aae-b69eed8b.jpg,5e573aae-b69eed8b.png,train,5e573aae,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,snowy,residential,42
+21201367-096fd184.jpg,21201367-096fd184.png,val,21201367,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+c9c6021a-b64f8ef1.jpg,c9c6021a-b64f8ef1.png,train,c9c6021a,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+c9c6021a-dbde0088.jpg,c9c6021a-dbde0088.png,train,c9c6021a,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+c9c6021a-1c558e22.jpg,c9c6021a-1c558e22.png,train,c9c6021a,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+c8f57a19-c40d1267.jpg,c8f57a19-c40d1267.png,val,c8f57a19,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+c1f07c70-e83479c5.jpg,c1f07c70-e83479c5.png,train,c1f07c70,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+1c1c6054-ae36e983.jpg,1c1c6054-ae36e983.png,train,1c1c6054,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,residential,42
+1c1c6054-161d04e9.jpg,1c1c6054-161d04e9.png,train,1c1c6054,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,residential,42
+0e104a38-b6b21872.jpg,0e104a38-b6b21872.png,val,0e104a38,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+2e49e0e3-93b0bcad.jpg,2e49e0e3-93b0bcad.png,train,2e49e0e3,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+83038fbe-b9937c11.jpg,83038fbe-b9937c11.png,train,83038fbe,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+83038fbe-0efc9e7a.jpg,83038fbe-0efc9e7a.png,train,83038fbe,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+83038fbe-526f3399.jpg,83038fbe-526f3399.png,train,83038fbe,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+9e5e13e6-a8291467.jpg,9e5e13e6-a8291467.png,train,9e5e13e6,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+d7aceb20-260f23d0.jpg,d7aceb20-260f23d0.png,train,d7aceb20,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,rainy,city street,42
+2aff1624-c9be4e6b.jpg,2aff1624-c9be4e6b.png,train,2aff1624,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+2aff1624-cbe7a2f2.jpg,2aff1624-cbe7a2f2.png,train,2aff1624,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+2aff1624-1feb7d6a.jpg,2aff1624-1feb7d6a.png,train,2aff1624,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+56637539-dd36652f.jpg,56637539-dd36652f.png,train,56637539,1280,720,1280,720,True,"[0, 1, 2]",night,rainy,city street,42
+7498531a-c9111e92.jpg,7498531a-c9111e92.png,train,7498531a,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+119982da-a517fd22.jpg,119982da-a517fd22.png,train,119982da,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+119982da-b152c622.jpg,119982da-b152c622.png,train,119982da,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+ec970462-c387a8c6.jpg,ec970462-c387a8c6.png,train,ec970462,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+3ceab1eb-57094f94.jpg,3ceab1eb-57094f94.png,train,3ceab1eb,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+5aa54e96-10c46f67.jpg,5aa54e96-10c46f67.png,train,5aa54e96,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+6fb8e5f8-109555cb.jpg,6fb8e5f8-109555cb.png,val,6fb8e5f8,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+54ea1277-04c39fca.jpg,54ea1277-04c39fca.png,train,54ea1277,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+54ea1277-a229e7fe.jpg,54ea1277-a229e7fe.png,train,54ea1277,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+1758b38c-96bb057c.jpg,1758b38c-96bb057c.png,train,1758b38c,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+c3df5823-e89cee60.jpg,c3df5823-e89cee60.png,val,c3df5823,1280,720,1280,720,True,"[0, 1, 2]",daytime,snowy,city street,42
+c3df5823-f2c753c0.jpg,c3df5823-f2c753c0.png,val,c3df5823,1280,720,1280,720,True,"[0, 1, 2]",daytime,snowy,city street,42
+c3df5823-484beca3.jpg,c3df5823-484beca3.png,val,c3df5823,1280,720,1280,720,True,"[0, 1, 2]",daytime,snowy,city street,42
+803e6268-fac5493f.jpg,803e6268-fac5493f.png,train,803e6268,1280,720,1280,720,True,"[0, 1, 2]",night,snowy,highway,42
+803e6268-9d19784d.jpg,803e6268-9d19784d.png,train,803e6268,1280,720,1280,720,True,"[0, 1, 2]",night,snowy,highway,42
+6b7f25e7-720d59dc.jpg,6b7f25e7-720d59dc.png,train,6b7f25e7,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,residential,42
+6b7f25e7-45b79103.jpg,6b7f25e7-45b79103.png,train,6b7f25e7,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,residential,42
+6b7f25e7-599a829e.jpg,6b7f25e7-599a829e.png,train,6b7f25e7,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,residential,42
+efee1825-8a60c677.jpg,efee1825-8a60c677.png,train,efee1825,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+2945ec4f-01fbb94c.jpg,2945ec4f-01fbb94c.png,train,2945ec4f,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+cf7b5a08-87692c55.jpg,cf7b5a08-87692c55.png,train,cf7b5a08,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+77a892b6-78b55df8.jpg,77a892b6-78b55df8.png,train,77a892b6,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+5e209ea3-ac9ee016.jpg,5e209ea3-ac9ee016.png,train,5e209ea3,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+5e209ea3-790fe060.jpg,5e209ea3-790fe060.png,train,5e209ea3,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+5e209ea3-699e6ccc.jpg,5e209ea3-699e6ccc.png,train,5e209ea3,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+e0031158-5d346331.jpg,e0031158-5d346331.png,train,e0031158,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+e0031158-75c7572e.jpg,e0031158-75c7572e.png,train,e0031158,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+fdff630d-825b9d2a.jpg,fdff630d-825b9d2a.png,train,fdff630d,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+14b34233-4e443f16.jpg,14b34233-4e443f16.png,train,14b34233,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+7a0d69ea-aaa578ff.jpg,7a0d69ea-aaa578ff.png,train,7a0d69ea,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+759c39e3-76032b92.jpg,759c39e3-76032b92.png,train,759c39e3,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+6d9c74e7-b53bf90d.jpg,6d9c74e7-b53bf90d.png,train,6d9c74e7,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+b58449bf-e5df2e09.jpg,b58449bf-e5df2e09.png,val,b58449bf,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,rainy,city street,42
+b58449bf-24863ef4.jpg,b58449bf-24863ef4.png,val,b58449bf,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,rainy,city street,42
+4d305413-f93d5db2.jpg,4d305413-f93d5db2.png,train,4d305413,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,rainy,highway,42
+4d305413-e5b651bd.jpg,4d305413-e5b651bd.png,train,4d305413,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,rainy,highway,42
+4d305413-64244684.jpg,4d305413-64244684.png,train,4d305413,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,rainy,highway,42
+d7079cdf-11b400c0.jpg,d7079cdf-11b400c0.png,train,d7079cdf,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+7c36db5b-a82d4500.jpg,7c36db5b-a82d4500.png,train,7c36db5b,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,highway,42
+7c36db5b-67d28ec1.jpg,7c36db5b-67d28ec1.png,train,7c36db5b,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,highway,42
+3a1605fc-bd88dfd9.jpg,3a1605fc-bd88dfd9.png,val,3a1605fc,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,rainy,city street,42
+7490f761-d73c48b9.jpg,7490f761-d73c48b9.png,train,7490f761,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,highway,42
+3d5ce20d-dbf39416.jpg,3d5ce20d-dbf39416.png,train,3d5ce20d,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+3d5ce20d-5429436d.jpg,3d5ce20d-5429436d.png,train,3d5ce20d,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+4fc2f038-fa1149e9.jpg,4fc2f038-fa1149e9.png,train,4fc2f038,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+4fc2f038-3ff42c8b.jpg,4fc2f038-3ff42c8b.png,train,4fc2f038,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+71980f9b-79d90861.jpg,71980f9b-79d90861.png,train,71980f9b,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,residential,42
+e11e6650-c422d2ed.jpg,e11e6650-c422d2ed.png,train,e11e6650,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,residential,42
+e11e6650-08e9024f.jpg,e11e6650-08e9024f.png,train,e11e6650,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,residential,42
+e11e6650-a652876c.jpg,e11e6650-a652876c.png,train,e11e6650,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,residential,42
+ffc31634-be6b47b8.jpg,ffc31634-be6b47b8.png,train,ffc31634,1280,720,1280,720,True,"[0, 1, 2]",night,clear,residential,42
+37f37925-ce8c77c8.jpg,37f37925-ce8c77c8.png,train,37f37925,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+37f37925-9ada98cb.jpg,37f37925-9ada98cb.png,train,37f37925,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+a8681502-1f342072.jpg,a8681502-1f342072.png,train,a8681502,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+5f7a28f2-7a8da852.jpg,5f7a28f2-7a8da852.png,train,5f7a28f2,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+5f7a28f2-52e6bf63.jpg,5f7a28f2-52e6bf63.png,train,5f7a28f2,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+1cc943ed-8c31c5a8.jpg,1cc943ed-8c31c5a8.png,train,1cc943ed,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+253f4a59-6c1acda3.jpg,253f4a59-6c1acda3.png,train,253f4a59,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+b759fb06-c575500b.jpg,b759fb06-c575500b.png,val,b759fb06,1280,720,1280,720,True,"[0, 1, 2]",night,rainy,city street,42
+fb62fcbb-91bb9a22.jpg,fb62fcbb-91bb9a22.png,val,fb62fcbb,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+fb62fcbb-c22ca79c.jpg,fb62fcbb-c22ca79c.png,val,fb62fcbb,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+fb62fcbb-73b7738a.jpg,fb62fcbb-73b7738a.png,val,fb62fcbb,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+adbf6852-23e787af.jpg,adbf6852-23e787af.png,train,adbf6852,1280,720,1280,720,True,"[0, 1, 2]",night,clear,residential,42
+0da9b54b-38ee68ce.jpg,0da9b54b-38ee68ce.png,train,0da9b54b,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+06f6ac21-a399fc11.jpg,06f6ac21-a399fc11.png,val,06f6ac21,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+5645a382-36a02097.jpg,5645a382-36a02097.png,train,5645a382,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+5645a382-83b4e51e.jpg,5645a382-83b4e51e.png,train,5645a382,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+5e49397e-524e67cb.jpg,5e49397e-524e67cb.png,train,5e49397e,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+3759a162-cc2a85f7.jpg,3759a162-cc2a85f7.png,train,3759a162,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+be7d9ae4-968cfeb7.jpg,be7d9ae4-968cfeb7.png,val,be7d9ae4,1280,720,1280,720,True,"[0, 1, 2]",night,rainy,highway,42
+ea6cd6fc-064e488b.jpg,ea6cd6fc-064e488b.png,val,ea6cd6fc,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+a0d399e7-2403b9ae.jpg,a0d399e7-2403b9ae.png,train,a0d399e7,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+a0d399e7-b744ab7c.jpg,a0d399e7-b744ab7c.png,train,a0d399e7,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+231b57b8-84ba1511.jpg,231b57b8-84ba1511.png,train,231b57b8,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,highway,42
+264866b3-f341d57d.jpg,264866b3-f341d57d.png,val,264866b3,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,overcast,city street,42
+9367fc23-cee3d71b.jpg,9367fc23-cee3d71b.png,train,9367fc23,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+6ae97d4c-9f562688.jpg,6ae97d4c-9f562688.png,train,6ae97d4c,1280,720,1280,720,True,"[0, 1, 2]",night,rainy,residential,42
+13908330-03febe2c.jpg,13908330-03febe2c.png,train,13908330,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+b3dd0488-d2d04db2.jpg,b3dd0488-d2d04db2.png,val,b3dd0488,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+1f194805-b3f0887b.jpg,1f194805-b3f0887b.png,val,1f194805,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+cb83ff06-da7b5bfd.jpg,cb83ff06-da7b5bfd.png,val,cb83ff06,1280,720,1280,720,True,"[0, 1, 2]",night,rainy,city street,42
+9d18d6be-70b21b7c.jpg,9d18d6be-70b21b7c.png,train,9d18d6be,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+3d968d09-01d5cccb.jpg,3d968d09-01d5cccb.png,val,3d968d09,1280,720,1280,720,True,"[0, 1, 2]",night,clear,residential,42
+55393c7a-907c86a1.jpg,55393c7a-907c86a1.png,train,55393c7a,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+f7b4a3e4-40164ded.jpg,f7b4a3e4-40164ded.png,val,f7b4a3e4,1280,720,1280,720,True,"[0, 1, 2]",night,snowy,city street,42
+3131c3c0-b8e60d18.jpg,3131c3c0-b8e60d18.png,train,3131c3c0,1280,720,1280,720,True,"[0, 1, 2]",daytime,snowy,city street,42
+a90a2051-7d6820d0.jpg,a90a2051-7d6820d0.png,train,a90a2051,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,highway,42
+a90a2051-0f808f41.jpg,a90a2051-0f808f41.png,train,a90a2051,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,highway,42
+a90a2051-9feafed0.jpg,a90a2051-9feafed0.png,train,a90a2051,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,highway,42
+f8d49989-8025f42d.jpg,f8d49989-8025f42d.png,train,f8d49989,1280,720,1280,720,True,"[0, 1, 2]",night,rainy,city street,42
+9143eec7-38c2a4d7.jpg,9143eec7-38c2a4d7.png,train,9143eec7,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,city street,42
+9143eec7-17066757.jpg,9143eec7-17066757.png,train,9143eec7,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,city street,42
+e7e8c134-aa93bd10.jpg,e7e8c134-aa93bd10.png,train,e7e8c134,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+3fb003f7-d4c6a320.jpg,3fb003f7-d4c6a320.png,train,3fb003f7,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+b93e3598-67920333.jpg,b93e3598-67920333.png,train,b93e3598,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+f3cf5c65-4bb888c6.jpg,f3cf5c65-4bb888c6.png,train,f3cf5c65,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+8fc620e8-9fa0ccdc.jpg,8fc620e8-9fa0ccdc.png,val,8fc620e8,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+8fc620e8-7424a0c2.jpg,8fc620e8-7424a0c2.png,val,8fc620e8,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+8fc620e8-378aeb5f.jpg,8fc620e8-378aeb5f.png,val,8fc620e8,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+d7926855-0c19d918.jpg,d7926855-0c19d918.png,train,d7926855,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+cb22ca6f-aa19b556.jpg,cb22ca6f-aa19b556.png,train,cb22ca6f,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+3c5933e8-cee159ad.jpg,3c5933e8-cee159ad.png,train,3c5933e8,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+a2402d75-a4571f2c.jpg,a2402d75-a4571f2c.png,val,a2402d75,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,city street,42
+d8567ea1-84ada45a.jpg,d8567ea1-84ada45a.png,train,d8567ea1,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,snowy,city street,42
+d8567ea1-d87813c0.jpg,d8567ea1-d87813c0.png,train,d8567ea1,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,snowy,city street,42
+4f571bf0-1af556af.jpg,4f571bf0-1af556af.png,train,4f571bf0,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+4f571bf0-dac4ef8f.jpg,4f571bf0-dac4ef8f.png,train,4f571bf0,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+4f571bf0-e78329f4.jpg,4f571bf0-e78329f4.png,train,4f571bf0,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+d1d0462a-3e7987ea.jpg,d1d0462a-3e7987ea.png,val,d1d0462a,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+0df3f2c3-b633081d.jpg,0df3f2c3-b633081d.png,train,0df3f2c3,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+36273d9f-3c14bef3.jpg,36273d9f-3c14bef3.png,train,36273d9f,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,highway,42
+228c8fd0-7b13fe50.jpg,228c8fd0-7b13fe50.png,val,228c8fd0,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+bc614352-6119556b.jpg,bc614352-6119556b.png,train,bc614352,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+bc614352-ef859c70.jpg,bc614352-ef859c70.png,train,bc614352,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+417f5d78-be702814.jpg,417f5d78-be702814.png,train,417f5d78,1280,720,1280,720,True,"[0, 1, 2]",night,rainy,highway,42
+7932da41-c17f082e.jpg,7932da41-c17f082e.png,train,7932da41,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+7932da41-dd2e302a.jpg,7932da41-dd2e302a.png,train,7932da41,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+7932da41-ec56b8ae.jpg,7932da41-ec56b8ae.png,train,7932da41,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+5ba83c48-bb88950d.jpg,5ba83c48-bb88950d.png,val,5ba83c48,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+a4c3d7f0-93487114.jpg,a4c3d7f0-93487114.png,val,a4c3d7f0,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+272ed9fb-a36878b1.jpg,272ed9fb-a36878b1.png,train,272ed9fb,1280,720,1280,720,True,"[0, 1, 2]",night,clear,residential,42
+04d49533-b43fa88c.jpg,04d49533-b43fa88c.png,train,04d49533,1280,720,1280,720,True,"[0, 1, 2]",night,snowy,city street,42
+19487634-1dc584d1.jpg,19487634-1dc584d1.png,train,19487634,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+2c96f1ec-ab6b31eb.jpg,2c96f1ec-ab6b31eb.png,train,2c96f1ec,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+4aeccde7-1cef441a.jpg,4aeccde7-1cef441a.png,train,4aeccde7,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+a417c54a-9ec27acd.jpg,a417c54a-9ec27acd.png,val,a417c54a,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+f38cbd40-f350cf09.jpg,f38cbd40-f350cf09.png,train,f38cbd40,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+ebed03cd-a48a3c7c.jpg,ebed03cd-a48a3c7c.png,train,ebed03cd,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+7933df9d-702edd31.jpg,7933df9d-702edd31.png,val,7933df9d,1280,720,1280,720,True,"[0, 1, 2]",night,clear,residential,42
+d016bb3f-c83a34a3.jpg,d016bb3f-c83a34a3.png,train,d016bb3f,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,residential,42
+89095142-0e4deae0.jpg,89095142-0e4deae0.png,train,89095142,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+ac2791f1-bfcb1a85.jpg,ac2791f1-bfcb1a85.png,train,ac2791f1,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+7cf33f49-8f577f91.jpg,7cf33f49-8f577f91.png,train,7cf33f49,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,city street,42
+7de65355-4066eea6.jpg,7de65355-4066eea6.png,train,7de65355,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+7de65355-c9302efb.jpg,7de65355-c9302efb.png,train,7de65355,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+9b1fa84b-dc36cd57.jpg,9b1fa84b-dc36cd57.png,train,9b1fa84b,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,highway,42
+9b1fa84b-dec96a19.jpg,9b1fa84b-dec96a19.png,train,9b1fa84b,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,highway,42
+237d3fed-960d286c.jpg,237d3fed-960d286c.png,train,237d3fed,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+c61cd4c7-36636887.jpg,c61cd4c7-36636887.png,val,c61cd4c7,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+c61cd4c7-8ae0a347.jpg,c61cd4c7-8ae0a347.png,val,c61cd4c7,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+a8a6a664-47719fc9.jpg,a8a6a664-47719fc9.png,train,a8a6a664,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+a6744ab8-df95da6f.jpg,a6744ab8-df95da6f.png,train,a6744ab8,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+7502c93e-bf717355.jpg,7502c93e-bf717355.png,train,7502c93e,1280,720,1280,720,True,"[0, 1, 2]",night,snowy,highway,42
+95b28d87-a763c0d2.jpg,95b28d87-a763c0d2.png,train,95b28d87,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+5ad55e5e-27686f7e.jpg,5ad55e5e-27686f7e.png,train,5ad55e5e,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,residential,42
+91f5e851-986c8a7e.jpg,91f5e851-986c8a7e.png,train,91f5e851,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+14345135-fbcbdb26.jpg,14345135-fbcbdb26.png,train,14345135,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+40c1814a-9f30e877.jpg,40c1814a-9f30e877.png,train,40c1814a,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+5ceb2b58-2db6cf3c.jpg,5ceb2b58-2db6cf3c.png,train,5ceb2b58,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+46fa3a7e-e10c9eed.jpg,46fa3a7e-e10c9eed.png,val,46fa3a7e,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+f2916e8d-2af22f97.jpg,f2916e8d-2af22f97.png,train,f2916e8d,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+f2916e8d-213f1b5f.jpg,f2916e8d-213f1b5f.png,train,f2916e8d,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+f2916e8d-ea0d3e0b.jpg,f2916e8d-ea0d3e0b.png,train,f2916e8d,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+0409afc7-cb175a74.jpg,0409afc7-cb175a74.png,train,0409afc7,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+0409afc7-ede5197c.jpg,0409afc7-ede5197c.png,train,0409afc7,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+0409afc7-9062f136.jpg,0409afc7-9062f136.png,train,0409afc7,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+21fec00d-da4df9c5.jpg,21fec00d-da4df9c5.png,train,21fec00d,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+21fec00d-e86aa008.jpg,21fec00d-e86aa008.png,train,21fec00d,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+21fec00d-6448566b.jpg,21fec00d-6448566b.png,train,21fec00d,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+1fc25c22-2bbc7148.jpg,1fc25c22-2bbc7148.png,train,1fc25c22,1280,720,1280,720,True,"[0, 1, 2]",night,rainy,city street,42
+97e36106-16c75ec6.jpg,97e36106-16c75ec6.png,train,97e36106,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+81120ab4-374869e3.jpg,81120ab4-374869e3.png,train,81120ab4,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+ab951a95-0931db3a.jpg,ab951a95-0931db3a.png,train,ab951a95,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,rainy,city street,42
+ab951a95-e5277cb7.jpg,ab951a95-e5277cb7.png,train,ab951a95,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,rainy,city street,42
+2bd44b10-6425b3a9.jpg,2bd44b10-6425b3a9.png,val,2bd44b10,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,snowy,residential,42
+2bd44b10-ea37c625.jpg,2bd44b10-ea37c625.png,val,2bd44b10,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,snowy,residential,42
+60049f8d-93b767a1.jpg,60049f8d-93b767a1.png,train,60049f8d,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,highway,42
+60049f8d-79a9592e.jpg,60049f8d-79a9592e.png,train,60049f8d,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,highway,42
+7c3ac08b-d27a0712.jpg,7c3ac08b-d27a0712.png,train,7c3ac08b,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+ab6bc3f1-8bf9ef7c.jpg,ab6bc3f1-8bf9ef7c.png,train,ab6bc3f1,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,city street,42
+a76ddfcc-c3a4a934.jpg,a76ddfcc-c3a4a934.png,train,a76ddfcc,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,residential,42
+29fa7d85-2d0c15a0.jpg,29fa7d85-2d0c15a0.png,train,29fa7d85,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,highway,42
+f1c2e242-10841222.jpg,f1c2e242-10841222.png,train,f1c2e242,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+40d7f8f7-1dfb1e40.jpg,40d7f8f7-1dfb1e40.png,train,40d7f8f7,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+a847d65e-1f960eb3.jpg,a847d65e-1f960eb3.png,train,a847d65e,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+a0d91673-dc11b148.jpg,a0d91673-dc11b148.png,train,a0d91673,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+a40dea29-5c5c37b8.jpg,a40dea29-5c5c37b8.png,train,a40dea29,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+a40dea29-f310e7a6.jpg,a40dea29-f310e7a6.png,train,a40dea29,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+2a06db7f-c46de2fb.jpg,2a06db7f-c46de2fb.png,train,2a06db7f,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+c870a552-7d76917f.jpg,c870a552-7d76917f.png,val,c870a552,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+90b53814-4f789d30.jpg,90b53814-4f789d30.png,val,90b53814,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+927f6338-13c7de09.jpg,927f6338-13c7de09.png,train,927f6338,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+7c2a7134-56eff900.jpg,7c2a7134-56eff900.png,train,7c2a7134,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+78875b30-1facffe4.jpg,78875b30-1facffe4.png,val,78875b30,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+78875b30-1b6969d5.jpg,78875b30-1b6969d5.png,val,78875b30,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+78875b30-2308c8ef.jpg,78875b30-2308c8ef.png,val,78875b30,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+1f837a3c-b135141e.jpg,1f837a3c-b135141e.png,train,1f837a3c,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+1f837a3c-42346071.jpg,1f837a3c-42346071.png,train,1f837a3c,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+eabae4c5-6fc52c7e.jpg,eabae4c5-6fc52c7e.png,train,eabae4c5,1280,720,1280,720,True,"[0, 1, 2]",night,clear,residential,42
+eabae4c5-fc1def82.jpg,eabae4c5-fc1def82.png,train,eabae4c5,1280,720,1280,720,True,"[0, 1, 2]",night,clear,residential,42
+d465002d-5737da2e.jpg,d465002d-5737da2e.png,train,d465002d,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+ed77ede1-abb18c6f.jpg,ed77ede1-abb18c6f.png,train,ed77ede1,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+3a6f0d65-b96d99a3.jpg,3a6f0d65-b96d99a3.png,val,3a6f0d65,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+3bcc6730-c218a2cc.jpg,3bcc6730-c218a2cc.png,train,3bcc6730,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+3bcc6730-4ba6909c.jpg,3bcc6730-4ba6909c.png,train,3bcc6730,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+3bcc6730-cd93388e.jpg,3bcc6730-cd93388e.png,train,3bcc6730,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+99ea786c-138a31b2.jpg,99ea786c-138a31b2.png,train,99ea786c,1280,720,1280,720,True,"[0, 1, 2]",night,rainy,highway,42
+81dd0e93-e0c9216a.jpg,81dd0e93-e0c9216a.png,train,81dd0e93,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+81dd0e93-517bc781.jpg,81dd0e93-517bc781.png,train,81dd0e93,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+bf8c7ac3-dd67bde6.jpg,bf8c7ac3-dd67bde6.png,train,bf8c7ac3,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+bf8c7ac3-fd5cc933.jpg,bf8c7ac3-fd5cc933.png,train,bf8c7ac3,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+5789b48c-7587369e.jpg,5789b48c-7587369e.png,val,5789b48c,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+1c6649e4-b7e1965c.jpg,1c6649e4-b7e1965c.png,train,1c6649e4,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,snowy,city street,42
+1c6649e4-2be5d153.jpg,1c6649e4-2be5d153.png,train,1c6649e4,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,snowy,city street,42
+1c6649e4-f06c130e.jpg,1c6649e4-f06c130e.png,train,1c6649e4,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,snowy,city street,42
+88f8a41b-cdbdab45.jpg,88f8a41b-cdbdab45.png,val,88f8a41b,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,highway,42
+7810b712-f19b0faa.jpg,7810b712-f19b0faa.png,val,7810b712,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+7810b712-06a1e91e.jpg,7810b712-06a1e91e.png,val,7810b712,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+82712077-b54b6c0d.jpg,82712077-b54b6c0d.png,train,82712077,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+342c62cd-4a2b067e.jpg,342c62cd-4a2b067e.png,train,342c62cd,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+0949e434-f59bf72e.jpg,0949e434-f59bf72e.png,train,0949e434,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+aa10544a-6c3b7835.jpg,aa10544a-6c3b7835.png,val,aa10544a,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,highway,42
+428f7080-32ced1ce.jpg,428f7080-32ced1ce.png,train,428f7080,1280,720,1280,720,True,"[0, 1, 2]",night,rainy,highway,42
+b588a572-fd584146.jpg,b588a572-fd584146.png,train,b588a572,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+f786e33f-213913fe.jpg,f786e33f-213913fe.png,train,f786e33f,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+f786e33f-289598f3.jpg,f786e33f-289598f3.png,train,f786e33f,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+0eba3806-08f1f4ed.jpg,0eba3806-08f1f4ed.png,train,0eba3806,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,highway,42
+5a67db18-14c9ffab.jpg,5a67db18-14c9ffab.png,train,5a67db18,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+5102c314-a2cfe18a.jpg,5102c314-a2cfe18a.png,val,5102c314,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+5102c314-1629b192.jpg,5102c314-1629b192.png,val,5102c314,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+5c56fccd-c4cd8879.jpg,5c56fccd-c4cd8879.png,train,5c56fccd,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+5c56fccd-f6966952.jpg,5c56fccd-f6966952.png,train,5c56fccd,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+a33cc3ce-0b14f9e3.jpg,a33cc3ce-0b14f9e3.png,train,a33cc3ce,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+29a3886f-e85f4fdd.jpg,29a3886f-e85f4fdd.png,train,29a3886f,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+264565f8-b20b7bfa.jpg,264565f8-b20b7bfa.png,train,264565f8,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+264565f8-3efec920.jpg,264565f8-3efec920.png,train,264565f8,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+5510b5d7-d7b4c03c.jpg,5510b5d7-d7b4c03c.png,train,5510b5d7,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,rainy,residential,42
+5510b5d7-c219d81e.jpg,5510b5d7-c219d81e.png,train,5510b5d7,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,rainy,residential,42
+5510b5d7-0031f63e.jpg,5510b5d7-0031f63e.png,train,5510b5d7,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,rainy,residential,42
+709b0201-441a3ea1.jpg,709b0201-441a3ea1.png,train,709b0201,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+6ae3197d-aa20877f.jpg,6ae3197d-aa20877f.png,train,6ae3197d,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+23946a8c-da70a030.jpg,23946a8c-da70a030.png,train,23946a8c,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,snowy,city street,42
+23946a8c-e79f9ea4.jpg,23946a8c-e79f9ea4.png,train,23946a8c,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,snowy,city street,42
+f32e0ba1-1aed7434.jpg,f32e0ba1-1aed7434.png,train,f32e0ba1,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+7d55552b-6558e371.jpg,7d55552b-6558e371.png,train,7d55552b,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+fd464451-6b2e638d.jpg,fd464451-6b2e638d.png,train,fd464451,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+b0510ecb-163069e4.jpg,b0510ecb-163069e4.png,val,b0510ecb,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+b0510ecb-787538d3.jpg,b0510ecb-787538d3.png,val,b0510ecb,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+99d874e3-97bf0b40.jpg,99d874e3-97bf0b40.png,train,99d874e3,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,residential,42
+792c33c7-4bd33663.jpg,792c33c7-4bd33663.png,train,792c33c7,1280,720,1280,720,True,"[0, 1, 2]",night,rainy,city street,42
+62d6b065-ba174bec.jpg,62d6b065-ba174bec.png,train,62d6b065,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+6ebbaf0f-653ba7f2.jpg,6ebbaf0f-653ba7f2.png,train,6ebbaf0f,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,overcast,highway,42
+5aa3aa7f-8da6088d.jpg,5aa3aa7f-8da6088d.png,train,5aa3aa7f,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+31e23c35-62a8fd33.jpg,31e23c35-62a8fd33.png,train,31e23c35,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+31e23c35-e64bb423.jpg,31e23c35-e64bb423.png,train,31e23c35,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+98befdf0-8b69868c.jpg,98befdf0-8b69868c.png,val,98befdf0,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+6bef4334-e9aa39b6.jpg,6bef4334-e9aa39b6.png,train,6bef4334,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+6bef4334-98156968.jpg,6bef4334-98156968.png,train,6bef4334,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+dbc82ec2-e63eaa03.jpg,dbc82ec2-e63eaa03.png,train,dbc82ec2,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+dbc82ec2-c144bcbd.jpg,dbc82ec2-c144bcbd.png,train,dbc82ec2,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+3683bf03-01d6972a.jpg,3683bf03-01d6972a.png,train,3683bf03,1280,720,1280,720,True,"[0, 1, 2]",daytime,snowy,city street,42
+bb5a8bc0-be4d9330.jpg,bb5a8bc0-be4d9330.png,train,bb5a8bc0,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+07b0962d-52952bfc.jpg,07b0962d-52952bfc.png,val,07b0962d,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+389ad862-d15d17f9.jpg,389ad862-d15d17f9.png,train,389ad862,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+d73b80e1-6601441f.jpg,d73b80e1-6601441f.png,train,d73b80e1,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+d73b80e1-545a6e7e.jpg,d73b80e1-545a6e7e.png,train,d73b80e1,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+d73b80e1-faea63cb.jpg,d73b80e1-faea63cb.png,train,d73b80e1,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+6a598c90-3112859d.jpg,6a598c90-3112859d.png,train,6a598c90,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+0cc0ef4c-10410972.jpg,0cc0ef4c-10410972.png,train,0cc0ef4c,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,highway,42
+0cc0ef4c-b8959a65.jpg,0cc0ef4c-b8959a65.png,train,0cc0ef4c,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,highway,42
+908b3b13-5c5be95a.jpg,908b3b13-5c5be95a.png,train,908b3b13,1280,720,1280,720,True,"[0, 1, 2]",night,rainy,city street,42
+52bfec63-5f600cce.jpg,52bfec63-5f600cce.png,val,52bfec63,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+ce14cc38-6b55d2c3.jpg,ce14cc38-6b55d2c3.png,train,ce14cc38,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+ce14cc38-12793121.jpg,ce14cc38-12793121.png,train,ce14cc38,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+ce14cc38-0a94b482.jpg,ce14cc38-0a94b482.png,train,ce14cc38,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+e71976db-c3e823ec.jpg,e71976db-c3e823ec.png,train,e71976db,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+c6486e2c-cbdbc92b.jpg,c6486e2c-cbdbc92b.png,train,c6486e2c,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+1158eac6-2af51f8b.jpg,1158eac6-2af51f8b.png,train,1158eac6,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+1158eac6-de76533a.jpg,1158eac6-de76533a.png,train,1158eac6,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+ba0b527c-c30c110c.jpg,ba0b527c-c30c110c.png,train,ba0b527c,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+c704c38c-3fdc348b.jpg,c704c38c-3fdc348b.png,train,c704c38c,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,highway,42
+2026ee36-287dfc36.jpg,2026ee36-287dfc36.png,val,2026ee36,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,overcast,city street,42
+2026ee36-1d1aeb45.jpg,2026ee36-1d1aeb45.png,val,2026ee36,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,overcast,city street,42
+ce76ab6f-c6f90e93.jpg,ce76ab6f-c6f90e93.png,train,ce76ab6f,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+b06eeab1-27a16566.jpg,b06eeab1-27a16566.png,train,b06eeab1,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+29f44266-fb9b81f2.jpg,29f44266-fb9b81f2.png,train,29f44266,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,residential,42
+29f44266-1d7782cf.jpg,29f44266-1d7782cf.png,train,29f44266,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,residential,42
+29f44266-f6aa8068.jpg,29f44266-f6aa8068.png,train,29f44266,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,residential,42
+1a073bc2-a7b2c6d8.jpg,1a073bc2-a7b2c6d8.png,val,1a073bc2,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+2640860d-e3fb567d.jpg,2640860d-e3fb567d.png,val,2640860d,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,highway,42
+86114480-237a773c.jpg,86114480-237a773c.png,train,86114480,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,city street,42
+202adeb3-b1df9f9a.jpg,202adeb3-b1df9f9a.png,train,202adeb3,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,city street,42
+202adeb3-6a77d230.jpg,202adeb3-6a77d230.png,train,202adeb3,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,city street,42
+8ef4c332-cb93b2ab.jpg,8ef4c332-cb93b2ab.png,train,8ef4c332,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+8ef4c332-b0e7415c.jpg,8ef4c332-b0e7415c.png,train,8ef4c332,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+8ef4c332-23a5fc4e.jpg,8ef4c332-23a5fc4e.png,train,8ef4c332,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+205700d9-352c965d.jpg,205700d9-352c965d.png,val,205700d9,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+205700d9-011cc2ae.jpg,205700d9-011cc2ae.png,val,205700d9,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+4a8d7269-7bc64f80.jpg,4a8d7269-7bc64f80.png,train,4a8d7269,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+95292163-e770c293.jpg,95292163-e770c293.png,val,95292163,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,residential,42
+e6e62929-c1a0f2db.jpg,e6e62929-c1a0f2db.png,val,e6e62929,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,residential,42
+e8c53d44-bb60fe93.jpg,e8c53d44-bb60fe93.png,train,e8c53d44,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,snowy,city street,42
+e8c53d44-58fd6482.jpg,e8c53d44-58fd6482.png,train,e8c53d44,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,snowy,city street,42
+ccbe4fed-3ee98c03.jpg,ccbe4fed-3ee98c03.png,val,ccbe4fed,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+7c9b787f-7c76feeb.jpg,7c9b787f-7c76feeb.png,train,7c9b787f,1280,720,1280,720,True,"[0, 1, 2]",night,snowy,highway,42
+7c9b787f-7e2da5d2.jpg,7c9b787f-7e2da5d2.png,train,7c9b787f,1280,720,1280,720,True,"[0, 1, 2]",night,snowy,highway,42
+7c9b787f-c15dda01.jpg,7c9b787f-c15dda01.png,train,7c9b787f,1280,720,1280,720,True,"[0, 1, 2]",night,snowy,highway,42
+7d862876-8b8ee2bc.jpg,7d862876-8b8ee2bc.png,train,7d862876,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,highway,42
+7d862876-c239ff25.jpg,7d862876-c239ff25.png,train,7d862876,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,highway,42
+7d862876-f3b05da9.jpg,7d862876-f3b05da9.png,train,7d862876,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,highway,42
+7714e93d-8d0b8d3b.jpg,7714e93d-8d0b8d3b.png,train,7714e93d,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+89dd8855-d4d52c18.jpg,89dd8855-d4d52c18.png,train,89dd8855,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,snowy,city street,42
+89dd8855-39b522d5.jpg,89dd8855-39b522d5.png,train,89dd8855,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,snowy,city street,42
+1d9e9704-0c923006.jpg,1d9e9704-0c923006.png,val,1d9e9704,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,residential,42
+1d9e9704-c9d9a2b0.jpg,1d9e9704-c9d9a2b0.png,val,1d9e9704,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,residential,42
+1d9e9704-23dc5eb8.jpg,1d9e9704-23dc5eb8.png,val,1d9e9704,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,residential,42
+204c82b8-eb7b9f69.jpg,204c82b8-eb7b9f69.png,val,204c82b8,1280,720,1280,720,True,"[0, 1, 2]",daytime,snowy,city street,42
+4c0d04d2-2a430c39.jpg,4c0d04d2-2a430c39.png,train,4c0d04d2,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,residential,42
+530070bb-49fc8c36.jpg,530070bb-49fc8c36.png,train,530070bb,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,city street,42
+530070bb-5afd8e87.jpg,530070bb-5afd8e87.png,train,530070bb,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,city street,42
+62700a9d-04b5a506.jpg,62700a9d-04b5a506.png,train,62700a9d,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+a7467e99-0d927e17.jpg,a7467e99-0d927e17.png,train,a7467e99,1280,720,1280,720,True,"[0, 1, 2]",night,snowy,residential,42
+cc7d8771-bce4b4d3.jpg,cc7d8771-bce4b4d3.png,train,cc7d8771,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+682baf10-72820636.jpg,682baf10-72820636.png,val,682baf10,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+03be8a95-09409718.jpg,03be8a95-09409718.png,val,03be8a95,1280,720,1280,720,True,"[0, 1, 2]",daytime,snowy,city street,42
+3bbc2574-e6ff9e7e.jpg,3bbc2574-e6ff9e7e.png,train,3bbc2574,1280,720,1280,720,True,"[0, 1, 2]",night,clear,residential,42
+57818727-f78cb0b5.jpg,57818727-f78cb0b5.png,train,57818727,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+b4f978c2-062436c2.jpg,b4f978c2-062436c2.png,val,b4f978c2,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+00663cc5-bc918ab5.jpg,00663cc5-bc918ab5.png,train,00663cc5,1280,720,1280,720,True,"[0, 1, 2]",night,rainy,highway,42
+2528491a-9eaa7c89.jpg,2528491a-9eaa7c89.png,train,2528491a,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+38396cee-edf20b0f.jpg,38396cee-edf20b0f.png,val,38396cee,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+d4f232ec-ecc2316f.jpg,d4f232ec-ecc2316f.png,train,d4f232ec,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+73693a49-60b970cb.jpg,73693a49-60b970cb.png,train,73693a49,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+0f4e3b1a-3df9071b.jpg,0f4e3b1a-3df9071b.png,train,0f4e3b1a,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+3a2e3655-7b7182a2.jpg,3a2e3655-7b7182a2.png,val,3a2e3655,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+de6609ad-92503ccf.jpg,de6609ad-92503ccf.png,train,de6609ad,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+c80a6043-088ce993.jpg,c80a6043-088ce993.png,train,c80a6043,1280,720,1280,720,True,"[0, 1, 2]",daytime,snowy,highway,42
+e2c06c7e-832c2f9c.jpg,e2c06c7e-832c2f9c.png,train,e2c06c7e,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+e2c06c7e-a03310ba.jpg,e2c06c7e-a03310ba.png,train,e2c06c7e,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+de7d11d2-352f8d44.jpg,de7d11d2-352f8d44.png,val,de7d11d2,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+0478a364-3a9ece18.jpg,0478a364-3a9ece18.png,val,0478a364,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+0478a364-f092a390.jpg,0478a364-f092a390.png,val,0478a364,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+3ea94bf5-c53d5f3d.jpg,3ea94bf5-c53d5f3d.png,train,3ea94bf5,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+0834f1d9-9c90119b.jpg,0834f1d9-9c90119b.png,val,0834f1d9,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+4cd57779-91d9836c.jpg,4cd57779-91d9836c.png,train,4cd57779,1280,720,1280,720,True,"[0, 1, 2]",daytime,snowy,highway,42
+4cd57779-c90f7d00.jpg,4cd57779-c90f7d00.png,train,4cd57779,1280,720,1280,720,True,"[0, 1, 2]",daytime,snowy,highway,42
+4cd57779-8967cf7d.jpg,4cd57779-8967cf7d.png,train,4cd57779,1280,720,1280,720,True,"[0, 1, 2]",daytime,snowy,highway,42
+c6a4ee5a-9d98722d.jpg,c6a4ee5a-9d98722d.png,train,c6a4ee5a,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,residential,42
+c6a4ee5a-3ac08327.jpg,c6a4ee5a-3ac08327.png,train,c6a4ee5a,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,residential,42
+ef78834e-ba110b80.jpg,ef78834e-ba110b80.png,train,ef78834e,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+826db64a-c1968ae0.jpg,826db64a-c1968ae0.png,train,826db64a,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+2da6a576-c0c6eca3.jpg,2da6a576-c0c6eca3.png,train,2da6a576,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+a01bb671-93b0f573.jpg,a01bb671-93b0f573.png,train,a01bb671,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,residential,42
+bcf4d339-0244475f.jpg,bcf4d339-0244475f.png,train,bcf4d339,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+bcf4d339-6f21f1d0.jpg,bcf4d339-6f21f1d0.png,train,bcf4d339,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+bcf4d339-72a56fb7.jpg,bcf4d339-72a56fb7.png,train,bcf4d339,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+474407af-927ec3e3.jpg,474407af-927ec3e3.png,train,474407af,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+b79a4e19-aaacbf57.jpg,b79a4e19-aaacbf57.png,train,b79a4e19,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+d0af2dd6-e0fda062.jpg,d0af2dd6-e0fda062.png,train,d0af2dd6,1280,720,1280,720,True,"[0, 1, 2]",night,rainy,city street,42
+9aadd392-c589be10.jpg,9aadd392-c589be10.png,train,9aadd392,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+9aadd392-1c4e626b.jpg,9aadd392-1c4e626b.png,train,9aadd392,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+4ab0dac7-22321799.jpg,4ab0dac7-22321799.png,train,4ab0dac7,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,highway,42
+4ab0dac7-64bd6489.jpg,4ab0dac7-64bd6489.png,train,4ab0dac7,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,highway,42
+4ab0dac7-e3f92c14.jpg,4ab0dac7-e3f92c14.png,train,4ab0dac7,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,highway,42
+29a38bb5-3ebbe5d7.jpg,29a38bb5-3ebbe5d7.png,train,29a38bb5,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+a2e91ceb-ab3ec9f1.jpg,a2e91ceb-ab3ec9f1.png,train,a2e91ceb,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,residential,42
+4bbf7532-b9f58ae9.jpg,4bbf7532-b9f58ae9.png,train,4bbf7532,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+aadee5a5-0f81ebd3.jpg,aadee5a5-0f81ebd3.png,train,aadee5a5,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+2c4ada0b-9e193000.jpg,2c4ada0b-9e193000.png,train,2c4ada0b,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,highway,42
+2c4ada0b-45f756f5.jpg,2c4ada0b-45f756f5.png,train,2c4ada0b,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,highway,42
+e1b0e820-06c6aefe.jpg,e1b0e820-06c6aefe.png,train,e1b0e820,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+78840aec-bcc7d06b.jpg,78840aec-bcc7d06b.png,train,78840aec,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,overcast,city street,42
+a54168cc-e7b866a2.jpg,a54168cc-e7b866a2.png,train,a54168cc,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,city street,42
+82a16dc5-a8aab244.jpg,82a16dc5-a8aab244.png,train,82a16dc5,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,rainy,city street,42
+3933e1b2-818dcfac.jpg,3933e1b2-818dcfac.png,train,3933e1b2,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+3933e1b2-4cca00db.jpg,3933e1b2-4cca00db.png,train,3933e1b2,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+0973652a-e5acab2f.jpg,0973652a-e5acab2f.png,train,0973652a,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+f3bd17c1-2a83e3a0.jpg,f3bd17c1-2a83e3a0.png,train,f3bd17c1,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+f3bd17c1-8124d296.jpg,f3bd17c1-8124d296.png,train,f3bd17c1,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+18ccf78b-31f2767e.jpg,18ccf78b-31f2767e.png,train,18ccf78b,1280,720,1280,720,True,"[0, 1, 2]",night,rainy,city street,42
+18ccf78b-f6a98bda.jpg,18ccf78b-f6a98bda.png,train,18ccf78b,1280,720,1280,720,True,"[0, 1, 2]",night,rainy,city street,42
+94fab9e8-ce4bb14c.jpg,94fab9e8-ce4bb14c.png,train,94fab9e8,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,residential,42
+62b34a0a-ae7401b6.jpg,62b34a0a-ae7401b6.png,train,62b34a0a,1280,720,1280,720,True,"[0, 1, 2]",night,rainy,city street,42
+62b34a0a-f4b3c942.jpg,62b34a0a-f4b3c942.png,train,62b34a0a,1280,720,1280,720,True,"[0, 1, 2]",night,rainy,city street,42
+db18032d-e1ea415a.jpg,db18032d-e1ea415a.png,train,db18032d,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+ca3ca307-bb934af0.jpg,ca3ca307-bb934af0.png,train,ca3ca307,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,rainy,highway,42
+a0b62995-77c6b989.jpg,a0b62995-77c6b989.png,train,a0b62995,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+eadbb170-28abdf9b.jpg,eadbb170-28abdf9b.png,train,eadbb170,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+eadbb170-c98eef9a.jpg,eadbb170-c98eef9a.png,train,eadbb170,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+eadbb170-241d9633.jpg,eadbb170-241d9633.png,train,eadbb170,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+e161eb5a-2d3b32f5.jpg,e161eb5a-2d3b32f5.png,train,e161eb5a,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+bce8504d-77738d1f.jpg,bce8504d-77738d1f.png,train,bce8504d,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+bce8504d-22450b2f.jpg,bce8504d-22450b2f.png,train,bce8504d,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+a0725e07-4f5d904b.jpg,a0725e07-4f5d904b.png,train,a0725e07,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+a855292b-1b31c57f.jpg,a855292b-1b31c57f.png,train,a855292b,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+dce026b1-dd3b7f1d.jpg,dce026b1-dd3b7f1d.png,train,dce026b1,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,city street,42
+dce026b1-1c3718ef.jpg,dce026b1-1c3718ef.png,train,dce026b1,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,city street,42
+dce026b1-128465b2.jpg,dce026b1-128465b2.png,train,dce026b1,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,city street,42
+6f3853e2-4d659721.jpg,6f3853e2-4d659721.png,train,6f3853e2,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+6f3853e2-ee67a9f3.jpg,6f3853e2-ee67a9f3.png,train,6f3853e2,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+c980b5fb-16519a00.jpg,c980b5fb-16519a00.png,train,c980b5fb,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,overcast,highway,42
+c980b5fb-16a9fdb7.jpg,c980b5fb-16a9fdb7.png,train,c980b5fb,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,overcast,highway,42
+37b431a7-568fde4d.jpg,37b431a7-568fde4d.png,train,37b431a7,1280,720,1280,720,True,"[0, 1, 2]",night,rainy,highway,42
+13eb6690-755f876c.jpg,13eb6690-755f876c.png,train,13eb6690,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+77befd85-0a962fa2.jpg,77befd85-0a962fa2.png,train,77befd85,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,highway,42
+c8a9dbab-43cea308.jpg,c8a9dbab-43cea308.png,train,c8a9dbab,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+f24250e3-a486068b.jpg,f24250e3-a486068b.png,train,f24250e3,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,rainy,highway,42
+f24250e3-f52291c6.jpg,f24250e3-f52291c6.png,train,f24250e3,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,rainy,highway,42
+9d5d7852-f5c3e471.jpg,9d5d7852-f5c3e471.png,train,9d5d7852,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,city street,42
+9d5d7852-1904c4ab.jpg,9d5d7852-1904c4ab.png,train,9d5d7852,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,city street,42
+d1dcf058-4bbb2622.jpg,d1dcf058-4bbb2622.png,train,d1dcf058,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+921238a4-4e2cc7a2.jpg,921238a4-4e2cc7a2.png,train,921238a4,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+921238a4-8575c27c.jpg,921238a4-8575c27c.png,train,921238a4,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+5b6a74cf-12ddfda2.jpg,5b6a74cf-12ddfda2.png,train,5b6a74cf,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+e7d7eb28-5e54f2fc.jpg,e7d7eb28-5e54f2fc.png,train,e7d7eb28,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+e7d7eb28-39b94012.jpg,e7d7eb28-39b94012.png,train,e7d7eb28,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+6f879846-6f51a65f.jpg,6f879846-6f51a65f.png,train,6f879846,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+6f879846-84d7c394.jpg,6f879846-84d7c394.png,train,6f879846,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+0de4c2b7-fac854ff.jpg,0de4c2b7-fac854ff.png,train,0de4c2b7,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+0de4c2b7-6425e2be.jpg,0de4c2b7-6425e2be.png,train,0de4c2b7,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+0de4c2b7-b8f9d2b0.jpg,0de4c2b7-b8f9d2b0.png,train,0de4c2b7,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+743c4eb2-2d47ddf3.jpg,743c4eb2-2d47ddf3.png,train,743c4eb2,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+743c4eb2-fd8640d3.jpg,743c4eb2-fd8640d3.png,train,743c4eb2,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+c89ade14-3f493c25.jpg,c89ade14-3f493c25.png,train,c89ade14,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+c89ade14-09ac06d9.jpg,c89ade14-09ac06d9.png,train,c89ade14,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+c2743989-ad464eaa.jpg,c2743989-ad464eaa.png,train,c2743989,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+a1109418-f9e1666c.jpg,a1109418-f9e1666c.png,train,a1109418,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+a1109418-43a54fb3.jpg,a1109418-43a54fb3.png,train,a1109418,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+e975c566-06fd08f6.jpg,e975c566-06fd08f6.png,train,e975c566,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+7d5cc5e3-8b756df1.jpg,7d5cc5e3-8b756df1.png,train,7d5cc5e3,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+7d5cc5e3-489102da.jpg,7d5cc5e3-489102da.png,train,7d5cc5e3,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+0535c3ba-8cfec0ee.jpg,0535c3ba-8cfec0ee.png,train,0535c3ba,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,highway,42
+0535c3ba-db6901b7.jpg,0535c3ba-db6901b7.png,train,0535c3ba,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,highway,42
+6a41c4da-45936fb3.jpg,6a41c4da-45936fb3.png,train,6a41c4da,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+da9e5da1-b5fcdc8c.jpg,da9e5da1-b5fcdc8c.png,train,da9e5da1,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+8459d71e-95f96d49.jpg,8459d71e-95f96d49.png,train,8459d71e,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,highway,42
+8459d71e-76311913.jpg,8459d71e-76311913.png,train,8459d71e,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,highway,42
+ad263697-23f35200.jpg,ad263697-23f35200.png,train,ad263697,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+4a8ce6e1-4be9d46a.jpg,4a8ce6e1-4be9d46a.png,train,4a8ce6e1,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+c4f6fb9e-3d1c5795.jpg,c4f6fb9e-3d1c5795.png,train,c4f6fb9e,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,highway,42
+bdf851d2-db624496.jpg,bdf851d2-db624496.png,train,bdf851d2,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,snowy,city street,42
+6c3b6f4f-0d57e3ff.jpg,6c3b6f4f-0d57e3ff.png,train,6c3b6f4f,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+6c3b6f4f-bda48c0e.jpg,6c3b6f4f-bda48c0e.png,train,6c3b6f4f,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+6c3b6f4f-0b94b98c.jpg,6c3b6f4f-0b94b98c.png,train,6c3b6f4f,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+53bdec04-00302add.jpg,53bdec04-00302add.png,train,53bdec04,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+53bdec04-33bbd5d8.jpg,53bdec04-33bbd5d8.png,train,53bdec04,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+53bdec04-a6235423.jpg,53bdec04-a6235423.png,train,53bdec04,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+e32ef8be-be063cd8.jpg,e32ef8be-be063cd8.png,train,e32ef8be,1280,720,1280,720,True,"[0, 1, 2]",night,rainy,city street,42
+ca4d72b5-d75beebd.jpg,ca4d72b5-d75beebd.png,train,ca4d72b5,1280,720,1280,720,True,"[0, 1, 2]",night,clear,residential,42
+6d4ee4c1-9f127fa4.jpg,6d4ee4c1-9f127fa4.png,train,6d4ee4c1,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+8ed84eb0-a2be3059.jpg,8ed84eb0-a2be3059.png,train,8ed84eb0,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+30542158-0ddc1e55.jpg,30542158-0ddc1e55.png,train,30542158,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+8b4d2382-ef9d568f.jpg,8b4d2382-ef9d568f.png,train,8b4d2382,1280,720,1280,720,True,"[0, 1, 2]",night,rainy,city street,42
+2d86cf7f-7c017664.jpg,2d86cf7f-7c017664.png,train,2d86cf7f,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+70a65f2e-1da15c0c.jpg,70a65f2e-1da15c0c.png,train,70a65f2e,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+6d2426fd-bf84b8d0.jpg,6d2426fd-bf84b8d0.png,train,6d2426fd,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+0df702e8-7b4db900.jpg,0df702e8-7b4db900.png,train,0df702e8,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+02031244-793bf9ac.jpg,02031244-793bf9ac.png,train,02031244,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+02031244-83be7329.jpg,02031244-83be7329.png,train,02031244,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+e299a46e-58e71d2c.jpg,e299a46e-58e71d2c.png,train,e299a46e,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+87e324d0-0fb9ea82.jpg,87e324d0-0fb9ea82.png,train,87e324d0,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,overcast,highway,42
+f3e6570b-c8c4bb2b.jpg,f3e6570b-c8c4bb2b.png,train,f3e6570b,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+8ec9f53f-4738372d.jpg,8ec9f53f-4738372d.png,train,8ec9f53f,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+080fba00-b89c07eb.jpg,080fba00-b89c07eb.png,train,080fba00,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+e30787d8-3e55a508.jpg,e30787d8-3e55a508.png,train,e30787d8,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+b798f451-3139e5ef.jpg,b798f451-3139e5ef.png,train,b798f451,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+b798f451-6ec05c74.jpg,b798f451-6ec05c74.png,train,b798f451,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,city street,42
+7665b5c5-6d8df68e.jpg,7665b5c5-6d8df68e.png,train,7665b5c5,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+7665b5c5-3442bbeb.jpg,7665b5c5-3442bbeb.png,train,7665b5c5,1280,720,1280,720,True,"[0, 1, 2]",night,clear,city street,42
+8c77d96a-9c256f58.jpg,8c77d96a-9c256f58.png,train,8c77d96a,1280,720,1280,720,True,"[0, 1, 2]",night,overcast,city street,42
+ec6bab6b-330e46c6.jpg,ec6bab6b-330e46c6.png,train,ec6bab6b,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+ec6bab6b-81794db0.jpg,ec6bab6b-81794db0.png,train,ec6bab6b,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,residential,42
+e9e21db7-abb14b15.jpg,e9e21db7-abb14b15.png,train,e9e21db7,1280,720,1280,720,True,"[0, 1, 2]",daytime,overcast,highway,42
+b87f637a-f917d52d.jpg,b87f637a-f917d52d.png,train,b87f637a,1280,720,1280,720,True,"[0, 1, 2]",night,clear,highway,42
+220ed72d-6db0c177.jpg,220ed72d-6db0c177.png,train,220ed72d,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,city street,42
+03cd09b1-24bdf698.jpg,03cd09b1-24bdf698.png,train,03cd09b1,1280,720,1280,720,True,"[0, 1, 2]",night,rainy,city street,42
+f17c4c73-0b492be9.jpg,f17c4c73-0b492be9.png,train,f17c4c73,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
+7f9e0267-c9123f57.jpg,7f9e0267-c9123f57.png,train,7f9e0267,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,residential,42
+7f9e0267-c91e89b8.jpg,7f9e0267-c91e89b8.png,train,7f9e0267,1280,720,1280,720,True,"[0, 1, 2]",dawn/dusk,clear,residential,42
+1ee42e92-e967c36d.jpg,1ee42e92-e967c36d.png,train,1ee42e92,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,city street,42
+34237eda-27775126.jpg,34237eda-27775126.png,train,34237eda,1280,720,1280,720,True,"[0, 1, 2]",night,rainy,highway,42
+1515b100-d69f4bfe.jpg,1515b100-d69f4bfe.png,train,1515b100,1280,720,1280,720,True,"[0, 1, 2]",daytime,snowy,highway,42
+78d7382e-a77ee2c2.jpg,78d7382e-a77ee2c2.png,train,78d7382e,1280,720,1280,720,True,"[0, 1, 2]",daytime,rainy,city street,42
+d24b230d-db8d7a84.jpg,d24b230d-db8d7a84.png,train,d24b230d,1280,720,1280,720,True,"[0, 1, 2]",daytime,clear,highway,42
