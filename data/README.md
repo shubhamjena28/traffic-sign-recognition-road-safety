@@ -1,39 +1,38 @@
 # Traffic Sign Recognition Dataset Guide
 
-This document describes how to obtain, verify, and prepare the dataset for training and evaluating the traffic sign recognition models.
+This document describes dataset sources, download instructions, licensing policies, annotation standards, directory structure, and splitting procedures for model training.
 
 ---
 
-## ⚠️ Important Repository Policy
+## ⚠️ Critical Licensing & Upload Policy
 
 > [!WARNING]
-> **Do not commit large datasets, private data, or model weights (`*.pt`, `*.pth`, `*.onnx`, `*.weights`) to this Git repository.**
-> 
-> All files inside `data/raw/`, `data/processed/`, and `data/annotations/` (except `.gitkeep`) are automatically ignored by `.gitignore`.
-> 
-> **For reproducibility**, trained model checkpoints should be published using **GitHub Releases**, **Hugging Face Hub**, or an external object store rather than committed into Git.
+> **Do not upload a dataset until you have checked its license.**
+>
+> Many public datasets are licensed strictly for non-commercial research or academic competition (e.g. GTSRB). Do not commit raw or processed datasets, proprietary driving videos, or large model weights to this Git repository.
+>
+> All image and label files inside `data/images/`, `data/labels/`, `data/raw/`, `data/processed/`, and `data/annotations/` (except `.gitkeep`) are automatically ignored by [`.gitignore`](file:///c:/Users/HP/Desktop/Projects/traffic-sign-recognition-road-safety/.gitignore).
 
 ---
 
 ## 1. Where to Obtain the Dataset
 
-The primary benchmark dataset supported by this project is the **German Traffic Sign Recognition Benchmark (GTSRB)**:
+### 1.1 German Traffic Sign Recognition Benchmark (GTSRB)
+The industry standard dataset for multi-class traffic sign classification:
+- **Official Benchmark**: [https://benchmark.ini.rub.de/gtsrb_dataset.html](https://benchmark.ini.rub.de/gtsrb_dataset.html)
+- **Direct Mirror**: [Ruhr-Universität Bochum INI Archive](https://sid.erda.dk/public/archives/daaeac0d7ce1152cedf83789b6da7187/published-archive.html)
+- **Kaggle Mirror**: [GTSRB German Traffic Sign Dataset](https://www.kaggle.com/datasets/meowmeowmeowmeowmeow/gtsrb-german-traffic-sign)
 
-- **Official Website**: [https://benchmark.ini.rub.de/gtsrb_dataset.html](https://benchmark.ini.rub.de/gtsrb_dataset.html)
-- **Direct Download Mirror**: [Institut für Neuroinformatik, Ruhr-Universität Bochum](https://sid.erda.dk/public/archives/daaeac0d7ce1152cedf83789b6da7187/published-archive.html)
-- **Kaggle Dataset Mirror**: [GTSRB - German Traffic Sign Dataset](https://www.kaggle.com/datasets/meowmeowmeowmeowmeow/gtsrb-german-traffic-sign)
-
-### Dataset Overview
-- **Number of Classes**: 43 traffic sign classes (speed limits, danger warnings, mandatory directions, prohibitory signs).
-- **Total Images**: Over 50,000 physical images captured in varying daylight, weather, and camera perspectives.
-- **Image Resolutions**: Ranging from $15 \times 15$ to $250 \times 250$ pixels.
+### 1.2 Roboflow Traffic Sign Detection Datasets
+Pre-annotated YOLO detection datasets featuring `stop`, `speed`, and `danger` signs with bounding boxes:
+- **Roboflow Universe**: [Traffic Sign Detection Datasets](https://universe.roboflow.com/search?q=traffic+sign)
 
 ---
 
 ## 2. Dataset License & Attribution
 
-- **License**: The GTSRB dataset is provided free of charge for non-commercial research, academic, and educational purposes.
-- **Attribution**:
+- **License**: GTSRB is provided free of charge for academic, research, and educational purposes.
+- **Attribution Citation**:
   ```text
   J. Stallkamp, M. Schlipsing, J. Salmen, and C. Igel.
   "The German Traffic Sign Recognition Benchmark: A multi-class classification competition."
@@ -44,70 +43,76 @@ The primary benchmark dataset supported by this project is the **German Traffic 
 
 ## 3. Directory Layout
 
-The project expects dataset assets to be organized under `data/`:
+The repository organizes data into two standard structures:
 
 ```text
 data/
-├── README.md               # This documentation file
+├── README.md               # Dataset documentation and instructions
+├── traffic_signs.yaml      # Ultralytics YOLO dataset configuration file
+├── create_sample_dataset.py# Automated synthetic starter dataset generator
 │
-├── raw/                    # Downloaded unextracted zip/tar archives and raw extracts
+├── images/                 # YOLO Object Detection image splits
+│   ├── train/              # Training images (.jpg, .png)
+│   └── val/                # Validation images (.jpg, .png)
+│
+├── labels/                 # YOLO Object Detection bounding box annotations
+│   ├── train/              # Training labels (.txt)
+│   └── val/                # Validation labels (.txt)
+│
+├── raw/                    # Original uncompressed dataset downloads (.zip, .tar)
 │   └── .gitkeep
-│
-├── processed/              # Formatted into class folders ready for ImageFolder loader
-│   ├── 0/                  # Class 0: Speed limit (20km/h)
-│   ├── 1/                  # Class 1: Speed limit (30km/h)
-│   ├── ...
-│   ├── 42/                 # Class 42: End of no passing by vehicles over 3.5 metric tons
+├── processed/              # Classification folders (0 to 42)
 │   └── .gitkeep
-│
-└── annotations/            # CSV / JSON bounding box ground-truth and track files
-    ├── Train.csv
-    ├── Test.csv
+└── annotations/            # Original CSV/XML track and bounding box files
     └── .gitkeep
 ```
 
 ---
 
-## 4. How to Prepare the Dataset
+## 4. Annotation Format (YOLO Bounding Box)
 
-### Step 1: Download the Archives
-Download the GTSRB training and test archives:
-```bash
-# Example using curl / wget into data/raw/
-cd data/raw
-curl -LO https://sid.erda.dk/public/archives/daaeac0d7ce1152cedf83789b6da7187/GTSRB_Final_Training_Images.zip
-curl -LO https://sid.erda.dk/public/archives/daaeac0d7ce1152cedf83789b6da7187/GTSRB_Final_Test_Images.zip
-curl -LO https://sid.erda.dk/public/archives/daaeac0d7ce1152cedf83789b6da7187/GTSRB_Final_Test_GT.zip
+Each image in `images/` has a matching `.txt` file in `labels/` with normalized coordinates $[0.0, 1.0]$:
+
+```text
+<class_id> <center_x> <center_y> <width> <height>
 ```
 
-### Step 2: Extract Images
-Extract into `data/processed/` such that each class directory contains the PNG/PPM images for that class ID:
-```bash
-unzip GTSRB_Final_Training_Images.zip -d ../processed/
-```
+### Classes Supported:
+- `0`: **`stop`** (Stop signs)
+- `1`: **`speed`** (Speed limit signs)
+- `2`: **`danger`** (Hazard, warning, and caution signs)
 
-Verify directory layout:
-```bash
-# Each class folder (0 to 42) should contain its image files
-ls -l data/processed/
-```
-
-### Step 3: Run Training
-With images in `data/processed/`, launch training from the repository root:
-```bash
-cd train
-python train.py --data-dir ../data/processed --epochs 25 --batch-size 64
+**Example (`sample_0_000.txt`):**
+```text
+0 0.5000 0.5000 0.4375 0.4375
 ```
 
 ---
 
-## 5. Model Weights & Reproducibility
+## 5. Sequence-Based Data Splitting Guidelines
 
-To ensure experiment reproducibility without bloating the repository:
-1. Export model weights using:
-   ```bash
-   python train/export_model.py --checkpoint train/checkpoints/best_model.pt
-   ```
-2. Upload the exported `best_model.pt` and `traffic_sign_model.onnx` artifacts to a **GitHub Release tag** (e.g. `v1.0.0`) on your repository:
-   - Go to `https://github.com/shubhamjena28/traffic-sign-recognition-road-safety/releases/new`
-   - Attach your model weights and link them in project documentation.
+> [!IMPORTANT]
+> **Always split continuous video and dashcam data by recording or source sequence, NOT by random individual frames.**
+>
+> 1. **Data Leakage Risk**: Video dashcams record at 30 FPS. Consecutive frames $(t \text{ and } t+1)$ are nearly identical. If you randomly shuffle frames, the model will "memorize" the scene, yielding artificially high test accuracy that collapses in real-world driving.
+> 2. **Sequence Partitioning**: Group all frames from the same driving run or track sequence together. Place the entire sequence into *either* `train/` or `val/`, never across both.
+
+---
+
+## 6. How to Prepare the Dataset
+
+### Step 1: Generate Starter Dataset (Immediate Verification)
+Run the built-in dataset generator to verify training instantly:
+```bash
+python data/create_sample_dataset.py
+```
+
+### Step 2: Download & Structure Real-World Data
+1. Download image archives into `data/raw/`.
+2. Extract and organize images into `data/images/train` and `data/images/val`.
+3. Place matching YOLO `.txt` annotations into `data/labels/train` and `data/labels/val`.
+
+### Step 3: Launch YOLO Training
+```bash
+yolo detect train data=data/traffic_signs.yaml model=yolov8n.pt epochs=30 imgsz=640
+```

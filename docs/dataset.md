@@ -1,72 +1,67 @@
-# Dataset Documentation
+# Dataset Specifications & Data Management
 
-This project utilizes the **German Traffic Sign Recognition Benchmark (GTSRB)** dataset for training and benchmarking traffic sign classification models.
+This document details dataset sources, licensing requirements, annotation formats, and best practices for dataset splitting.
 
-## Dataset Overview
+---
 
-- **Classes**: 43 distinct traffic sign categories
-- **Total Samples**: > 50,000 real-world images
-- **Image Resolution**: Variable, from $15 \times 15$ to $250 \times 250$ pixels
-- **Format**: RGB PPM / PNG images with associated CSV bounding box and track annotations
+## 1. Dataset Sources & Acquisition
 
-## Class Categories Breakdown
+The model is trained on multi-class road signage datasets:
 
-### 1. Speed Limit & Derestriction Signs (Classes 0-8, 32)
-- 0: Speed limit (20km/h)
-- 1: Speed limit (30km/h)
-- 2: Speed limit (50km/h)
-- 3: Speed limit (60km/h)
-- 4: Speed limit (70km/h)
-- 5: Speed limit (80km/h)
-- 6: End of speed limit (80km/h)
-- 7: Speed limit (100km/h)
-- 8: Speed limit (120km/h)
-- 32: End of all speed and passing limits
+1. **German Traffic Sign Recognition Benchmark (GTSRB)**:
+   - Source: [Institut für Neuroinformatik, Ruhr-Universität Bochum](https://benchmark.ini.rub.de/)
+   - Format: Over 50,000 physical image tracks with bounding box CSVs.
+2. **Kaggle Traffic Sign Detection Mirrors**:
+   - Source: [GTSRB Kaggle Mirror](https://www.kaggle.com/datasets/meowmeowmeowmeowmeow/gtsrb-german-traffic-sign)
+3. **Roboflow Traffic Sign Detection Sets**:
+   - Ready-to-train datasets exported directly in YOLOv8 format with `stop`, `speed`, and `danger` classes.
 
-### 2. Prohibitory Signs (Classes 9, 10, 15, 16, 17, 41, 42)
-- 9: No passing
-- 10: No passing for vehicles over 3.5 metric tons
-- 15: No vehicles
-- 16: Vehicles over 3.5 metric tons prohibited
-- 17: No entry
-- 41: End of no passing
-- 42: End of no passing by vehicles over 3.5 metric tons
+---
 
-### 3. Priority Signs (Classes 11, 12, 13, 14)
-- 11: Right-of-way at next intersection
-- 12: Priority road
-- 13: Yield
-- 14: Stop
+## 2. ⚠️ Licensing & Upload Verification Policy
 
-### 4. Hazard & Warning Signs (Classes 18-31)
-- 18: General caution
-- 19: Dangerous curve to the left
-- 20: Dangerous curve to the right
-- 21: Double curve
-- 22: Bumpy road
-- 23: Slippery road
-- 24: Road narrows on the right
-- 25: Road work
-- 26: Traffic signals
-- 27: Pedestrians
-- 28: Children crossing
-- 29: Bicycles crossing
-- 30: Beware of ice/snow
-- 31: Wild animals crossing
+> [!WARNING]
+> **Do not upload a dataset until you have checked its license.**
+> 
+> - **License Terms**: GTSRB and academic benchmark datasets are free for non-commercial research and educational use.
+> - **Redistribution Restrictions**: Many datasets prohibit redistributing the raw images in public repositories without permission.
+> - **Git Policy**: Raw and processed image data must remain in your local `data/` directory and are automatically ignored by [`.gitignore`](file:///c:/Users/HP/Desktop/Projects/traffic-sign-recognition-road-safety/.gitignore).
 
-### 5. Mandatory Direction Signs (Classes 33-40)
-- 33: Turn right ahead
-- 34: Turn left ahead
-- 35: Ahead only
-- 36: Go straight or right
-- 37: Go straight or left
-- 38: Keep right
-- 39: Keep left
-- 40: Roundabout mandatory
+---
 
-## Preprocessing & Data Augmentations
+## 3. Road Safety Classes
 
-1. **Resolution Normalization**: Resized to uniform $48 \times 48$ dimension via bilinear/bicubic interpolation.
-2. **Contrast & Brightness Adjustment**: Random color jittering ($\pm 20\%$) to simulate variable sunlight and overcast conditions.
-3. **Geometric Augmentations**: Random small-angle rotations ($\pm 15^\circ$) and scaling to account for camera angles.
-4. **Standardization**: Channel-wise z-score normalization using standard ImageNet parameters ($\mu = [0.485, 0.456, 0.406]$, $\sigma = [0.229, 0.224, 0.225]$).
+The object detection model maps signs to the primary safety classes used by `SafetyMonitor`:
+
+| Class ID | Class Name | Sign Types Included | Safety Action in Java |
+| :--- | :--- | :--- | :--- |
+| `0` | **`stop`** | Octagonal STOP signs | `CRITICAL` alert to bring vehicle to a halt. |
+| `1` | **`speed`** | Speed limits (20, 30, 50, 70, 80, 100, 120 km/h) | Dynamic speed tracking; `WARNING` / `CRITICAL` overspeed alerts. |
+| `2` | **`danger`** | General caution, curves, pedestrian crossings, construction, ice/snow | `WARNING` alert to exercise caution. |
+
+---
+
+## 4. Annotation Format (YOLO Normalized Coordinates)
+
+Each image in `data/images/{split}/` has an identically named `.txt` file in `data/labels/{split}/`.
+
+Each line represents one sign bounding box:
+```text
+<class_id> <center_x> <center_y> <width> <height>
+```
+- All coordinates are normalized floats in the range $[0.0, 1.0]$.
+- Example (`stop` sign in center of $640 \times 640$ frame):
+  ```text
+  0 0.5000 0.5000 0.1500 0.1500
+  ```
+
+---
+
+## 5. Sequence-Based Data Splitting Guidelines
+
+> [!IMPORTANT]
+> **Split data by recording or source sequence (track-based splitting).**
+>
+> When working with dashcam or continuous camera datasets:
+> - **The Problem**: Consecutive video frames are separated by only fractions of a second and look nearly identical. If you do a random image-level train/test split, virtually identical frames will appear in both sets, causing severe data leakage and artificially inflated accuracy.
+> - **The Solution**: Group all images from the same driving sequence, vehicle pass, or recording clip together, and place the entire sequence into *either* the training set *or* the test set—never split across both.

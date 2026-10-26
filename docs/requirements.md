@@ -2,40 +2,46 @@
 
 ## 1. Project Overview
 
-The **Traffic Sign Recognition & Road Safety Monitoring System** combines deep learning-based visual perception with an intelligent rule-based driver assistance and safety monitoring engine.
+The **Traffic Sign Recognition & Road Safety Monitoring System** is an intelligent Advanced Driver Assistance System (ADAS). It combines deep learning-based visual perception in Python with deterministic, real-time safety evaluation logic in Java.
 
-## 2. Functional Requirements
+---
 
-### 2.1 Visual Perception (Machine Learning)
-- **Multi-Class Sign Recognition**: Accurately recognize 43 distinct classes of European traffic signs (GTSRB standard) under various lighting, weather, and motion conditions.
-- **Confidence Scoring**: Assign calibrated confidence probabilities (0.0 to 1.0) to all detected sign candidates.
-- **Model Export**: Support export to open, cross-platform formats including ONNX and TorchScript for runtime interoperability.
+## 2. Key Target Benchmark Metrics
 
-### 2.2 Safety Monitoring Engine (Java Core)
-- **Threshold Filtering**: Filter out low-confidence perceptions (default threshold $\ge 0.60$) to minimize false positives.
-- **Speed Limit Tracking & Over-speed Warnings**:
-  - Dynamically maintain the current active speed limit.
-  - Issue **WARNING** alerts if vehicle speed exceeds current speed limit.
-  - Issue **CRITICAL** alerts if vehicle speed exceeds current limit by $> 10 \text{ km/h}$.
-- **Mandatory Action Signs**:
-  - Issue immediate safety notices when approaching STOP and YIELD signs.
-  - Escalate STOP warnings to **CRITICAL** if vehicle approach speed $> 20 \text{ km/h}$.
-- **Hazard & Precaution Warnings**: Alert drivers of upcoming pedestrian zones, construction/road work, curves, and hazardous road conditions.
-- **Audit Logging**: Maintain an in-memory chronological history of all triggered safety alerts for driver behavior auditing.
+To guarantee real-time road safety operation on in-vehicle hardware, the deployed system must satisfy:
 
-## 3. Non-Functional Requirements
-
-- **Inference Latency**: Single frame prediction latency should be $\le 50\text{ ms}$ on standard edge/CPU hardware and $\le 10\text{ ms}$ on CUDA-capable accelerators.
-- **Safety Decision Latency**: Java evaluation of incoming detections must be $\le 5\text{ ms}$.
-- **Modularity**: Decoupled architecture allowing independent updating of perception models without refactoring Java safety logic.
-- **Portability**: Code runs seamlessly across Windows, Linux, and macOS platforms.
-
-## 4. Environment & Dependencies
-
-| Component | Minimum Version | Recommended Version |
+| Metric | Target | Description / Rationale |
 | :--- | :--- | :--- |
-| **Java JDK** | 17 LTS | 17, 21, or 25 LTS |
-| **Apache Maven** | 3.8+ | 3.9+ |
-| **Python** | 3.10+ | 3.11 / 3.12 / 3.14 |
-| **PyTorch** | 2.0.0+ | Latest stable |
-| **OpenCV** | 4.8.0+ | Latest stable |
+| **mAP@0.5** | **$\ge 0.80$** | High mean Average Precision across all detected traffic signs. |
+| **Missed-Sign Rate (`stop`, `speed`, `danger`)** | **$\le 5\%$** (Recall $\ge 95\%$) | Critical road safety signs must not be missed under varying lighting/weather. |
+| **CPU Inference Latency** | **$\le 150\text{ ms/frame}$** | Enables real-time video processing ($\ge 7-10\text{ FPS}$) on standard vehicle CPUs without requiring dedicated GPUs. |
+| **Deployed Model Size** | **$\le 50\text{ MB}$** | Allows rapid deployment and cold-start on resource-constrained embedded edge devices (e.g., Raspberry Pi, Jetson Nano, vehicle ECUs). |
+
+---
+
+## 3. Functional Requirements
+
+### 3.1 Python Perception Layer
+- **Multi-Class Sign Recognition**: Detect and classify designated road safety signs:
+  - `stop` (Class 0): Mandatory halt signs.
+  - `speed` (Class 1): Speed limit regulations and speed zone indicators.
+  - `danger` (Class 2): Caution, hazard, curve, and pedestrian warnings.
+- **Bounding-Box Localization**: Predict accurate bounding box coordinates `(x, y, width, height)` for each detected sign.
+- **Confidence Scoring**: Assign calibrated probabilities ($0.0 \le \text{confidence} \le 1.0$) to each candidate detection.
+- **Integration Service**: Provide a lightweight HTTP inference service accepting image frames and returning JSON payloads compatible with Java domain objects.
+
+### 3.2 Java Decision & Safety Layer (`SafetyMonitor`)
+- **Threshold Filtering**: Discard detections with confidence below threshold (default $\ge 0.60$) to eliminate false alarms.
+- **Speed Violation Monitoring**: Track vehicle telemetry against detected speed signs and issue `WARNING` or `CRITICAL` alerts.
+- **Mandatory Action Enforcement**: Issue urgent `CRITICAL` alerts for approaching `stop` signs.
+- **Hazard Notification**: Alert the driver with `WARNING` notices upon detecting `danger` signs.
+- **Audit Logging**: Maintain an in-memory chronological record of all issued alerts.
+
+---
+
+## 4. Technology Stack & Prerequisites
+
+- **Java JDK**: 17+ LTS (Tested on OpenJDK / Oracle JDK 25 LTS).
+- **Build Tool**: Apache Maven 3.8+ (Tested on Maven 3.9.6).
+- **Python Runtime**: Python 3.10+ (Tested on Python 3.14.6).
+- **ML Framework**: PyTorch 2.0+, Ultralytics (YOLOv8 / YOLO11), OpenCV, ONNX Runtime.

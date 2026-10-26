@@ -122,6 +122,11 @@ public class SafetyMonitor {
                             String.format("Speed limit updated to %d km/h", detectedLimit),
                             detection, currentVehicleSpeedKmH, currentSpeedLimitKmH, now);
                 }
+            } else {
+                alert = new SafetyAlert(
+                        AlertLevel.WARNING,
+                        "Speed control zone detected (" + detection.getLabel() + "). Observe posted limits.",
+                        detection, currentVehicleSpeedKmH, currentSpeedLimitKmH, now);
             }
         } else if (detection.isStopSign()) {
             AlertLevel level = currentVehicleSpeedKmH > 20.0 ? AlertLevel.CRITICAL : AlertLevel.WARNING;
