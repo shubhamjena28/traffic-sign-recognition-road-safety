@@ -14,9 +14,32 @@ from pathlib import Path
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from torch.utils.data import DataLoader, random_split
+from PIL import Image
+import pandas as pd
+from torch.utils.data import Dataset, DataLoader, random_split
 from torchvision import datasets, transforms
 
+
+class CSVTrafficSignDataset(Dataset):
+    """Loads traffic sign images directly from split manifest CSVs."""
+
+    def __init__(self, csv_file: str, transform=None):
+        self.df = pd.read_csv(csv_file)
+        self.filepaths = self.df["filepath"].tolist()
+        self.labels = self.df["class_id"].tolist()
+        self.transform = transform
+
+    def __len__(self):
+        return len(self.filepaths)
+
+    def __getitem__(self, idx):
+        img_path = self.filepaths[idx]
+        with Image.open(img_path) as img:
+            img = img.convert("RGB")
+        if self.transform:
+            img = self.transform(img)
+        label = int(self.labels[idx])
+        return img, label
 
 class TrafficSignCNN(nn.Module):
     """Custom Convolutional Neural Network for traffic sign image classification."""
@@ -94,30 +117,43 @@ def train_yolo(data_yaml: str, model_name: str = "yolov8n.pt", epochs: int = 30,
     return results
 
 
-def train_cnn(data_dir: str, output_dir: str, epochs: int, batch_size: int, lr: float, num_classes: int):
-    """Trains custom CNN on class-folder dataset."""
+def train_cnn(
+    data_dir: str = None,
+    train_csv: str = None,
+    val_csv: str = None,
+    output_dir: str = "checkpoints",
+    epochs: int = 25,
+    batch_size: int = 64,
+    lr: float = 1e-3,
+    num_classes: int = 43,
+):
+    """Trains custom CNN on class-folder dataset or split manifest CSVs."""
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Training CNN on device: {device}")
 
     out_path = Path(output_dir)
     out_path.mkdir(parents=True, exist_ok=True)
+    train_tf, val_tf = get_data_transforms()
 
-    data_path = Path(data_dir)
-    if not data_path.exists() or not any(data_path.iterdir()):
-        print(f"[WARNING] Dataset directory '{data_path}' is empty or does not exist.")
-        print("Please place the GTSRB dataset into data/processed/ or specify --data-dir.")
+    if train_csv and Path(train_csv).exists() and val_csv and Path(val_csv).exists():
+        print(f"[INFO] Loading datasets from split CSV manifests: {train_csv} and {val_csv}")
+        train_set = CSVTrafficSignDataset(train_csv, transform=train_tf)
+        val_set = CSVTrafficSignDataset(val_csv, transform=val_tf)
+    elif data_dir and Path(data_dir).exists() and any(Path(data_dir).iterdir()):
+        print(f"[INFO] Loading dataset from directory: {data_dir}")
+        data_path = Path(data_dir)
+        full_dataset = datasets.ImageFolder(root=str(data_path), transform=train_tf)
+        val_size = int(0.2 * len(full_dataset))
+        train_size = len(full_dataset) - val_size
+        train_set, val_set = random_split(full_dataset, [train_size, val_size])
+        val_set.dataset.transform = val_tf
+    else:
+        print(f"[ERROR] Neither valid CSV manifests nor valid data directory provided.")
+        print(f"Please run 'python train/prepare_gtsrb.py' first to generate data/splits manifests.")
         return
 
-    train_tf, val_tf = get_data_transforms()
-    full_dataset = datasets.ImageFolder(root=str(data_path), transform=train_tf)
-    val_size = int(0.2 * len(full_dataset))
-    train_size = len(full_dataset) - val_size
-
-    train_set, val_set = random_split(full_dataset, [train_size, val_size])
-    val_set.dataset.transform = val_tf
-
-    train_loader = DataLoader(train_set, batch_size=batch_size, shuffle=True, num_workers=2)
-    val_loader = DataLoader(val_set, batch_size=batch_size, shuffle=False, num_workers=2)
+    train_loader = DataLoader(train_set, batch_size=batch_size, shuffle=True, num_workers=0)
+    val_loader = DataLoader(val_set, batch_size=batch_size, shuffle=False, num_workers=0)
 
     model = TrafficSignCNN(num_classes=num_classes).to(device)
     criterion = nn.CrossEntropyLoss()
@@ -187,8 +223,10 @@ def train_cnn(data_dir: str, output_dir: str, epochs: int, batch_size: int, lr: 
 def main():
     parser = argparse.ArgumentParser(description="Train Traffic Sign Recognition & Detection")
     parser.add_argument("--mode", choices=["cnn", "yolo"], default="cnn", help="Model type: 'cnn' (classifier) or 'yolo' (detector)")
-    parser.add_argument("--data-dir", type=str, default="../data/processed", help="Path to processed image folders (for CNN)")
-    parser.add_argument("--data-yaml", type=str, default="data.yaml", help="Path to dataset YAML (for YOLO)")
+    parser.add_argument("--train-csv", type=str, default="data/splits/train.csv", help="Path to train.csv split manifest")
+    parser.add_argument("--val-csv", type=str, default="data/splits/val.csv", help="Path to val.csv split manifest")
+    parser.add_argument("--data-dir", type=str, default="data/processed", help="Path to processed image folders (fallback)")
+    parser.add_argument("--data-yaml", type=str, default="data/traffic_signs.yaml", help="Path to dataset YAML (for YOLO)")
     parser.add_argument("--output-dir", type=str, default="checkpoints", help="Directory to save checkpoints")
     parser.add_argument("--epochs", type=int, default=25, help="Number of training epochs")
     parser.add_argument("--batch-size", type=int, default=64, help="Batch size")
@@ -199,7 +237,16 @@ def main():
     if args.mode == "yolo":
         train_yolo(args.data_yaml, epochs=args.epochs)
     else:
-        train_cnn(args.data_dir, args.output_dir, args.epochs, args.batch_size, args.lr, args.num_classes)
+        train_cnn(
+            data_dir=args.data_dir,
+            train_csv=args.train_csv,
+            val_csv=args.val_csv,
+            output_dir=args.output_dir,
+            epochs=args.epochs,
+            batch_size=args.batch_size,
+            lr=args.lr,
+            num_classes=args.num_classes,
+        )
 
 
 if __name__ == "__main__":
