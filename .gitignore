@@ -19,6 +19,9 @@ venv/
 data/raw/*
 data/processed/*
 data/annotations/*
+data/images/
+data/labels/
+runs/
 
 # Preserve documentation inside data
 !data/raw/.gitkeep

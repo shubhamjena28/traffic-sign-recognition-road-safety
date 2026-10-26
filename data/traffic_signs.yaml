@@ -1,12 +1,11 @@
 # Traffic Sign Dataset Configuration for Ultralytics YOLO
 
-# Root path for datasets (relative or absolute)
-path: ../data
+# Absolute path to this project's data directory
+path: C:/Users/HP/Desktop/Projects/traffic-sign-recognition-road-safety/data
 
-# Relative paths from 'path'
+# Image directories
 train: images/train
 val: images/val
-test: images/test
 
 # Classes for road safety monitoring
 names:
