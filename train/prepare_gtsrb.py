@@ -112,28 +112,28 @@ class BKTree:
 def parse_gtsrb_filename(filepath: Path) -> Tuple[int, str, int]:
     """
     Parse GTSRB file naming convention:
-    Format: .../<class_dir>/<track_id>_<frame_id>.ppm
-    Example: .../00014/00002_00019.ppm -> class_id=14, track_id="00014_00002", frame_id=19
+      class_id = int(image_path.parent.name)
+      track_id = f"{class_id}_{image_path.stem.split('_')[0]}"
+    All images belonging to the same track remain in the same split.
     """
-    parent_name = filepath.parent.name
     try:
-        class_id = int(parent_name)
+        class_id = int(filepath.parent.name)
     except ValueError:
         class_id = 0
 
     stem = filepath.stem
     if "_" in stem:
         parts = stem.split("_")
-        track_part = parts[0]
+        track_prefix = parts[0]
         try:
             frame_id = int(parts[1])
-        except ValueError:
+        except (IndexError, ValueError):
             frame_id = 0
-        track_id = f"{parent_name}_{track_part}"
     else:
-        track_id = f"{parent_name}_{stem[:5]}"
+        track_prefix = stem[:5]
         frame_id = 0
 
+    track_id = f"{class_id}_{track_prefix}"
     return class_id, track_id, frame_id
 
 
