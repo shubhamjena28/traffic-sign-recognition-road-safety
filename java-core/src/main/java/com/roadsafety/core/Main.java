@@ -2,10 +2,12 @@ package com.roadsafety.core;
 
 import com.roadsafety.core.experiments.AblationRunner;
 import com.roadsafety.core.experiments.Trainer;
+import com.roadsafety.core.learning.CompetitiveLearning;
 import com.roadsafety.core.learning.HebbianLearning;
 import com.roadsafety.core.learning.HopfieldNetwork;
 import com.roadsafety.core.learning.OjaLearning;
 import com.roadsafety.core.learning.Perceptron;
+import com.roadsafety.core.learning.RBM;
 import com.roadsafety.core.math.GradientChecker;
 import com.roadsafety.core.math.MatrixOps;
 import com.roadsafety.core.math.SVD;
@@ -17,133 +19,189 @@ import com.roadsafety.core.nn.MLP;
 import com.roadsafety.core.nn.Optimizer;
 import com.roadsafety.core.tensor.Tensor;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
- * Interactive Showcase Driver for Road Safety Neural Core:
- * - Tensor operations & Matrix decompositions (SVD)
- * - McCulloch-Pitts Threshold Neurons & Continuous Sigmoid Neurons
- * - Classical Learning Rules: Perceptron, Hebbian, Oja PCA, Hopfield
- * - Deep Learning: Multi-Layer Perceptron (MLP) with Backprop & Optimizers
- * - Finite Difference Gradient Checking
+ * Sequential Execution Suite following the exact 7 Recommended Implementation Priorities:
+ * Priority 1: Tensor Operations (Shape, Reshape, Broadcasting, Matmul, Inner Product)
+ * Priority 2: Numerical Mathematics (One-Sided Jacobi SVD & Gradient Checking)
+ * Priority 3: Basic Neurons (McCulloch-Pitts AND/OR/NOT & Continuous Sigmoid Neuron)
+ * Priority 4: Neural Network (MLP Forward Pass, Backprop, MSE, Cross-Entropy)
+ * Priority 5: Optimizers (Batch GD, SGD, Momentum, Nesterov with 4 Comparable Loss Curves)
+ * Priority 6: Ablation Experiments (Initialization, L2 Regularization, Dropout, Augmentation, Overfitting)
+ * Priority 7: Learning Algorithms (Hebbian, Oja, Competitive, Perceptron, Hopfield/RBM Energy)
  */
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("=======================================================================");
-        System.out.println("       ROAD SAFETY DEEP LEARNING & NEURAL CORE - VERIFICATION SUITE");
-        System.out.println("=======================================================================\n");
+        System.out.println("========================================================================================");
+        System.out.println("           ROAD SAFETY NEURAL CORE - RECOMMENDED IMPLEMENTATION ORDER RUNNER            ");
+        System.out.println("========================================================================================\n");
 
-        // 1. Tensor & MatrixOps
-        System.out.println("[1] TENSOR & MATRIX OPERATIONS");
-        Tensor a = Tensor.from2D(new double[][]{{1, 2}, {3, 4}});
-        Tensor b = Tensor.from2D(new double[][]{{2, 0}, {1, 2}});
-        Tensor c = a.matmul(b);
-        System.out.println("Tensor A * B:\n" + Arrays.deepToString(c.to2DArray()));
+        // ---------------------------------------------------------------------------------------------
+        // PRIORITY 1: Tensor Operations
+        // ---------------------------------------------------------------------------------------------
+        System.out.println(">>> PRIORITY 1: TENSOR OPERATIONS");
+        Tensor tA = Tensor.from2D(new double[][]{{1, 2, 3}, {4, 5, 6}});
+        Tensor tBias = Tensor.from2D(new double[][]{{10, 20, 30}});
+        Tensor tBroadcast = tA.add(tBias);
+        Tensor tMatB = Tensor.from2D(new double[][]{{1, 0}, {0, 1}, {1, 1}});
+        Tensor tMatMul = tA.matmul(tMatB);
+        Tensor vec1 = Tensor.fromArray(new double[]{1, 2, 3}, 3);
+        Tensor vec2 = Tensor.fromArray(new double[]{4, 5, 6}, 3);
+        double innerProd = vec1.dot(vec2);
 
-        // 2. Singular Value Decomposition (SVD)
-        System.out.println("\n[2] SINGULAR VALUE DECOMPOSITION (SVD)");
-        double[][] mat = {
-                {3.0, 2.0, 2.0},
-                {2.0, 3.0, -2.0}
-        };
-        SVD svd = SVD.decompose(mat);
-        System.out.println("Singular Values: " + Arrays.toString(svd.getSingularValues()));
-        double[][] rec = svd.reconstruct();
-        System.out.println("Reconstruction Frobenius Error: " +
-                String.format("%.2e", MatrixOps.frobeniusNorm(MatrixOps.sub(mat, rec))));
+        System.out.println("  [+] Shape & Reshape: " + Arrays.toString(tA.getShape()) + " -> " + Arrays.toString(tA.reshape(3, 2).getShape()));
+        System.out.println("  [+] Broadcasting ((2,3) + (1,3)): " + Arrays.deepToString(tBroadcast.to2DArray()));
+        System.out.println("  [+] Matrix Multiplication ((2,3) x (3,2)): " + Arrays.deepToString(tMatMul.to2DArray()));
+        System.out.println("  [+] Inner Product (dot): " + innerProd + " (Expected: 32.0)");
 
-        // 3. McCulloch-Pitts Neurons
-        System.out.println("\n[3] McCULLOCH-PITTS LOGIC GATES");
-        McCullochPittsNeuron andGate = McCullochPittsNeuron.createAND(2);
-        McCullochPittsNeuron orGate = McCullochPittsNeuron.createOR(2);
-        System.out.println("AND(1, 1) = " + andGate.activate(new int[]{1, 1}));
-        System.out.println("AND(1, 0) = " + andGate.activate(new int[]{1, 0}));
-        System.out.println("OR(0, 1)  = " + orGate.activate(new int[]{0, 1}));
+        // ---------------------------------------------------------------------------------------------
+        // PRIORITY 2: Numerical Mathematics
+        // ---------------------------------------------------------------------------------------------
+        System.out.println("\n>>> PRIORITY 2: NUMERICAL MATHEMATICS");
+        double[][] matA = {{3.0, 2.0, 2.0}, {2.0, 3.0, -2.0}};
+        SVD svd = SVD.decompose(matA);
+        double[][] reconstructed = svd.reconstruct();
+        double svdError = MatrixOps.frobeniusNorm(MatrixOps.sub(matA, reconstructed));
+        System.out.printf("  [+] One-Sided Jacobi SVD Singular Values: %s%n", Arrays.toString(svd.getSingularValues()));
+        System.out.printf("  [+] SVD Reconstruction Frobenius Error: %.2e (Tolerance: 1e-6) -> %s%n",
+                svdError, svdError < 1e-6 ? "PASS" : "FAIL");
 
-        // 4. Perceptron Training
-        System.out.println("\n[4] ROSENBLATT PERCEPTRON (OR Function)");
-        Perceptron perceptron = new Perceptron(2, 0.1);
-        double[][] xOr = {{0, 0}, {0, 1}, {1, 0}, {1, 1}};
-        int[] yOr = {0, 1, 1, 1};
-        int epochs = perceptron.train(xOr, yOr, 50);
-        System.out.println("Perceptron converged in " + epochs + " epochs.");
-        System.out.println("Weights: " + Arrays.toString(perceptron.getWeights()) + ", Bias: " + perceptron.getBias());
-
-        // 5. Oja's PCA Learning Rule
-        System.out.println("\n[5] OJA'S RULE (Principal Component Extraction)");
-        OjaLearning oja = new OjaLearning(2, 0.05);
-        double[][] data = {{2, 2.1}, {-2, -1.9}, {3, 2.9}, {-3, -3.1}};
-        oja.fit(data, 100);
-        System.out.println("First Principal Component: " + Arrays.toString(oja.getWeights()) +
-                " (Norm: " + String.format("%.4f", oja.getNorm()) + ")");
-
-        // 6. Hopfield Network (Pattern Restoration)
-        System.out.println("\n[6] HOPFIELD ASSOCIATIVE MEMORY");
-        HopfieldNetwork hopfield = new HopfieldNetwork(4);
-        int[] pattern = {1, -1, 1, -1};
-        hopfield.train(new int[][]{pattern});
-        int[] noisyPattern = {1, 1, 1, -1}; // 1 bit flipped
-        int[] restored = hopfield.recall(noisyPattern, 10);
-        System.out.println("Original: " + Arrays.toString(pattern));
-        System.out.println("Noisy:    " + Arrays.toString(noisyPattern));
-        System.out.println("Restored: " + Arrays.toString(restored) +
-                " (Match: " + Arrays.equals(pattern, restored) + ")");
-
-        // 7. Gradient Checking
-        System.out.println("\n[7] FINITE DIFFERENCE GRADIENT CHECKING");
-        SigmoidNeuron sn = new SigmoidNeuron(2);
-        double[] xSample = {0.8, -0.5};
-        double ySample = 1.0;
-        sn.forward(xSample);
-        double dLoss_da = sn.getLastActivation() - ySample;
-        sn.backward(dLoss_da);
-        double[] analyticalGrads = sn.getGradWeights();
-
+        double[] thetaTest = { 1.5, -2.0 };
+        double[] analyticalGrad = { 2.0 * thetaTest[0] + 3.0 * thetaTest[1], 3.0 * thetaTest[0] + 4.0 * thetaTest[1] };
         GradientChecker.Result gcRes = GradientChecker.check(
-                theta -> {
-                    double z = sn.getBias() + theta[0] * xSample[0] + theta[1] * xSample[1];
-                    double a_val = 1.0 / (1.0 + Math.exp(-z));
-                    double diff = a_val - ySample;
-                    return 0.5 * diff * diff;
-                },
-                sn.getWeights(),
-                analyticalGrads
+                t -> t[0] * t[0] + 3.0 * t[0] * t[1] + 2.0 * t[1] * t[1],
+                thetaTest, analyticalGrad
         );
-        System.out.println("Gradient Check Result: " + gcRes);
+        System.out.printf("  [+] Numerical Gradient Checker Relative Error: %.2e -> %s%n",
+                gcRes.getRelativeError(), gcRes.isPassed() ? "PASS" : "FAIL");
 
-        // 8. MLP Road Safety Classification
-        System.out.println("\n[8] MLP MULTI-CLASS ROAD SAFETY CLASSIFIER");
-        // 3 Classes: 0: STOP, 1: SPEED LIMIT, 2: DANGER
-        // 4 synthetic features: aspect_ratio, red_ratio, circularity, edge_density
-        double[][] trainXData = {
-                {1.0, 0.85, 0.70, 0.80}, // Stop
-                {1.0, 0.82, 0.72, 0.78}, // Stop
-                {1.0, 0.55, 0.95, 0.40}, // Speed
-                {1.0, 0.52, 0.96, 0.42}, // Speed
-                {1.1, 0.70, 0.35, 0.85}, // Danger
-                {1.1, 0.68, 0.38, 0.88}  // Danger
+        // ---------------------------------------------------------------------------------------------
+        // PRIORITY 3: Basic Neurons
+        // ---------------------------------------------------------------------------------------------
+        System.out.println("\n>>> PRIORITY 3: BASIC NEURONS");
+        McCullochPittsNeuron mpAnd = McCullochPittsNeuron.createAND(2);
+        McCullochPittsNeuron mpOr = McCullochPittsNeuron.createOR(2);
+        McCullochPittsNeuron mpNot = McCullochPittsNeuron.createNOT();
+        System.out.printf("  [+] M-P AND Gate: (0,1)->%d, (1,1)->%d%n", mpAnd.activate(new int[]{0, 1}), mpAnd.activate(new int[]{1, 1}));
+        System.out.printf("  [+] M-P OR  Gate: (0,0)->%d, (1,0)->%d%n", mpOr.activate(new int[]{0, 0}), mpOr.activate(new int[]{1, 0}));
+        System.out.printf("  [+] M-P NOT Gate: (0)->%d, (1)->%d%n", mpNot.activate(new int[]{0}), mpNot.activate(new int[]{1}));
+
+        SigmoidNeuron sigNeuron = new SigmoidNeuron(2);
+        sigNeuron.setBias(0.0);
+        double sigOut = sigNeuron.forward(new double[]{0.0, 0.0});
+        double sigGrad = sigNeuron.backward(1.0);
+        System.out.printf("  [+] Sigmoid Neuron: sigma(0) = %.2f, d(sigma)/dz = %.2f%n", sigOut, sigGrad);
+
+        // ---------------------------------------------------------------------------------------------
+        // PRIORITY 4: Neural Network (MLP & Loss Functions)
+        // ---------------------------------------------------------------------------------------------
+        System.out.println("\n>>> PRIORITY 4: NEURAL NETWORK (MLP FORWARD & BACKPROP)");
+        MLP mlp = new MLP(new int[]{2, 4, 2}, Activations.Type.TANH, Activations.Type.SOFTMAX);
+        Tensor sampleX = Tensor.fromArray(new double[]{0.5, -0.3}, 1, 2);
+        Tensor sampleY = Tensor.fromArray(new double[]{1.0, 0.0}, 1, 2);
+
+        Tensor predOut = mlp.forward(sampleX);
+        double lossMSE = LossFunctions.computeLoss(predOut, sampleY, LossFunctions.Type.MSE);
+        double lossCE = LossFunctions.computeLoss(predOut, sampleY, LossFunctions.Type.CROSS_ENTROPY);
+        System.out.printf("  [+] MLP Forward Output: %s%n", Arrays.toString(predOut.getData()));
+        System.out.printf("  [+] MSE Loss: %.4f | Cross-Entropy Loss: %.4f%n", lossMSE, lossCE);
+
+        Tensor dL = LossFunctions.computeGradient(predOut, sampleY, LossFunctions.Type.CROSS_ENTROPY);
+        mlp.backward(dL, LossFunctions.Type.CROSS_ENTROPY);
+        System.out.println("  [+] Backpropagation Gradients computed successfully.");
+
+        // ---------------------------------------------------------------------------------------------
+        // PRIORITY 5: Optimizers (Four Comparable Loss Curves)
+        // ---------------------------------------------------------------------------------------------
+        System.out.println("\n>>> PRIORITY 5: OPTIMIZERS (BATCH GD, SGD, MOMENTUM, NESTEROV)");
+        // Dataset: Road safety sign feature dataset (Stop=0, Speed=1, Danger=2)
+        double[][] xData = {
+                {1.0, 0.85, 0.70, 0.80}, {1.0, 0.82, 0.72, 0.78},
+                {1.0, 0.55, 0.95, 0.40}, {1.0, 0.52, 0.96, 0.42},
+                {1.1, 0.70, 0.35, 0.85}, {1.1, 0.68, 0.38, 0.88}
         };
-        double[][] trainYData = {
-                {1, 0, 0},
-                {1, 0, 0},
-                {0, 1, 0},
-                {0, 1, 0},
-                {0, 0, 1},
-                {0, 0, 1}
+        double[][] yData = {
+                {1, 0, 0}, {1, 0, 0},
+                {0, 1, 0}, {0, 1, 0},
+                {0, 0, 1}, {0, 0, 1}
         };
+        Tensor xT = Tensor.from2D(xData);
+        Tensor yT = Tensor.from2D(yData);
 
-        Tensor xTrain = Tensor.from2D(trainXData);
-        Tensor yTrain = Tensor.from2D(trainYData);
+        Map<String, Optimizer> optimizers = new LinkedHashMap<>();
+        optimizers.put("Batch GD", new Optimizer.BatchGD(0.05));
+        optimizers.put("SGD", new Optimizer.SGD(0.05));
+        optimizers.put("Momentum", new Optimizer.Momentum(0.05, 0.9));
+        optimizers.put("Nesterov", new Optimizer.Nesterov(0.05, 0.9));
 
-        MLP mlp = new MLP(new int[]{4, 8, 3}, Activations.Type.RELU, Activations.Type.SOFTMAX);
-        Optimizer adam = new Optimizer.Adam(0.05);
+        System.out.println("  Comparing Loss Curves across 4 Optimizers over 40 Epochs:");
+        System.out.printf("  %-12s | %-10s | %-10s | %-10s | %-10s%n", "Optimizer", "Ep 1 Loss", "Ep 10 Loss", "Ep 20 Loss", "Ep 40 Loss");
+        System.out.println("  " + "-".repeat(58));
 
-        Trainer.train(mlp, xTrain, yTrain, xTrain, yTrain, adam, LossFunctions.Type.CROSS_ENTROPY, 100, 2, false);
-        double acc = Trainer.evaluateAccuracy(mlp, xTrain, yTrain);
-        System.out.printf("Trained MLP Accuracy on Road Safety Classes: %.2f%%%n", acc * 100.0);
+        for (Map.Entry<String, Optimizer> entry : optimizers.entrySet()) {
+            MLP model = new MLP(new int[]{4, 8, 3}, Activations.Type.RELU, Activations.Type.SOFTMAX);
+            int batchSz = entry.getKey().equals("Batch GD") ? 6 : 2;
+            Trainer.History h = Trainer.train(model, xT, yT, xT, yT, entry.getValue(), LossFunctions.Type.CROSS_ENTROPY, 40, batchSz, false);
+            System.out.printf("  %-12s | %-10.4f | %-10.4f | %-10.4f | %-10.4f%n",
+                    entry.getKey(), h.trainLoss.get(0), h.trainLoss.get(9), h.trainLoss.get(19), h.trainLoss.get(39));
+        }
 
-        System.out.println("\n=======================================================================");
-        System.out.println("                  ALL CORE SUBSYSTEMS FULLY OPERATIONAL");
-        System.out.println("=======================================================================");
+        // ---------------------------------------------------------------------------------------------
+        // PRIORITY 6: Ablation Experiments
+        // ---------------------------------------------------------------------------------------------
+        System.out.println("\n>>> PRIORITY 6: ABLATION EXPERIMENTS");
+        AblationRunner.runAllAblations(xT, yT, xT, yT);
+
+        // ---------------------------------------------------------------------------------------------
+        // PRIORITY 7: Learning Algorithms (Five Runnable Demonstrations)
+        // ---------------------------------------------------------------------------------------------
+        System.out.println("\n>>> PRIORITY 7: FIVE LEARNING ALGORITHM DEMONSTRATIONS");
+
+        // 1. Hebbian Learning
+        HebbianLearning hebb = new HebbianLearning(2, 2, 0.1);
+        hebb.trainBatch(new double[][]{{1, 1}, {1, -1}}, new double[][]{{1, 0}, {0, 1}});
+        System.out.println("  [Demo 1] Hebbian Associative Weights learned:\n    " + Arrays.deepToString(hebb.getWeights()));
+
+        // 2. Oja's Rule (Principal Component Analysis)
+        OjaLearning oja = new OjaLearning(2, 0.05);
+        oja.fit(new double[][]{{2, 2.1}, {-2, -1.9}, {3, 2.9}, {-3, -3.1}}, 60);
+        System.out.printf("  [Demo 2] Oja's PCA Principal Vector: %s (Norm: %.4f)%n",
+                Arrays.toString(oja.getWeights()), oja.getNorm());
+
+        // 3. Competitive Learning (Winner-Take-All Clustering)
+        CompetitiveLearning competitive = new CompetitiveLearning(2, 2, 0.1);
+        double[][] clusterData = {{1.0, 1.0}, {1.1, 0.9}, {-1.0, -1.0}, {-0.9, -1.1}};
+        competitive.train(clusterData, 50);
+        System.out.printf("  [Demo 3] Competitive Learning Cluster Prototypes:%n    Cluster 0: %s%n    Cluster 1: %s%n",
+                Arrays.toString(competitive.getPrototypes()[0]), Arrays.toString(competitive.getPrototypes()[1]));
+
+        // 4. Perceptron Error Correction
+        Perceptron perceptron = new Perceptron(2, 0.1);
+        int pEpochs = perceptron.train(new double[][]{{0, 0}, {0, 1}, {1, 0}, {1, 1}}, new int[]{0, 1, 1, 1}, 50);
+        System.out.printf("  [Demo 4] Perceptron Error-Driven Correction: Converged in %d epochs, Weights=%s, Bias=%.2f%n",
+                pEpochs, Arrays.toString(perceptron.getWeights()), perceptron.getBias());
+
+        // 5. Hopfield Associative Memory & RBM Energy Model
+        HopfieldNetwork hopfield = new HopfieldNetwork(4);
+        int[] storedPattern = {1, -1, 1, -1};
+        hopfield.train(new int[][]{storedPattern});
+        double hopEnergy = hopfield.computeEnergy(storedPattern);
+        int[] restoredPattern = hopfield.recall(new int[]{1, 1, 1, -1}, 5);
+
+        RBM rbm = new RBM(4, 2);
+        double rbmFreeEnergy = rbm.computeFreeEnergy(new double[]{1.0, 0.0, 1.0, 0.0});
+
+        System.out.printf("  [Demo 5] Hopfield & RBM Energy Demonstration:%n");
+        System.out.printf("    - Hopfield Energy E(s): %.2f | Pattern Restored: %s (Match: %b)%n",
+                hopEnergy, Arrays.toString(restoredPattern), Arrays.equals(storedPattern, restoredPattern));
+        System.out.printf("    - RBM Visible Free Energy F(v): %.4f%n", rbmFreeEnergy);
+
+        System.out.println("\n========================================================================================");
+        System.out.println("            ALL 7 MODULES IN RECOMMENDED IMPLEMENTATION ORDER COMPLETED                 ");
+        System.out.println("========================================================================================");
     }
 }

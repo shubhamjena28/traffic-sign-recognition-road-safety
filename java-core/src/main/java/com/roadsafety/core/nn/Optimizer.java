@@ -5,7 +5,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * First-order gradient optimization algorithms: SGD, Momentum, RMSprop, and Adam.
+ * First-order gradient optimization algorithms:
+ * 1. Batch GD (Full-batch gradient descent)
+ * 2. SGD (Stochastic/Mini-batch Gradient Descent)
+ * 3. Momentum (Polyak classical momentum)
+ * 4. Nesterov (Nesterov Accelerated Gradient - NAG)
+ * 5. Adam (Adaptive Moment Estimation)
+ * 6. RMSprop (Root Mean Square Propagation)
  */
 public abstract class Optimizer {
     protected double learningRate;
@@ -19,7 +25,23 @@ public abstract class Optimizer {
     public double getLearningRate() { return learningRate; }
     public void setLearningRate(double lr) { this.learningRate = lr; }
 
-    // --- SGD ---
+    // --- 1. Batch GD ---
+    public static class BatchGD extends Optimizer {
+        public BatchGD(double learningRate) {
+            super(learningRate);
+        }
+
+        @Override
+        public void update(String paramKey, Tensor param, Tensor grad) {
+            double[] p = param.getData();
+            double[] g = grad.getData();
+            for (int i = 0; i < p.length; i++) {
+                p[i] -= learningRate * g[i];
+            }
+        }
+    }
+
+    // --- 2. SGD ---
     public static class SGD extends Optimizer {
         public SGD(double learningRate) {
             super(learningRate);
@@ -35,7 +57,7 @@ public abstract class Optimizer {
         }
     }
 
-    // --- Momentum ---
+    // --- 3. Classical Polyak Momentum ---
     public static class Momentum extends Optimizer {
         private final double beta;
         private final Map<String, double[]> velocities = new HashMap<>();
@@ -62,36 +84,36 @@ public abstract class Optimizer {
         }
     }
 
-    // --- RMSprop ---
-    public static class RMSprop extends Optimizer {
-        private final double decay;
-        private final double eps;
-        private final Map<String, double[]> cache = new HashMap<>();
+    // --- 4. Nesterov Accelerated Gradient (NAG) ---
+    public static class Nesterov extends Optimizer {
+        private final double beta;
+        private final Map<String, double[]> velocities = new HashMap<>();
 
-        public RMSprop(double learningRate, double decay, double eps) {
+        public Nesterov(double learningRate, double beta) {
             super(learningRate);
-            this.decay = decay;
-            this.eps = eps;
+            this.beta = beta;
         }
 
-        public RMSprop(double learningRate) {
-            this(learningRate, 0.99, 1e-8);
+        public Nesterov(double learningRate) {
+            this(learningRate, 0.9);
         }
 
         @Override
         public void update(String paramKey, Tensor param, Tensor grad) {
             double[] p = param.getData();
             double[] g = grad.getData();
-            double[] c = cache.computeIfAbsent(paramKey, k -> new double[p.length]);
+            double[] v = velocities.computeIfAbsent(paramKey, k -> new double[p.length]);
 
             for (int i = 0; i < p.length; i++) {
-                c[i] = decay * c[i] + (1.0 - decay) * g[i] * g[i];
-                p[i] -= (learningRate / (Math.sqrt(c[i]) + eps)) * g[i];
+                double vPrev = v[i];
+                v[i] = beta * v[i] + (1.0 - beta) * g[i];
+                // Nesterov lookahead step: step in direction of updated momentum plus momentum projection
+                p[i] -= learningRate * (beta * v[i] + (1.0 - beta) * g[i]);
             }
         }
     }
 
-    // --- Adam ---
+    // --- 5. Adam ---
     public static class Adam extends Optimizer {
         private final double beta1;
         private final double beta2;
@@ -130,6 +152,35 @@ public abstract class Optimizer {
                 double vHat = vArr[i] / (1.0 - b2_t);
 
                 p[i] -= (learningRate / (Math.sqrt(vHat) + eps)) * mHat;
+            }
+        }
+    }
+
+    // --- 6. RMSprop ---
+    public static class RMSprop extends Optimizer {
+        private final double decay;
+        private final double eps;
+        private final Map<String, double[]> cache = new HashMap<>();
+
+        public RMSprop(double learningRate, double decay, double eps) {
+            super(learningRate);
+            this.decay = decay;
+            this.eps = eps;
+        }
+
+        public RMSprop(double learningRate) {
+            this(learningRate, 0.99, 1e-8);
+        }
+
+        @Override
+        public void update(String paramKey, Tensor param, Tensor grad) {
+            double[] p = param.getData();
+            double[] g = grad.getData();
+            double[] c = cache.computeIfAbsent(paramKey, k -> new double[p.length]);
+
+            for (int i = 0; i < p.length; i++) {
+                c[i] = decay * c[i] + (1.0 - decay) * g[i] * g[i];
+                p[i] -= (learningRate / (Math.sqrt(c[i]) + eps)) * g[i];
             }
         }
     }

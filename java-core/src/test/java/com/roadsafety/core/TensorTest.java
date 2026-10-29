@@ -33,8 +33,48 @@ public class TensorTest {
     }
 
     @Test
+    public void testBroadcasting() {
+        // (2, 3) + (1, 3) -> (2, 3)
+        Tensor a = Tensor.from2D(new double[][]{
+                {1, 2, 3},
+                {4, 5, 6}
+        });
+        Tensor bias = Tensor.from2D(new double[][]{
+                {10, 20, 30}
+        });
+
+        Tensor res = a.add(bias);
+        assertEquals(2, res.getShape()[0]);
+        assertEquals(3, res.getShape()[1]);
+        assertEquals(11.0, res.get(0, 0), 1e-9);
+        assertEquals(22.0, res.get(0, 1), 1e-9);
+        assertEquals(33.0, res.get(0, 2), 1e-9);
+        assertEquals(14.0, res.get(1, 0), 1e-9);
+        assertEquals(25.0, res.get(1, 1), 1e-9);
+        assertEquals(36.0, res.get(1, 2), 1e-9);
+
+        // (2, 1) * (1, 3) -> (2, 3)
+        Tensor col = Tensor.from2D(new double[][]{{2}, {3}});
+        Tensor row = Tensor.from2D(new double[][]{{1, 2, 4}});
+        Tensor out = col.mul(row);
+        assertEquals(2.0, out.get(0, 0), 1e-9);
+        assertEquals(4.0, out.get(0, 1), 1e-9);
+        assertEquals(8.0, out.get(0, 2), 1e-9);
+        assertEquals(3.0, out.get(1, 0), 1e-9);
+        assertEquals(6.0, out.get(1, 1), 1e-9);
+        assertEquals(12.0, out.get(1, 2), 1e-9);
+    }
+
+    @Test
+    public void testInnerProductDot() {
+        Tensor u = Tensor.fromArray(new double[]{1, 3, -5}, 3);
+        Tensor v = Tensor.fromArray(new double[]{4, -2, -1}, 3);
+        double dotProd = u.dot(v); // 1*4 + 3*(-2) + (-5)*(-1) = 4 - 6 + 5 = 3
+        assertEquals(3.0, dotProd, 1e-9);
+    }
+
+    @Test
     public void testMatrixMultiplication() {
-        // [ [1, 2], [3, 4] ] * [ [2, 0], [1, 2] ] = [ [4, 4], [10, 8] ]
         Tensor a = Tensor.from2D(new double[][]{{1, 2}, {3, 4}});
         Tensor b = Tensor.from2D(new double[][]{{2, 0}, {1, 2}});
 

@@ -5,7 +5,8 @@ import java.util.Random;
 
 /**
  * Multi-dimensional Tensor representing multidimensional numerical arrays.
- * Supports arbitrary shapes, strides, element-wise math, linear algebra, and reshaping.
+ * Supports arbitrary shapes, strides, NumPy-style broadcasting, element-wise math,
+ * matrix multiplication, inner products, and reshaping.
  */
 public class Tensor {
     private final int[] shape;
@@ -101,6 +102,15 @@ public class Tensor {
         return t;
     }
 
+    public static Tensor he(int rows, int cols) {
+        Tensor t = new Tensor(rows, cols);
+        double stddev = Math.sqrt(2.0 / rows);
+        for (int i = 0; i < t.data.length; i++) {
+            t.data[i] = RNG.nextGaussian() * stddev;
+        }
+        return t;
+    }
+
     public static Tensor fromArray(double[] data, int... shape) {
         return new Tensor(shape, data);
     }
@@ -163,40 +173,88 @@ public class Tensor {
         return data.length;
     }
 
-    public Tensor add(Tensor other) {
-        checkShapeMatch(other);
-        Tensor result = new Tensor(shape);
-        for (int i = 0; i < data.length; i++) {
-            result.data[i] = this.data[i] + other.data[i];
+    // --- Broadcasting Infrastructure ---
+    public static int[] computeBroadcastShape(int[] shapeA, int[] shapeB) {
+        int maxRank = Math.max(shapeA.length, shapeB.length);
+        int[] outShape = new int[maxRank];
+
+        for (int i = 0; i < maxRank; i++) {
+            int dimA = (i < shapeA.length) ? shapeA[shapeA.length - 1 - i] : 1;
+            int dimB = (i < shapeB.length) ? shapeB[shapeB.length - 1 - i] : 1;
+
+            if (dimA == dimB || dimA == 1 || dimB == 1) {
+                outShape[maxRank - 1 - i] = Math.max(dimA, dimB);
+            } else {
+                throw new IllegalArgumentException("Cannot broadcast shapes: " +
+                        Arrays.toString(shapeA) + " and " + Arrays.toString(shapeB));
+            }
         }
-        return result;
+        return outShape;
+    }
+
+    @FunctionalInterface
+    public interface BinaryOp {
+        double apply(double a, double b);
+    }
+
+    public Tensor broadcastOp(Tensor other, BinaryOp op) {
+        if (Arrays.equals(this.shape, other.shape)) {
+            // Fast path for identical shapes
+            Tensor res = new Tensor(this.shape);
+            for (int i = 0; i < data.length; i++) {
+                res.data[i] = op.apply(this.data[i], other.data[i]);
+            }
+            return res;
+        }
+
+        int[] targetShape = computeBroadcastShape(this.shape, other.shape);
+        Tensor res = new Tensor(targetShape);
+        int total = res.numElements();
+        int rank = targetShape.length;
+
+        int[] coords = new int[rank];
+        for (int flatIdx = 0; flatIdx < total; flatIdx++) {
+            // Convert flat index to target coordinates
+            int rem = flatIdx;
+            for (int d = 0; d < rank; d++) {
+                coords[d] = rem / res.strides[d];
+                rem %= res.strides[d];
+            }
+
+            // Map target coordinates back to this and other (using stride 0 if dimension is 1)
+            int thisFlat = 0;
+            for (int d = 0; d < this.shape.length; d++) {
+                int targetD = d + (rank - this.shape.length);
+                int c = (this.shape[d] == 1) ? 0 : coords[targetD];
+                thisFlat += c * this.strides[d];
+            }
+
+            int otherFlat = 0;
+            for (int d = 0; d < other.shape.length; d++) {
+                int targetD = d + (rank - other.shape.length);
+                int c = (other.shape[d] == 1) ? 0 : coords[targetD];
+                otherFlat += c * other.strides[d];
+            }
+
+            res.data[flatIdx] = op.apply(this.data[thisFlat], other.data[otherFlat]);
+        }
+        return res;
+    }
+
+    public Tensor add(Tensor other) {
+        return broadcastOp(other, (a, b) -> a + b);
     }
 
     public Tensor sub(Tensor other) {
-        checkShapeMatch(other);
-        Tensor result = new Tensor(shape);
-        for (int i = 0; i < data.length; i++) {
-            result.data[i] = this.data[i] - other.data[i];
-        }
-        return result;
+        return broadcastOp(other, (a, b) -> a - b);
     }
 
     public Tensor mul(Tensor other) {
-        checkShapeMatch(other);
-        Tensor result = new Tensor(shape);
-        for (int i = 0; i < data.length; i++) {
-            result.data[i] = this.data[i] * other.data[i];
-        }
-        return result;
+        return broadcastOp(other, (a, b) -> a * b);
     }
 
     public Tensor div(Tensor other) {
-        checkShapeMatch(other);
-        Tensor result = new Tensor(shape);
-        for (int i = 0; i < data.length; i++) {
-            result.data[i] = this.data[i] / other.data[i];
-        }
-        return result;
+        return broadcastOp(other, (a, b) -> a / b);
     }
 
     public Tensor add(double scalar) {
@@ -221,6 +279,21 @@ public class Tensor {
 
     public Tensor div(double scalar) {
         return mul(1.0 / scalar);
+    }
+
+    /**
+     * Inner product (dot product) of two 1D vectors or flattened tensors.
+     */
+    public double dot(Tensor other) {
+        if (this.numElements() != other.numElements()) {
+            throw new IllegalArgumentException("Inner product requires equal element counts: " +
+                    this.numElements() + " vs " + other.numElements());
+        }
+        double sum = 0.0;
+        for (int i = 0; i < data.length; i++) {
+            sum += this.data[i] * other.data[i];
+        }
+        return sum;
     }
 
     public Tensor matmul(Tensor other) {
@@ -322,12 +395,6 @@ public class Tensor {
             System.arraycopy(data, i * cols, out[i], 0, cols);
         }
         return out;
-    }
-
-    private void checkShapeMatch(Tensor other) {
-        if (!Arrays.equals(this.shape, other.shape)) {
-            throw new IllegalArgumentException("Shapes do not match: " + Arrays.toString(this.shape) + " vs " + Arrays.toString(other.shape));
-        }
     }
 
     @Override
