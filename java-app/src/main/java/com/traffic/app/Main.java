@@ -34,6 +34,9 @@ public class Main {
             try {
                 // Check if a sample road image is available
                 Path sampleImage = Paths.get("../data/images/train/sample_0_000.jpg");
+                if (!sampleImage.toFile().exists()) {
+                    sampleImage = Paths.get("data/images/train/sample_0_000.jpg");
+                }
                 if (sampleImage.toFile().exists()) {
                     System.out.println("Sending image frame to Python model: " + sampleImage);
                     detectionsToProcess = client.detectSigns(sampleImage);

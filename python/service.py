@@ -125,9 +125,24 @@ def run_service(model_path: str, host: str = "0.0.0.0", port: int = 5000):
         httpd.server_close()
 
 
+def find_default_model() -> str:
+    candidates = [
+        "runs/detect/colab_yolo_model/weights/best.pt",
+        "runs/detect/colab_yolo_traffic/weights/best.pt",
+        "runs/detect/train-3/weights/best.pt",
+        "runs/detect/train/weights/best.pt",
+        "yolov8n.pt"
+    ]
+    for c in candidates:
+        if os.path.exists(c):
+            return c
+    return "yolov8n.pt"
+
+
 def main():
+    default_model = find_default_model()
     parser = argparse.ArgumentParser(description="Run Python Traffic Sign Inference HTTP Service")
-    parser.add_argument("--model", type=str, default="yolov8n.pt", help="Path to .pt or .onnx model")
+    parser.add_argument("--model", type=str, default=default_model, help="Path to .pt or .onnx model")
     parser.add_argument("--host", type=str, default="127.0.0.1", help="Server host (default: 127.0.0.1)")
     parser.add_argument("--port", type=int, default=5000, help="Server port (default: 5000)")
     args = parser.parse_args()
