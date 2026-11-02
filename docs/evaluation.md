@@ -1,49 +1,132 @@
 # Model Evaluation & Safety Metrics
 
-This document defines the evaluation framework and records benchmark results across accuracy, missed-sign rates, latency, and model size.
+This document defines the evaluation framework and records benchmark results across detection accuracy, safety missed-sign rates, CPU latency, and model size.
 
 ---
 
-## 1. Project Benchmark Targets vs. Verified Results
+## 1. Project Benchmark Targets vs. Verified Test Results
 
-| Metric | Target | Verified Result (YOLOv8n) | Status |
+The table below summarizes performance across the required metrics evaluated on the held-out test split:
+
+| Model | mAP@0.5 | mAP@0.5:0.95 | Missed-Sign Rate (Stop / Speed / Danger / Overall) | CPU Latency (ms/frame) | Deployed Model Size | Verification Status |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Project Target** | **$\ge 0.80$** | **-** | **$\le 5.0\%$ (all & per-class)** | **$\le 150$ ms** | **$\le 50$ MB** | - |
+| **YOLOv8n (Current)** | `0.6791` | `0.1950` | `0.0% / 0.0% / 0.0% / 0.0%` | `29.5 ms` | `6.2 MB` | Baseline Verified |
+| **YOLOv8s (Next Run)**| *Pending* | *Pending* | *Pending* | *Target $\le 75$ ms* | *Target $\sim 22$ MB* | Next iteration |
+
+---
+
+## 2. 5-Phase YOLO Results Verification Framework
+
+The automated verification tool is available at [`train/check_yolo_results.py`](file:///c:/Users/HP/Desktop/Projects/traffic-sign-recognition-road-safety/train/check_yolo_results.py).
+
+### Phase 1: Output Artifacts & Diagnostics Inspection
+After training finishes in `runs/detect/train/` (or `train2`, `train3`...), verify the following key files:
+
+| File | Diagnostic Purpose | Expected Healthy Pattern | Red Flag Alert |
 | :--- | :--- | :--- | :--- |
-| **mAP@0.5** | **$\ge 0.80$** | **$0.995$** (`stop`), **$0.995$** (`speed`) | ✅ Surpasses target |
-| **Missed-sign rate for stop, speed, and danger classes** | **$\le 5\%$** (Recall $\ge 95\%$) | **$0\%$** missed ($100\%$ Recall on validation) | ✅ Meets target |
-| **CPU inference latency** | **$\le 150\text{ ms/frame}$** | **$41.1\text{ ms/frame}$** on Intel Core i5 | ✅ Ultra-fast |
-| **Deployed model size** | **$\le 50\text{ MB}$** | **$6.5\text{ MB}$** (`best.pt`) / **$12.1\text{ MB}$** (`best.onnx`) | ✅ Compact footprint |
+| `results.png` / `results.csv` | Loss and mAP curves per epoch | Training & validation loss decrease; mAP rises then plateaus | Val loss rising while train loss drops indicates **overfitting** |
+| `confusion_matrix.png` | Inter-class confusion & background false negatives | High diagonal values | Heavy background row indicates **missed signs** |
+| `PR_curve.png` / `F1_curve.png` | Precision-recall tradeoff per class | Smooth convex curves toward top-right corner | Near-zero curve indicates insufficient samples or label errors |
+| `val_batch0_pred.jpg` | Ground-truth visual box alignment | Tight bounding boxes centered over signs | Misaligned or missing boxes |
+| `weights/best.pt` | Checkpoint with best validation metric | Deployed model size $\le 50$ MB | Do not deploy `last.pt` |
 
 ---
 
-## 2. Evaluation Criteria & Definitions
+### Phase 2: Real Numbers on Held-Out Test Set
+Validation numbers in training logs reflect the tuning set. Test numbers must be measured on the independent `test` split:
 
-### 2.1 Mean Average Precision (mAP@0.5)
-$$\text{mAP@0.5} = \frac{1}{C} \sum_{c=1}^{C} \text{AP}_c@0.5$$
-Evaluates detection precision and recall at Intersection-over-Union ($\text{IoU}$) threshold of 0.5.
+```python
+from ultralytics import YOLO
 
-### 2.2 Missed-Sign Rate (False Negative Rate)
-$$\text{Missed Rate} = 1 - \text{Recall} = \frac{\text{FN}}{\text{TP} + \text{FN}}$$
-- Safety-critical requirement: Must remain $\le 5\%$ for high-risk signs (`stop`, `speed`, `danger`) to avoid safety hazards.
+model = YOLO('runs/detect/train-3/weights/best.pt')
+m = model.val(data='data/traffic_signs.yaml', split='test', imgsz=640)
 
-### 2.3 CPU Inference Latency
-- Measured as the end-to-end forward pass + postprocessing time per frame using CPU runtime.
-- Achieved $41.1\text{ ms/frame}$, which translates to $\sim 24\text{ FPS}$ live processing without a discrete GPU.
+print(f"mAP@0.5      : {m.box.map50:.4f}")
+print(f"mAP@0.5:0.95 : {m.box.map:.4f}")
+print(f"mean precision: {m.box.mp:.4f}, mean recall: {m.box.mr:.4f}")
+for i, name in m.names.items():
+    cls_idx = list(m.box.ap_class_index).index(i)
+    print(f"  {name:<10} AP50 = {m.box.ap50[cls_idx]:.4f}")
+```
 
-### 2.4 Deployed Model Size
-- PyTorch native checkpoint: **$6.5\text{ MB}$**.
-- Exported ONNX format: **$12.1\text{ MB}$**.
-- Both formats easily fit into embedded automotive hardware with strict memory constraints.
+#### Measured Per-Class AP50:
+- **Speed Limit (`speed`)**: `0.9950` (Pass)
+- **Stop Signs (`stop`)**: `0.7107`
+- **Hazard Warning (`danger`)**: `0.3317`
 
 ---
 
-## 3. Safety Decision Evaluation (Java Core)
+### Phase 3: Safety Metric: Missed-Sign Rate
+The missed-sign rate calculates the exact percentage of real traffic signs missed by the model at $\text{IoU} \ge 0.50$:
 
-The Java Safety Engine is evaluated on deterministic reaction correctness and latency:
+$$\text{Missed Rate} = \frac{\text{Missed Signs}}{\text{Total Ground Truth Signs}} \times 100\%$$
 
-| Scenario | Input Detection | Vehicle Speed | Expected Alert Level | Measured Reaction Time |
-| :--- | :--- | :--- | :--- | :--- |
-| **Normal Compliance** | 50 km/h Limit | 48 km/h | `INFO` | $< 1\text{ ms}$ |
-| **Minor Speeding** | 50 km/h Limit | 55 km/h | `WARNING` | $< 1\text{ ms}$ |
-| **Gross Speeding** | 50 km/h Limit | 72 km/h | `CRITICAL` | $< 1\text{ ms}$ |
-| **Stop Sign Approach** | Stop Sign | 35 km/h | `CRITICAL` | $< 1\text{ ms}$ |
-| **Noisy / Ghost Sign** | Any (Conf: 0.35) | Any | Ignored | $< 1\text{ ms}$ |
+```python
+import glob, os, torch
+from torchvision.ops import box_iou
+from ultralytics import YOLO
+
+model = YOLO('runs/detect/train-3/weights/best.pt')
+CONF, IOU_T = 0.25, 0.50
+missed = total = 0
+
+for img in glob.glob('data/images/test/*.jpg'):
+    lbl = img.replace('images', 'labels').rsplit('.', 1)[0] + '.txt'
+    if not os.path.exists(lbl):
+        continue
+    r = model(img, conf=CONF, verbose=False)[0]
+    h, w = r.orig_shape
+    pred_boxes, pred_cls = r.boxes.xyxy.cpu(), r.boxes.cls.cpu()
+    for line in open(lbl):
+        c, xc, yc, bw, bh = map(float, line.split())
+        gt = torch.tensor([[(xc - bw/2)*w, (yc - bh/2)*h, (xc + bw/2)*w, (yc + bh/2)*h]])
+        total += 1
+        hit = False
+        if len(pred_boxes):
+            ious = box_iou(gt, pred_boxes)[0]
+            hit = any(ious[j] >= IOU_T and pred_cls[j] == int(c) for j in range(len(ious)))
+        missed += (not hit)
+
+print(f"Missed-sign rate: {missed/total:.2%} ({missed}/{total})")
+```
+
+#### Measured Safety Results:
+- **Stop Sign Missed Rate**: **`0.00%`** (0/5 signs missed) ✅ **Target $\le 5\%$ Satisfied**
+- **Speed Limit Missed Rate**: **`0.00%`** (0/5 signs missed) ✅ **Target $\le 5\%$ Satisfied**
+- **Danger Warning Missed Rate**: **`0.00%`** (0/5 signs missed) ✅ **Target $\le 5\%$ Satisfied**
+- **Overall Missed Rate**: **`0.00%`** (0/15 signs missed) ✅ **Target $\le 5\%$ Satisfied**
+
+> *Tip: If the missed rate rises above 5% on real highway footage, lower `CONF` to 0.15 to aggressively suppress false negatives.*
+
+---
+
+### Phase 4: CPU Latency & Deployed Footprint
+Measures forward inference + post-processing on standard CPU architecture without requiring an external GPU:
+
+- **Measured CPU Latency**: **`29.46 ms/frame`** on 13th Gen Intel Core i5 (Target: $\le 150$ ms).
+  - Equivalent processing rate: **$\sim 34\text{ FPS}$** (real-time stream capability).
+- **Deployed Checkpoint Size**: **`6.16 MB`** for `best.pt` (Target: $\le 50$ MB).
+
+---
+
+### Phase 5: Decision Matrix & Next Actions
+
+| Evaluation Finding | Diagnostic Cause | Recommended Action |
+| :--- | :--- | :--- |
+| **mAP@0.5 $\ge 0.80$ & Missed $\le 5\%$** | Optimal training convergence | Keep as baseline and train `yolov8s` for precision enhancement. |
+| **mAP is fine, but one class is weak** | Class imbalance in training samples | Apply class-targeted mosaic/affine augmentation or add 50+ samples of weak class. |
+| **mAP is low overall ($< 0.70$)** | Training terminated prematurely | Train for 100+ epochs on Google Colab with `imgsz=640` using GPU runtime. |
+| **Training mAP high, Test mAP low** | Overfitting or split leakage | Re-verify track-based splitting in `prepare_gtsrb.py` to eliminate cross-split duplicates. |
+
+---
+
+## 3. How to Run the Comprehensive Verifier
+
+Run the automated Python verification script locally or in Colab:
+
+```powershell
+cd C:\Users\HP\Desktop\Projects\traffic-sign-recognition-road-safety
+.venv\Scripts\python.exe train/check_yolo_results.py --weights runs/detect/train-3/weights/best.pt --data data/traffic_signs.yaml
+```
+Output results are exported directly to `runs/detect/benchmark_summary.json`.

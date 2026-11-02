@@ -74,10 +74,10 @@ def create_danger_sign(img_size=320):
 
 
 def generate_dataset(base_dir: Path):
-    """Generates images and YOLO txt labels for train and val sets."""
+    """Generates images and YOLO txt labels for train, val, and test sets."""
     generators = [create_stop_sign, create_speed_sign, create_danger_sign]
 
-    for split, count in [("train", 30), ("val", 9)]:
+    for split, count in [("train", 30), ("val", 9), ("test", 15)]:
         img_dir = base_dir / "images" / split
         lbl_dir = base_dir / "labels" / split
         img_dir.mkdir(parents=True, exist_ok=True)
@@ -87,7 +87,7 @@ def generate_dataset(base_dir: Path):
             gen_func = generators[i % len(generators)]
             img, cls_id, (cx, cy, w, h) = gen_func()
 
-            filename = f"sample_{cls_id}_{i:03d}"
+            filename = f"sample_{cls_id}_{split}_{i:03d}"
             img_path = img_dir / f"{filename}.jpg"
             lbl_path = lbl_dir / f"{filename}.txt"
 
@@ -98,6 +98,7 @@ def generate_dataset(base_dir: Path):
     print(f"Sample YOLO dataset successfully created at: {base_dir}")
     print(f"  - Train: {base_dir / 'images' / 'train'} (30 images)")
     print(f"  - Val:   {base_dir / 'images' / 'val'} (9 images)")
+    print(f"  - Test:  {base_dir / 'images' / 'test'} (15 images)")
 
 
 if __name__ == "__main__":

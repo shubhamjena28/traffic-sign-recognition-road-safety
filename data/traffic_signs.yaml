@@ -6,6 +6,7 @@ path: C:/Users/HP/Desktop/Projects/traffic-sign-recognition-road-safety/data
 # Image directories
 train: images/train
 val: images/val
+test: images/test
 
 # Classes for road safety monitoring
 names:
