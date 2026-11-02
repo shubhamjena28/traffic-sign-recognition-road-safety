@@ -37,19 +37,33 @@ class InferenceRequestHandler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         parsed = urlparse(self.path)
-        if parsed.path == "/health":
+        if parsed.path in ["", "/"]:
+            self._set_headers(200)
+            resp = {
+                "service": "Traffic Sign Recognition Inference API",
+                "status": "ONLINE",
+                "backend": self.predictor.backend,
+                "model": str(self.predictor.model_path),
+                "endpoints": {
+                    "health": "/health",
+                    "demo": "/demo",
+                    "detect": "/detect (POST image binary)"
+                }
+            }
+            self.wfile.write(json.dumps(resp, indent=2).encode("utf-8"))
+        elif parsed.path == "/health":
             self._set_headers(200)
             resp = {
                 "status": "UP",
                 "backend": self.predictor.backend,
                 "model": str(self.predictor.model_path)
             }
-            self.wfile.write(json.dumps(resp).encode("utf-8"))
+            self.wfile.write(json.dumps(resp, indent=2).encode("utf-8"))
         elif parsed.path == "/demo":
             self._set_headers(200)
             dummy = np.zeros((200, 200, 3), dtype=np.uint8)
             detections = self.predictor.predict_detections(dummy)
-            self.wfile.write(json.dumps(detections).encode("utf-8"))
+            self.wfile.write(json.dumps(detections, indent=2).encode("utf-8"))
         else:
             self._set_headers(404)
             self.wfile.write(json.dumps({"error": "Endpoint not found"}).encode("utf-8"))
@@ -110,12 +124,13 @@ def run_service(model_path: str, host: str = "0.0.0.0", port: int = 5000):
     server_address = (host, port)
     httpd = HTTPServer(server_address, InferenceRequestHandler)
     print(f"\n=======================================================")
-    print(f" Traffic Sign Inference Service running on http://{host}:{port}")
+    print(f" Traffic Sign Inference Service is ONLINE!")
+    print(f" Base URL:      http://{host}:{port}/")
     print(f" Model Backend: {predictor.backend} ({model_path})")
-    print(f" Endpoints:")
-    print(f"   - GET  /health   -> Check service status")
-    print(f"   - GET  /demo     -> Sample detections JSON")
-    print(f"   - POST /detect   -> Send image binary -> receive JSON")
+    print(f"\n Clickable URLs to test in your browser:")
+    print(f"   -> Health Check: http://{host}:{port}/health")
+    print(f"   -> Demo JSON:    http://{host}:{port}/demo")
+    print(f"   -> Detect API:   http://{host}:{port}/detect (POST)")
     print(f"=======================================================\n")
 
     try:
