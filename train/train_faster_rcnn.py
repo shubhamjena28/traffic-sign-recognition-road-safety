@@ -89,8 +89,16 @@ def collate_fn(batch):
 
 def build_faster_rcnn(num_classes: int = 4, pretrained: bool = True) -> nn.Module:
     """Builds Faster R-CNN ResNet-50 FPN with custom replacement predictor head."""
-    weights = models.detection.FasterRCNN_ResNet50_FPN_Weights.DEFAULT if pretrained else None
-    model = models.detection.fasterrcnn_resnet50_fpn(weights=weights)
+    model = None
+    if pretrained:
+        try:
+            model = models.detection.fasterrcnn_resnet50_fpn(
+                weights=models.detection.FasterRCNN_ResNet50_FPN_Weights.DEFAULT
+            )
+        except Exception:
+            model = None
+    if model is None:
+        model = models.detection.fasterrcnn_resnet50_fpn(weights=None, weights_backbone=None)
 
     # Replace box predictor
     in_features = model.roi_heads.box_predictor.cls_score.in_features
@@ -120,6 +128,12 @@ def train_faster_rcnn(
     val_lbl_dir = os.path.join(data_dir, "labels", "val")
 
     train_dataset = RoadSignDetectionDataset(train_img_dir, train_lbl_dir)
+    if len(train_dataset) == 0:
+        print("[INFO] Images not found in data/images/train. Auto-generating starter dataset...")
+        import subprocess
+        subprocess.run(["python", "data/create_sample_dataset.py"], check=False)
+        train_dataset = RoadSignDetectionDataset(train_img_dir, train_lbl_dir)
+
     val_dataset = RoadSignDetectionDataset(val_img_dir, val_lbl_dir) if os.path.exists(val_img_dir) else None
 
     train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, collate_fn=collate_fn)

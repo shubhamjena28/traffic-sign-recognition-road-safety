@@ -183,8 +183,12 @@ def deduplicate_images(
             continue
 
         class_id, track_id, frame_id = parse_gtsrb_filename(path)
+        try:
+            rel_path = path.relative_to(Path.cwd()).as_posix()
+        except ValueError:
+            rel_path = path.as_posix()
         item = {
-            "filepath": str(path.resolve()),
+            "filepath": rel_path,
             "class_id": class_id,
             "track_id": track_id,
             "frame_id": frame_id,
