@@ -3,6 +3,7 @@
 [![Java](https://img.shields.io/badge/Java-17%2B-orange.svg)](https://www.oracle.com/java/)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-red.svg)](https://pytorch.org/)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/shubhamjena28/traffic-sign-recognition-road-safety/blob/main/train/vision_pipeline_colab.ipynb)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 An intelligent Advanced Driver Assistance System (ADAS) integrating deep learning visual perception with a deterministic real-time road safety monitoring engine.
@@ -136,8 +137,10 @@ java -cp "bin/core;bin/app" com.traffic.app.Main
 
 ---
 
-## Documentation
+## Documentation & Benchmarks
 
+- [Master Multi-Model Benchmark Table](docs/benchmark_table.md)
+- [Interactive Google Colab Pipeline](train/vision_pipeline_colab.ipynb)
 - [System Requirements](docs/requirements.md)
 - [Architecture & Data Flow](docs/architecture.md)
 - [Dataset Specifications](docs/dataset.md)
