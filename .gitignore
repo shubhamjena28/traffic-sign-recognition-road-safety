@@ -31,6 +31,9 @@ data/processed/**/*.jpeg
 data/processed/**/*.png
 data/images/
 data/labels/
+data/sequences/frames/
+data/output_frames/
+!data/sequences/approach_sequences.csv
 runs/
 checkpoints/
 data/splits/deduplication_log.csv

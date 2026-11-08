@@ -127,12 +127,20 @@ cd ../java-app
 mvn compile exec:java -Dexec.mainClass="com.traffic.app.Main"
 ```
 
-#### Run Directly via `javac` (Without Maven installed)
+#### Run Directly via `javac` / Pure Java (CLI Commands)
 ```bash
-# From repository root:
+# Compile core domain and application
 javac -d bin/core java-core/src/main/java/com/traffic/core/*.java
-javac -cp bin/core -d bin/app java-app/src/main/java/com/traffic/app/Main.java
-java -cp "bin/core;bin/app" com.traffic.app.Main
+javac -cp bin/core -d bin/app java-app/src/main/java/com/traffic/app/*.java
+
+# 1. Run detection over video frame sequence with NMS & Box Drawing
+java -cp "bin/core;bin/app" com.traffic.app.Main detect --input data/sequences/frames --output data/output_frames
+
+# 2. Run latency & throughput benchmark (letterbox, inference, NMS, render)
+java -cp "bin/core;bin/app" com.traffic.app.Main benchmark --iterations 30
+
+# 3. Run basic neurons demonstration (McCulloch-Pitts & Sigmoid neuron)
+java -cp "bin/core;bin/app" com.traffic.app.Main demo-neurons
 ```
 
 ---
