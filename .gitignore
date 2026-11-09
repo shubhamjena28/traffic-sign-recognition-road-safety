@@ -36,6 +36,7 @@ data/output_frames/
 !data/sequences/approach_sequences.csv
 runs/
 checkpoints/
+data/Ultralytics/
 data/splits/deduplication_log.csv
 
 # Preserve dataset documentation, manifests, and configs
