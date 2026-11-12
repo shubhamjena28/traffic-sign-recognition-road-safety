@@ -9,7 +9,8 @@ __pycache__/
 .venv/
 venv/
 
-# Model artifacts
+# Video files
+/demo_video.mp4
 *.onnx
 *.pt
 *.pth

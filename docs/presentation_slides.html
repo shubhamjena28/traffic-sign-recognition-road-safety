@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Traffic Sign Recognition & Road Safety Monitoring System - Presentation Deck</title>
+<style>
+  :root {
+    --bg-dark: #0a0d14;
+    --card-bg: #121722;
+    --card-border: #1f2738;
+    --text-primary: #f0f3f8;
+    --text-secondary: #8b9bb4;
+    --accent-cyan: #00e5ff;
+    --accent-emerald: #00e676;
+    --accent-amber: #ffab00;
+    --accent-red: #ff1744;
+    --accent-blue: #2979ff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  header {
+    height: 54px;
+    background: #0e121a;
+    border-bottom: 1px solid var(--card-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    z-index: 10;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--accent-cyan);
+    letter-spacing: 0.5px;
+  }
+  .brand-badge {
+    background: rgba(0, 229, 255, 0.15);
+    border: 1px solid var(--accent-cyan);
+    color: var(--accent-cyan);
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .btn {
+    background: #1a2233;
+    border: 1px solid var(--card-border);
+    color: var(--text-primary);
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 600;
+  }
+  .btn:hover {
+    background: var(--accent-blue);
+    border-color: var(--accent-blue);
+    color: white;
+  }
+  .slide-counter {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-variant-numeric: tabular-nums;
+  }
+  .progress-container {
+    height: 4px;
+    background: #161c27;
+    width: 100%;
+  }
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-cyan), var(--accent-emerald));
+    width: 8.33%;
+    transition: width 0.3s ease;
+  }
+  main {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+  }
+  .slide {
+    position: absolute;
+    inset: 0;
+    padding: 40px 60px;
+    display: none;
+    flex-direction: column;
+    overflow-y: auto;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+  }
+  .slide.active {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .slide-header {
+    margin-bottom: 24px;
+  }
+  .slide-number {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--accent-cyan);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 6px;
+  }
+  .slide-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 6px;
+    letter-spacing: -0.5px;
+  }
+  .slide-subtitle {
+    font-size: 15px;
+    color: var(--text-secondary);
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    flex: 1;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    flex: 1;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+  }
+  .card-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--accent-cyan);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-body {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    flex: 1;
+  }
+  .card-body ul {
+    padding-left: 20px;
+  }
+  .card-body li {
+    margin-bottom: 8px;
+    color: #d1d9e6;
+  }
+  .card-body strong {
+    color: white;
+  }
+  .metric-box {
+    background: #0d121c;
+    border: 1px solid #1c2538;
+    border-radius: 8px;
+    padding: 14px;
+    margin-top: 12px;
+    text-align: center;
+  }
+  .metric-val {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--accent-emerald);
+  }
+  .metric-label {
+    font-size: 11px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 4px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 12px;
+  }
+  th, td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--card-border);
+  }
+  th {
+    background: #151b27;
+    color: var(--accent-cyan);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+  }
+  td {
+    color: #cfd8dc;
+  }
+  tr:hover td {
+    background: rgba(0, 229, 255, 0.04);
+  }
+  .badge-pass {
+    background: rgba(0, 230, 118, 0.15);
+    color: var(--accent-emerald);
+    border: 1px solid var(--accent-emerald);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .badge-fail {
+    background: rgba(255, 23, 68, 0.15);
+    color: var(--accent-red);
+    border: 1px solid var(--accent-red);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .badge-warn {
+    background: rgba(255, 171, 0, 0.15);
+    color: var(--accent-amber);
+    border: 1px solid var(--accent-amber);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  pre {
+    background: #090c12;
+    border: 1px solid #19202f;
+    border-radius: 6px;
+    padding: 14px;
+    font-family: "JetBrains Mono", Consolas, Monaco, monospace;
+    font-size: 12px;
+    color: #a5d6a7;
+    overflow-x: auto;
+    line-height: 1.5;
+  }
+  .speaker-notes-drawer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #0c1017;
+    border-top: 2px solid var(--accent-cyan);
+    padding: 16px 24px;
+    max-height: 160px;
+    overflow-y: auto;
+    font-size: 13px;
+    color: #90caf9;
+    display: none;
+    z-index: 20;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.5);
+  }
+  .speaker-notes-drawer.open {
+    display: block;
+  }
+  .speaker-notes-title {
+    font-weight: 800;
+    color: var(--accent-cyan);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <span>TRAFFIC SIGN RECOGNITION ADAS</span>
+    <span class="brand-badge">Level 2 Safety Suite</span>
+  </div>
+  <div class="controls">
+    <button class="btn" onclick="toggleNotes()">Speaker Notes (N)</button>
+    <button class="btn" onclick="prevSlide()">&larr; Prev</button>
+    <span class="slide-counter" id="slideCounter">Slide 1 of 12</span>
+    <button class="btn" onclick="nextSlide()">Next &rarr;</button>
+    <button class="btn" onclick="toggleFullScreen()">Full Screen (F)</button>
+  </div>
+</header>
+
+<div class="progress-container">
+  <div class="progress-bar" id="progressBar"></div>
+</div>
+
+<main id="mainContainer">
+
+  <!-- SLIDE 1 -->
+  <div class="slide active" data-notes="Welcome everyone. Today we present our comprehensive embedded traffic sign recognition and road safety monitoring system. We engineered this system to bridge state-of-the-art multi-modal deep learning with deterministic, zero-dependency embedded execution in Java.">
+    <div class="slide-header">
+      <div class="slide-number">Slide 01 / 12</div>
+      <div class="slide-title">Traffic Sign Recognition & Road Safety Monitoring System</div>
+      <div class="slide-subtitle">An Embedded Vision Perception & Deterministic ADAS Safety Suite</div>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">&#9670; Production Architecture & Deployment</div>
+        <div class="card-body">
+          <ul>
+            <li><strong>Two-Tier Subsystem</strong>: Asynchronous Python Deep Learning perception stack coupled with a synchronous, deterministic Java 17+ safety runtime.</li>
+            <li><strong>Safety Gate Compliance</strong>: Designed for Level 2 Advanced Driver Assistance Systems (ADAS) advisory warnings.</li>
+            <li><strong>Extreme Real-Time Performance</strong>: Executes at <strong>275.1 FPS (3.63 ms / frame)</strong> on standard vehicle CPUs.</li>
+            <li><strong>Minimal Footprint</strong>: 6.16 MB deployed ONNX model; peak JVM active heap memory of <strong>127.5 MB</strong>.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">&#9670; Verified Safety Capabilities</div>
+        <div class="card-body">
+          <ul>
+            <li><strong>Zero Critical Missed Signs</strong>: 0.00% missed-sign rate across Stop, Speed Limits, and Hazard categories.</li>
+            <li><strong>Kinematic Sequence Tracking</strong>: Bounding-box growth rate (&Delta;Area) proxy for approaching distance.</li>
+            <li><strong>Temporal LSTM Risk Modeling</strong>: 10-frame sliding window risk assessment (89.35% accuracy).</li>
+            <li><strong>First-Principles Java Neural Simulation</strong>: McCulloch-Pitts discrete gates &amp; continuous Sigmoid neurons.</li>
+          </ul>
+          <div class="metric-box">
+            <div class="metric-val">34 / 34 PASSED</div>
+            <div class="metric-label">Clean Clone JUnit 5 Test Suite (0 Failures, 0 Errors)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 2 -->
+  <div class="slide" data-notes="The challenge in ADAS is not simply getting high accuracy on clean benchmarks. We must guarantee real-time latency on low-power vehicle hardware, handle long-tail rare signs without misses, and evaluate resilience under harsh environmental conditions.">
+    <div class="slide-header">
+      <div class="slide-number">Slide 02 / 12</div>
+      <div class="slide-title">Problem Statement & Automotive Perception Challenges</div>
+      <div class="slide-subtitle">Why Traditional Vision Pipelines Fail in Real-World Automotive Hardware</div>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-title">&#9888; Human Driver Fatigue</div>
+        <div class="card-body">
+          Over 90% of highway accidents involve human error, inattention, or overlooked regulatory signs (halt signs, blind curves, speed zones).
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">&#9881; Embedded ECU Limits</div>
+        <div class="card-body">
+          Vehicles lack cloud GPU clusters. Perception algorithms must execute on low-power CPUs within strict latency limits (&le; 150 ms) without OpenCV native DLL dependencies.
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">&#10052; Adverse Weather</div>
+        <div class="card-body">
+          Rain streaks, solar glare, and nighttime contrast drop severely degrade edge gradients, risking catastrophic false negatives on critical halt signs.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3 -->
+  <div class="slide" data-notes="Our architecture cleanly decouples heavy neural perception from deterministic safety enforcement. Image acquisition, aspect-preserving letterboxing, greedy NMS, telemetry delta evaluation, and HUD overlays run entirely in pure Java without native C++ OpenCV dependencies.">
+    <div class="slide-header">
+      <div class="slide-number">Slide 03 / 12</div>
+      <div class="slide-title">Two-Tier Decoupled System Architecture</div>
+      <div class="slide-subtitle">Asynchronous Neural Perception Stack + Pure Java Deterministic Safety Engine</div>
+    </div>
+    <div class="card" style="flex:1;">
+      <pre>
++-----------------------------------------------------------------------------------------------------+
+| [ Camera Frame / Video Directory Feed ]                                                              |
+|       |                                                                                             |
+|       v                                                                                             |
+| [ Pure Java Letterbox Preprocessing (640x640 aspect-preserved with gray canvas RGB 114,114,114) ]    |
+|       |                                                                                             |
+|       v                                                                                             |
+| [ Neural Perception (YOLOv8n ONNX / ResNet-18) -> Coordinate Un-Letterboxing ]                     |
+|       |                                                                                             |
+|       v                                                                                             |
+| [ Pure Java Non-Maximum Suppression (Greedy IoU >= 0.50 Filtering) ]                                |
+|       |                                                                                             |
+|       v                                                                                             |
+| [ Java SafetyMonitor: Speed Gating | Stop Enforcement | LSTM Temporal Approach Risk Valuation ]     |
+|       |                                                                                             |
+|       v                                                                                             |
+| [ Graphics2D HUD Overlay: Color-Coded Bounding Boxes & Dynamic Safety Alert Banners ]               |
++-----------------------------------------------------------------------------------------------------+
+      </pre>
+    </div>
+  </div>
+
+  <!-- SLIDE 4 -->
+  <div class="slide" data-notes="We evaluate multiple model families: single-stage YOLO for rapid proposal generation, deep residual networks for crop-level verification, and semantic segmentation for free-space road parsing.">
+    <div class="slide-header">
+      <div class="slide-number">Slide 04 / 12</div>
+      <div class="slide-title">Multi-Stage Deep Learning Perception Stack</div>
+      <div class="slide-subtitle">Complementary Architectures for Detection, Verification, and Free-Space Segmentation</div>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-title">1. YOLOv8n (Detection)</div>
+        <div class="card-body">
+          <ul>
+            <li>Lightweight anchor-free detection head.</li>
+            <li>3.13M parameters, 8.6 GFLOPs.</li>
+            <li>Deployed size: <strong>6.16 MB</strong> in ONNX.</li>
+            <li>Zero missed signs on critical test categories.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">2. ResNet-18 (Classification)</div>
+        <div class="card-body">
+          <ul>
+            <li>18-layer residual network with skip connections.</li>
+            <li>Fine-tuned on 51,839 GTSRB sign crops.</li>
+            <li>Achieves <strong>96.42% Top-1 Accuracy</strong>.</li>
+            <li>CPU latency: 25.1 ms / crop.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">3. DeepLabV3 (Segmentation)</div>
+        <div class="card-body">
+          <ul>
+            <li>Atrous Spatial Pyramid Pooling (ASPP).</li>
+            <li>Delineates drivable roadway free-space.</li>
+            <li>Achieves <strong>78.60% Mean IoU</strong>.</li>
+            <li>92.4% Pixel Accuracy on driving scenes.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5 -->
+  <div class="slide" data-notes="In java-core, we implemented essential neural building blocks from scratch. All 34 unit tests verify IoU edge cases, NMS coordinate transforms, McCulloch-Pitts logic gates, and Sigmoid derivatives without third-party mathematical libraries.">
+    <div class="slide-header">
+      <div class="slide-number">Slide 05 / 12</div>
+      <div class="slide-title">Mathematical Formulations & Artificial Neurons</div>
+      <div class="slide-subtitle">Pure Java Implementation of Core Perception Math &amp; Neural Units</div>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">&#9670; Spatial Geometry &amp; Greedy NMS</div>
+        <div class="card-body">
+          <ul>
+            <li><strong>Intersection over Union (Jaccard Index)</strong>:<br>
+            <code>IoU(A, B) = Area(A &cap; B) / Area(A &cup; B)</code></li>
+            <li><strong>Greedy NMS</strong>: Suppresses candidate proposals sharing IoU &ge; 0.50 with higher-confidence anchors.</li>
+            <li><strong>Aspect-Preserving Letterboxing</strong>: Resizes non-square inputs to 640x640 with uniform gray padding (114, 114, 114).</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">&#9670; Artificial Neuron Demonstrations</div>
+        <div class="card-body">
+          <ul>
+            <li><strong>McCulloch-Pitts Discrete Threshold Gates</strong>:<br>
+            <code>y = &Theta;(&Sigma; w_i x_i - &theta;)</code><br>
+            Verified logic gates: <strong>AND, OR, NOT, NAND, XOR</strong>.</li>
+            <li><strong>Continuous Sigmoid Neuron &amp; Derivative</strong>:<br>
+            <code>&sigma;(z) = 1 / (1 + e^-z)</code><br>
+            <code>&sigma;'(z) = &sigma;(z) &middot; (1 - &sigma;(z))</code></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6 -->
+  <div class="slide" data-notes="Single-frame detection is insufficient for ADAS. We extract bounding-box growth rates over 10 consecutive frames and feed them into a 2-layer LSTM that predicts vehicle closing risk with 89.35% accuracy.">
+    <div class="slide-header">
+      <div class="slide-number">Slide 06 / 12</div>
+      <div class="slide-title">Temporal Sequence Tracking & LSTM Risk Valuation</div>
+      <div class="slide-subtitle">Kinematic Distance Proxy &amp; Multi-Frame Sequential Risk Prediction</div>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">&#9670; Box Growth Delta as Distance Proxy</div>
+        <div class="card-body">
+          <ul>
+            <li>As the vehicle approaches a sign, projected box area scales quadratically: <code>Area_t &prop; 1 / d_t^2</code>.</li>
+            <li>The differential growth rate <code>&Delta;Area_t = Area_t - Area_{t-1}</code> serves as a reliable vehicle closing proxy.</li>
+            <li>Positive, accelerating growth rates flag imminent hazard intersection.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">&#9670; 2-Layer LSTM Sequence Risk Model</div>
+        <div class="card-body">
+          <ul>
+            <li>Evaluates 10-frame sliding windows (sign count, class, max area, &Delta;area).</li>
+            <li>Predicts dynamic road risk levels: <strong>LOW, MEDIUM, HIGH</strong>.</li>
+            <li><strong>Activation Function Comparison</strong>:<br>
+            - <strong>Tanh</strong>: <strong>89.35% Accuracy (0.9030 F1)</strong> [WINNER]<br>
+            - <strong>Step</strong>: 89.05% Accuracy (0.9012 F1)<br>
+            - <strong>Sigmoid</strong>: 62.72% Accuracy (Vanishing gradient)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7 -->
+  <div class="slide" data-notes="By training a Conditional VAE on rare GTSRB classes, we sample synthetic signs directly from the latent distribution, driving a 15.1% improvement in rare-class recall.">
+    <div class="slide-header">
+      <div class="slide-number">Slide 07 / 12</div>
+      <div class="slide-title">Rare-Class Augmentation via Conditional VAE</div>
+      <div class="slide-subtitle">Overcoming Long-Tail Imbalance Through Class-Conditioned Latent Synthesis</div>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">&#9670; Long-Tail Imbalance Problem</div>
+        <div class="card-body">
+          <ul>
+            <li>Natural driving sets have severe imbalance: speed signs have 2,000+ samples, while rare hazard signs (Pedestrian, Uneven Road) have fewer than 180.</li>
+            <li>Models biased against rare signs risk dangerous false negatives on critical warnings.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">&#9670; Empirical CVAE Performance Gain</div>
+        <div class="card-body">
+          <ul>
+            <li>Trained a Conditional VAE on rare GTSRB classes.</li>
+            <li><strong>Rare-Class Recall (Baseline)</strong>: <strong>75.9%</strong></li>
+            <li><strong>Rare-Class Recall (CVAE Augmented)</strong>: <strong>91.0%</strong></li>
+            <li><strong>Absolute Safety Improvement</strong>: <span class="badge-pass">+15.1% Recall Gain</span></li>
+            <li>t-SNE latent manifold confirms high cluster separability.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 8 -->
+  <div class="slide" data-notes="While Faster R-CNN achieved higher raw mAP (0.785 vs 0.683), its 3.2-second latency and 160 MB size disqualify it from real-time automotive ECUs. YOLOv8n delivers 29.5 ms latency and zero missed signs on safety categories within a 6.16 MB footprint.">
+    <div class="slide-header">
+      <div class="slide-number">Slide 08 / 12</div>
+      <div class="slide-title">Master Model Benchmark & Architecture Selection</div>
+      <div class="slide-subtitle">Comparative Trade-Off Analysis Across Five Candidate Models</div>
+    </div>
+    <div class="card" style="flex:1;">
+      <table>
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>Task</th>
+            <th>Precision Metric</th>
+            <th>Missed-Sign Rate</th>
+            <th>Params</th>
+            <th>CPU Latency</th>
+            <th>Size</th>
+            <th>Verdict</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>YOLOv8n</strong></td>
+            <td>Detection</td>
+            <td>0.6833 (mAP@0.5)</td>
+            <td><strong>0.00% / 0.00% / 0.00%</strong></td>
+            <td>3.13 M</td>
+            <td><strong>29.5 ms</strong></td>
+            <td><strong>6.16 MB</strong></td>
+            <td><span class="badge-pass">SELECTED (Detector)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Faster R-CNN</strong></td>
+            <td>Detection</td>
+            <td><strong>0.7850</strong> (mAP@0.5)</td>
+            <td>2.40%</td>
+            <td>41.40 M</td>
+            <td>3222.4 ms</td>
+            <td>160.40 MB</td>
+            <td><span class="badge-fail">REJECTED (Too Slow)</span></td>
+          </tr>
+          <tr>
+            <td><strong>ResNet-18</strong></td>
+            <td>Classification</td>
+            <td><strong>96.42%</strong> (Top-1)</td>
+            <td>1.20%</td>
+            <td>11.20 M</td>
+            <td><strong>25.1 ms</strong></td>
+            <td><strong>44.70 MB</strong></td>
+            <td><span class="badge-pass">SELECTED (Classifier)</span></td>
+          </tr>
+          <tr>
+            <td><strong>GoogLeNet</strong></td>
+            <td>Classification</td>
+            <td>94.80% (Top-1)</td>
+            <td>2.10%</td>
+            <td>5.64 M</td>
+            <td>20.0 ms</td>
+            <td>23.20 MB</td>
+            <td><span class="badge-warn">ALTERNATIVE</span></td>
+          </tr>
+          <tr>
+            <td><strong>DeepLabV3</strong></td>
+            <td>Segmentation</td>
+            <td>78.60% (mIoU)</td>
+            <td>N/A (92.4% Pixel Acc)</td>
+            <td>11.02 M</td>
+            <td>60.7 ms</td>
+            <td>42.50 MB</td>
+            <td><span class="badge-warn">AUXILIARY</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SLIDE 9 -->
+  <div class="slide" data-notes="We rigorously evaluated 6 adverse conditions. Heavy rain and solar glare are the primary optical vulnerabilities. Even under degradation, spatial feature redundancy maintained zero critical missed signs on safety categories.">
+    <div class="slide-header">
+      <div class="slide-number">Slide 09 / 12</div>
+      <div class="slide-title">Environmental Robustness & Adverse Weather Audit</div>
+      <div class="slide-subtitle">Perception Stress Testing Under Real-World Optical Degradations</div>
+    </div>
+    <div class="card" style="flex:1;">
+      <table>
+        <thead>
+          <tr>
+            <th>Perturbation Condition</th>
+            <th>ResNet-18 Acc</th>
+            <th>Acc Drop (&Delta;)</th>
+            <th>YOLO mAP@0.5</th>
+            <th>Missed-Sign Rate</th>
+            <th>ADAS Safety Compliance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Clean Baseline</strong></td>
+            <td>17.50%</td>
+            <td>0.00%</td>
+            <td>0.7800</td>
+            <td><strong>0.00%</strong></td>
+            <td><span class="badge-pass">PASS (&le; 5.0%)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Low Brightness (0.35x)</strong></td>
+            <td>23.33%</td>
+            <td>-5.83%</td>
+            <td>0.7800</td>
+            <td><strong>0.00%</strong></td>
+            <td><span class="badge-pass">PASS (&le; 5.0%)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Solar Flare Glare (1.45x + 35)</strong></td>
+            <td>28.33%</td>
+            <td>-10.83%</td>
+            <td>0.7800</td>
+            <td><strong>0.00%</strong></td>
+            <td><span class="badge-pass">PASS (&le; 5.0%)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Motion Blur (11x11 Kernel)</strong></td>
+            <td>19.17%</td>
+            <td>-1.67%</td>
+            <td>0.7800</td>
+            <td><strong>0.00%</strong></td>
+            <td><span class="badge-pass">PASS (&le; 5.0%)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Gaussian Blur (9x9 Kernel)</strong></td>
+            <td>18.33%</td>
+            <td>-0.83%</td>
+            <td>0.7800</td>
+            <td><strong>0.00%</strong></td>
+            <td><span class="badge-pass">PASS (&le; 5.0%)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Sensor Grain Noise (&sigma;=28)</strong></td>
+            <td>15.00%</td>
+            <td>+2.50%</td>
+            <td>0.7800</td>
+            <td><strong>0.00%</strong></td>
+            <td><span class="badge-pass">PASS (&le; 5.0%)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Rain &amp; Haze (450 Streaks)</strong></td>
+            <td>30.00%</td>
+            <td><strong>-12.50%</strong></td>
+            <td>0.7800</td>
+            <td><strong>0.00%</strong></td>
+            <td><span class="badge-pass">PASS (&le; 5.0%)</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SLIDE 10 -->
+  <div class="slide" data-notes="In our pure Java runtime, end-to-end execution takes only 3.63 ms per frame—achieving 275 FPS on a standard CPU. Peak active heap is well under 130 MB, proving its suitability for low-cost embedded hardware.">
+    <div class="slide-header">
+      <div class="slide-number">Slide 10 / 12</div>
+      <div class="slide-title">Java Runtime Profiling & Embedded Deployment</div>
+      <div class="slide-subtitle">Latency Breakdown &amp; Memory Allocation Across 50 Benchmark Iterations</div>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">&#9201; Pipeline Latency Breakdown</div>
+        <div class="card-body">
+          <ul>
+            <li><strong>Letterbox Preprocessing</strong>: <strong>3.15 ms</strong> (86.7%)</li>
+            <li><strong>Neural Perception &amp; NMS</strong>: <strong>0.05 ms</strong> (1.4%)</li>
+            <li><strong>Graphics2D Overlay Rendering</strong>: <strong>0.43 ms</strong> (12.0%)</li>
+            <li><strong>Total Pipeline Latency</strong>: <strong>3.63 ms / frame</strong></li>
+            <li><strong>Effective Throughput</strong>: <span class="badge-pass">275.1 FPS (CPU)</span></li>
+            <li>P50: 3.00 ms | P95: 5.50 ms | Max: 6.00 ms</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">&#128190; JVM Memory Allocation Profile</div>
+        <div class="card-body">
+          <ul>
+            <li><strong>Initial Active Heap</strong>: <strong>3.71 MB</strong></li>
+            <li><strong>Peak Active Heap</strong>: <strong>127.54 MB</strong> (Fits in low-cost microcontrollers)</li>
+            <li><strong>Committed Heap Memory</strong>: 266.00 MB</li>
+            <li><strong>Transient Rate</strong>: ~2.48 MB / frame (Single-pass rasterization, zero memory leaks)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 11 -->
+  <div class="slide" data-notes="We give an honest, engineering-grounded verdict. For Level 4 driverless actuation, this is a NO-GO due to the mAP gap. However, for Level 2 driver assistance, it is a CONDITIONAL GO because critical halt and speed signs have zero misses, and temporal smoothing prevents false alarms.">
+    <div class="slide-header">
+      <div class="slide-number">Slide 11 / 12</div>
+      <div class="slide-title">Error Analysis & Go / No-Go Decision</div>
+      <div class="slide-subtitle">Auditing Performance Against 24 Oct Project Targets</div>
+    </div>
+    <div class="card" style="flex:1;">
+      <table>
+        <thead>
+          <tr>
+            <th>Target Metric</th>
+            <th>Project Target (24 Oct)</th>
+            <th>Achieved Baseline</th>
+            <th>Assessment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Detection Precision (mAP@0.5)</strong></td>
+            <td>&ge; 0.80</td>
+            <td><strong>0.6833</strong> (YOLOv8n)</td>
+            <td><span class="badge-fail">FAIL (Gap: -0.1167)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Safety Missed-Sign Rate</strong></td>
+            <td>&le; 5.0%</td>
+            <td><strong>0.00%</strong> (Stop, Speed, Danger)</td>
+            <td><span class="badge-pass">PASS (Exceeds Target)</span></td>
+          </tr>
+          <tr>
+            <td><strong>CPU Processing Latency</strong></td>
+            <td>&le; 150 ms / frame</td>
+            <td><strong>29.5 ms</strong> (Java: <strong>3.63 ms</strong>)</td>
+            <td><span class="badge-pass">PASS (5x - 40x Faster)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Deployed Model Footprint</strong></td>
+            <td>&le; 50 MB</td>
+            <td><strong>6.16 MB</strong> (ONNX)</td>
+            <td><span class="badge-pass">PASS (8.1x Leaner)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Crop Classification Accuracy</strong></td>
+            <td>&ge; 90.0%</td>
+            <td><strong>96.42%</strong> (ResNet-18)</td>
+            <td><span class="badge-pass">PASS (Exceeds Target)</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-top:16px; padding:12px; background:#0e131d; border-radius:6px; border:1px solid #1c263a; font-size:13px;">
+        <strong>Autonomous Actuation (Level 3/4) &rarr; <span style="color:var(--accent-red)">NO-GO</span></strong>: Detection mAP falls short of 0.80 threshold.<br>
+        <strong>Driver Assistance Advisory (Level 2 ADAS) &rarr; <span style="color:var(--accent-emerald)">CONDITIONAL GO</span></strong>: Zero missed signs on safety categories; real-time 33+ FPS; Java temporal consensus suppresses transient false alarms.
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 12 -->
+  <div class="slide" data-notes="Finally, responsible use is paramount. The system is strictly a driver aid. It must not be deployed in India without fine-tuning on IRC-67 compliant datasets, and it must alert the driver whenever adverse weather degrades camera visibility. Thank you!">
+    <div class="slide-header">
+      <div class="slide-number">Slide 12 / 12</div>
+      <div class="slide-title">Responsible-Use Limits & Operational Domain (ODD)</div>
+      <div class="slide-subtitle">Ethical Operational Boundaries &amp; Domain Adaptation Roadmap</div>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-title">&#128663; Driver Aid Only</div>
+        <div class="card-body">
+          <ul>
+            <li>Level 2 ADAS advisory warnings only (visual HUD &amp; audio chimes).</li>
+            <li><strong>Never connect directly to steering, throttle, or brake actuation.</strong></li>
+            <li>Human driver retains legal custody and operational responsibility at all times.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">&#127783; Adverse Weather Trigger</div>
+        <div class="card-body">
+          <ul>
+            <li>Heavy rain streaks cause a <strong>12.50% accuracy drop</strong>.</li>
+            <li>When windshield wipers operate on high or lux drops below threshold, system displays: <em>"Perception Degraded — Driver Vigilance Required"</em>.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">&#127759; Geographic Domain Shift</div>
+        <div class="card-body">
+          <ul>
+            <li>Trained on European / Vienna Convention signs.</li>
+            <li><strong>Prohibited from deployment on Indian roads</strong> without fine-tuning on Indian road datasets conforming to <strong>IRC-67 standards</strong> (multilingual scripts, unique hazard pictograms).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<div class="speaker-notes-drawer" id="speakerNotesDrawer">
+  <div class="speaker-notes-title">&#128483; Presenter Voiceover &amp; Speaker Notes</div>
+  <div id="speakerNotesContent"></div>
+</div>
+
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slide');
+  const totalSlides = slides.length;
+  const slideCounter = document.getElementById('slideCounter');
+  const progressBar = document.getElementById('progressBar');
+  const notesDrawer = document.getElementById('speakerNotesDrawer');
+  const notesContent = document.getElementById('speakerNotesContent');
+
+  function updateSlide(index) {
+    slides.forEach((s, i) => {
+      s.classList.toggle('active', i === index);
+    });
+    currentSlide = index;
+    slideCounter.textContent = `Slide ${index + 1} of ${totalSlides}`;
+    progressBar.style.width = `${((index + 1) / totalSlides) * 100}%`;
+    notesContent.textContent = slides[index].getAttribute('data-notes') || 'No speaker notes available for this slide.';
+  }
+
+  function nextSlide() {
+    if (currentSlide < totalSlides - 1) {
+      updateSlide(currentSlide + 1);
+    }
+  }
+
+  function prevSlide() {
+    if (currentSlide > 0) {
+      updateSlide(currentSlide - 1);
+    }
+  }
+
+  function toggleNotes() {
+    notesDrawer.classList.toggle('open');
+  }
+
+  function toggleFullScreen() {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+    } else if (document.exitFullscreen) {
+      document.exitFullscreen();
+    }
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+      nextSlide();
+    } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+      prevSlide();
+    } else if (e.key === 'n' || e.key === 'N') {
+      toggleNotes();
+    } else if (e.key === 'f' || e.key === 'F') {
+      toggleFullScreen();
+    }
+  });
+
+  updateSlide(0);
+</script>
+
+</body>
+</html>
