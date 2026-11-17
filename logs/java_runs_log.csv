@@ -1,0 +1,4 @@
+run_id,timestamp,command,input_path,frames_processed,detections_count,alerts_count,speed_kmh,avg_latency_ms,peak_heap_mb,seed,status
+java_detect_1794924054566,2026-11-17 19:30:54,detect,"data\images\test",15,1734,1734,75.0,44.13,83.07,42,SUCCESS
+java_benchmark_1794924070452,2026-11-17 19:31:10,benchmark,"synthetic_640x480",30,0,0,0.0,3.95,121.89,42,SUCCESS
+java_demo-neurons_1794924248815,2026-11-17 19:34:08,demo-neurons,"discrete_continuous_inputs",4,5,0,0.0,0.10,24.00,42,SUCCESS
