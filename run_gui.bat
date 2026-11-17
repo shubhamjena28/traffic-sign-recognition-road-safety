@@ -1,4 +1,5 @@
 @echo off
+cd /d "%~dp0"
 title Traffic Sign Recognition & Road Safety Monitor - GUI
 echo =====================================================================
 echo  Traffic Sign Recognition and Road Safety Monitor - Streamlit GUI
@@ -9,15 +10,15 @@ echo.
 if exist ".venv\Scripts\activate.bat" (
     echo Activating Python virtual environment (.venv)...
     call .venv\Scripts\activate.bat
+    echo Launching Streamlit dashboard...
+    python -m streamlit run app.py
 ) else (
-    echo [NOTE] Local .venv not detected. Using active environment...
+    echo Starting Streamlit dashboard...
+    python -m streamlit run app.py
 )
 
-echo.
-echo Launching Streamlit GUI Application on http://localhost:8501 ...
-echo Press Ctrl+C in this window to stop the server.
-echo.
-
-streamlit run app.py
-
+if %ERRORLEVEL% NEQ 0 (
+    echo.
+    echo [NOTE] If you see an error above, press any key to close.
+)
 pause
