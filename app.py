@@ -1,14 +1,7 @@
 """Traffic Sign Recognition & Road Safety Monitor - Streamlit GUI Dashboard.
 
 College PBL Project Demonstration Application.
-Features:
-- Dark automotive theme
-- Image & Video traffic sign detection via YOLOv8
-- Dynamic Road Safety & ADAS Warning System (STOP, SPEED LIMIT, DANGER)
-- Vehicle Telemetry Speed Slider for interactive speed limit violation alerts
-- Comprehensive Detection Summary Cards & Metrics Table
-- Error Analysis & Benchmarking Visualizations
-- Project Architecture & Responsible-use Limits
+Optimized for smooth, flicker-free, stable navigation and caching.
 """
 
 import os
@@ -16,7 +9,7 @@ import sys
 import time
 import tempfile
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Dict, List, Tuple, Optional
 
 import cv2
 import numpy as np
@@ -29,19 +22,163 @@ ROOT_DIR = Path(__file__).resolve().parent
 if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
-# Lazy import ultralytics to keep startup fast
+# ==========================================
+# PAGE CONFIGURATION & STYLING
+# ==========================================
+st.set_page_config(
+    page_title="Traffic Sign Recognition & Road Safety Monitor",
+    page_icon="🚦",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+# Custom Dark Automotive CSS styling (Optimized: No heavy repaints/animations)
+st.markdown("""
+<style>
+    /* Dark dashboard theme */
+    .stApp {
+        background-color: #0B0F19;
+        color: #E2E8F0;
+        font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    }
+    
+    /* Sleek card containers with stable dimensions */
+    .dash-card {
+        background: linear-gradient(135deg, #131B2A 0%, #172338 100%);
+        border: 1px solid #1E2E4A;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 16px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Metric pill with fixed min-height for layout stability */
+    .metric-box {
+        background: #111827;
+        border-radius: 10px;
+        border-left: 4px solid #00D2FF;
+        padding: 14px 18px;
+        text-align: center;
+        min-height: 95px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+    .metric-value {
+        font-size: 2.1rem;
+        font-weight: 700;
+        color: #FFFFFF;
+        line-height: 1.1;
+    }
+    .metric-label {
+        font-size: 0.80rem;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        color: #94A3B8;
+        margin-top: 5px;
+    }
+    
+    /* ADAS Safety Alert Banners - Instant, flicker-free rendering */
+    .alert-banner {
+        border-radius: 10px;
+        padding: 16px 20px;
+        margin: 10px 0;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+    .alert-critical {
+        background: rgba(255, 42, 85, 0.15);
+        border: 1px solid #FF2A55;
+        border-left: 6px solid #FF2A55;
+    }
+    .alert-speed {
+        background: rgba(0, 210, 255, 0.15);
+        border: 1px solid #00D2FF;
+        border-left: 6px solid #00D2FF;
+    }
+    .alert-danger {
+        background: rgba(255, 165, 0, 0.15);
+        border: 1px solid #FFA500;
+        border-left: 6px solid #FFA500;
+    }
+    .alert-success {
+        background: rgba(0, 230, 118, 0.15);
+        border: 1px solid #00E676;
+        border-left: 6px solid #00E676;
+    }
+    
+    /* Header typography */
+    h1, h2, h3, h4 {
+        color: #FFFFFF !important;
+        font-weight: 700 !important;
+    }
+    
+    /* Sidebar customization */
+    [data-testid="stSidebar"] {
+        background-color: #0E1422;
+        border-right: 1px solid #1E293B;
+    }
+    
+    /* Static glow (eliminated periodic animation redraws for stability) */
+    .critical-glow {
+        box-shadow: 0 0 16px rgba(255, 42, 85, 0.4);
+    }
+</style>
+""", unsafe_allow_html=True)
+
+
+# ==========================================
+# SESSION STATE INITIALIZATION
+# ==========================================
+def init_session_state():
+    """Initializes persistent session state variables for seamless navigation."""
+    defaults = {
+        "nav_choice": "📸 Image Sign Detection",
+        "cached_img_key": None,
+        "cached_input_bgr": None,
+        "cached_annotated_bgr": None,
+        "cached_detections": None,
+        "cached_infer_latency": 0.0,
+        "cached_img_title": "",
+        "video_processed_summary": None,
+        "video_last_frame_rgb": None,
+    }
+    for key, val in defaults.items():
+        if key not in st.session_state:
+            st.session_state[key] = val
+
+init_session_state()
+
+
+# ==========================================
+# MODEL & RESOURCE CACHING
+# ==========================================
 @st.cache_resource(show_spinner="Loading Traffic Sign YOLO Model...")
 def load_yolo_model(model_path: str):
-    """Loads and caches the YOLO model weights."""
+    """Loads and caches the YOLO model weights across all sessions."""
     from ultralytics import YOLO
     if not os.path.exists(model_path):
-        # Fallback to yolov8n.pt if specific checkpoint is not found
         fallback = ROOT_DIR / "yolov8n.pt"
         if fallback.exists():
-            st.warning(f"Model at '{model_path}' not found. Falling back to '{fallback}'.")
             return YOLO(str(fallback))
         raise FileNotFoundError(f"Model weights not found at {model_path} or {fallback}")
     return YOLO(model_path)
+
+
+@st.cache_data(show_spinner=False)
+def get_sample_image_list() -> List[str]:
+    """Caches list of available sample test images to avoid repeated directory scans."""
+    sample_dir = ROOT_DIR / "data" / "images" / "test"
+    if sample_dir.exists():
+        return sorted([f.name for f in sample_dir.glob("*.jpg")])
+    return []
+
+
+@st.cache_data(show_spinner=False)
+def read_image_from_path(file_path: str) -> Optional[np.ndarray]:
+    """Caches image decoding from disk for fast sample previewing."""
+    if os.path.exists(file_path):
+        return cv2.imread(file_path)
+    return None
 
 
 # Color mapping for sign categories (BGR for OpenCV, Hex for HTML/CSS)
@@ -49,8 +186,6 @@ CATEGORY_THEMES = {
     "stop": {
         "bgr": (50, 40, 245),      # Crimson Red
         "hex": "#FF2A55",
-        "bg_color": "rgba(255, 42, 85, 0.15)",
-        "border": "#FF2A55",
         "icon": "🛑",
         "title": "CRITICAL STOP ADVISORY",
         "action": "Immediate Brake Application. Come to a full standstill before crosswalk/stop line.",
@@ -59,8 +194,6 @@ CATEGORY_THEMES = {
     "speed": {
         "bgr": (255, 200, 0),      # Electric Cyan
         "hex": "#00D2FF",
-        "bg_color": "rgba(0, 210, 255, 0.15)",
-        "border": "#00D2FF",
         "icon": "⚡",
         "title": "SPEED ZONE ADVISORY",
         "action": "Comply with posted speed zone. Adjust throttle to maintain legal headway.",
@@ -69,8 +202,6 @@ CATEGORY_THEMES = {
     "danger": {
         "bgr": (0, 165, 255),      # Amber Orange
         "hex": "#FFA500",
-        "bg_color": "rgba(255, 165, 0, 0.15)",
-        "border": "#FFA500",
         "icon": "⚠️",
         "title": "ROAD HAZARD WARNING",
         "action": "Caution ahead. Reduce speed by 20%, maintain 3-second headway, beware of road hazards.",
@@ -79,8 +210,6 @@ CATEGORY_THEMES = {
     "default": {
         "bgr": (0, 230, 118),      # Emerald Green
         "hex": "#00E676",
-        "bg_color": "rgba(0, 230, 118, 0.15)",
-        "border": "#00E676",
         "icon": "ℹ️",
         "title": "TRAFFIC SIGN DETECTED",
         "action": "Standard driver awareness.",
@@ -129,16 +258,12 @@ def annotate_image(
         corner_len = min(15, (x2 - x1) // 4, (y2 - y1) // 4)
         if corner_len > 3:
             thick_accent = line_thickness + 2
-            # Top-left
             cv2.line(annotated, (x1, y1), (x1 + corner_len, y1), color, thick_accent)
             cv2.line(annotated, (x1, y1), (x1, y1 + corner_len), color, thick_accent)
-            # Top-right
             cv2.line(annotated, (x2, y1), (x2 - corner_len, y1), color, thick_accent)
             cv2.line(annotated, (x2, y1), (x2, y1 + corner_len), color, thick_accent)
-            # Bottom-left
             cv2.line(annotated, (x1, y2), (x1 + corner_len, y2), color, thick_accent)
             cv2.line(annotated, (x1, y2), (x1, y2 - corner_len), color, thick_accent)
-            # Bottom-right
             cv2.line(annotated, (x2, y2), (x2 - corner_len, y2), color, thick_accent)
             cv2.line(annotated, (x2, y2), (x2, y2 - corner_len), color, thick_accent)
 
@@ -155,7 +280,6 @@ def annotate_image(
 
         # Background badge with solid color
         cv2.rectangle(annotated, (x1, badge_y1), (badge_x2, badge_y2), color, -1)
-        # Text label in white or dark depending on color
         text_color = (0, 0, 0) if cat in ["speed", "danger"] else (255, 255, 255)
         cv2.putText(annotated, caption, (x1 + 6, badge_y2 - 5), font, font_scale, text_color, font_thick, cv2.LINE_AA)
 
@@ -205,115 +329,6 @@ def run_yolo_detection(
 
 
 # ==========================================
-# PAGE CONFIGURATION & STYLING
-# ==========================================
-st.set_page_config(
-    page_title="Traffic Sign Recognition & Road Safety Monitor",
-    page_icon="🚦",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
-
-# Custom Dark Automotive CSS styling
-st.markdown("""
-<style>
-    /* Dark dashboard theme */
-    .stApp {
-        background-color: #0B0F19;
-        color: #E2E8F0;
-        font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
-    }
-    
-    /* Sleek card containers */
-    .dash-card {
-        background: linear-gradient(135deg, #131B2A 0%, #172338 100%);
-        border: 1px solid #1E2E4A;
-        border-radius: 12px;
-        padding: 20px;
-        margin-bottom: 16px;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-    }
-    
-    /* Metric pill */
-    .metric-box {
-        background: #111827;
-        border-radius: 10px;
-        border-left: 4px solid #00D2FF;
-        padding: 14px 18px;
-        text-align: center;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-    .metric-value {
-        font-size: 2.2rem;
-        font-weight: 700;
-        color: #FFFFFF;
-        line-height: 1.1;
-    }
-    .metric-label {
-        font-size: 0.82rem;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        color: #94A3B8;
-        margin-top: 4px;
-    }
-    
-    /* ADAS Safety Alert Banners */
-    .alert-banner {
-        border-radius: 10px;
-        padding: 16px 20px;
-        margin: 12px 0;
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        animation: fadeIn 0.4s ease-in-out;
-    }
-    .alert-critical {
-        background: rgba(255, 42, 85, 0.15);
-        border: 1px solid #FF2A55;
-        border-left: 6px solid #FF2A55;
-    }
-    .alert-speed {
-        background: rgba(0, 210, 255, 0.15);
-        border: 1px solid #00D2FF;
-        border-left: 6px solid #00D2FF;
-    }
-    .alert-danger {
-        background: rgba(255, 165, 0, 0.15);
-        border: 1px solid #FFA500;
-        border-left: 6px solid #FFA500;
-    }
-    .alert-success {
-        background: rgba(0, 230, 118, 0.15);
-        border: 1px solid #00E676;
-        border-left: 6px solid #00E676;
-    }
-    
-    /* Header typography */
-    h1, h2, h3 {
-        color: #FFFFFF !important;
-        font-weight: 700 !important;
-    }
-    
-    /* Sidebar customization */
-    [data-testid="stSidebar"] {
-        background-color: #0E1422;
-        border-right: 1px solid #1E293B;
-    }
-    
-    /* Pulse glow keyframes */
-    @keyframes pulseGlow {
-        0% { box-shadow: 0 0 10px rgba(255, 42, 85, 0.3); }
-        50% { box-shadow: 0 0 25px rgba(255, 42, 85, 0.8); }
-        100% { box-shadow: 0 0 10px rgba(255, 42, 85, 0.3); }
-    }
-    .critical-glow {
-        animation: pulseGlow 1.8s infinite;
-    }
-</style>
-""", unsafe_allow_html=True)
-
-
-# ==========================================
 # SIDEBAR CONTROLS & NAVIGATION
 # ==========================================
 with st.sidebar:
@@ -321,7 +336,7 @@ with st.sidebar:
     st.caption("College PBL Project Demonstration")
     st.markdown("---")
 
-    # Navigation Menu
+    # Navigation Menu with persistent key
     nav_choice = st.radio(
         "Navigation Menu",
         [
@@ -330,7 +345,7 @@ with st.sidebar:
             "📊 Safety Analytics & Benchmarks",
             "ℹ️ Project Architecture & Info"
         ],
-        index=0
+        key="nav_radio"
     )
 
     st.markdown("---")
@@ -355,17 +370,19 @@ with st.sidebar:
     selected_model_name = st.selectbox(
         "Active Model Checkpoint",
         list(available_models.keys()),
-        index=0
+        index=0,
+        key="sb_model_name"
     )
     selected_model_path = available_models[selected_model_name]
 
-    # Hyperparameter Sliders
+    # Hyperparameter Sliders with persistent keys
     conf_threshold = st.slider(
         "Confidence Threshold",
         min_value=0.10,
         max_value=0.95,
         value=0.45,
         step=0.05,
+        key="sb_conf_thresh",
         help="Minimum confidence score required to register a detection."
     )
 
@@ -375,6 +392,7 @@ with st.sidebar:
         max_value=0.80,
         value=0.45,
         step=0.05,
+        key="sb_iou_thresh",
         help="Overlap threshold for Non-Maximum Suppression."
     )
 
@@ -383,7 +401,8 @@ with st.sidebar:
         min_value=1,
         max_value=20,
         value=8,
-        step=1
+        step=1,
+        key="sb_max_det"
     )
 
     st.markdown("---")
@@ -394,6 +413,7 @@ with st.sidebar:
         max_value=140,
         value=65,
         step=5,
+        key="sb_vehicle_speed",
         help="Simulate vehicle velocity to trigger dynamic ADAS speed compliance alerts."
     )
 
@@ -401,7 +421,7 @@ with st.sidebar:
     st.caption("Developed with YOLOv8, PyTorch & Streamlit | PBL Safety Suite 2026")
 
 
-# Load the active YOLO model
+# Load the active YOLO model (cached via st.cache_resource)
 try:
     yolo_model = load_yolo_model(selected_model_path)
 except Exception as e:
@@ -425,40 +445,74 @@ if nav_choice == "📸 Image Sign Detection":
         uploaded_file = st.file_uploader(
             "Upload Road Scene Image",
             type=["jpg", "jpeg", "png", "bmp", "webp"],
-            help="Select a high-resolution dashcam or on-road traffic picture."
+            help="Select a high-resolution dashcam or on-road traffic picture.",
+            key="img_file_uploader"
         )
 
     with col_sample:
-        sample_dir = ROOT_DIR / "data" / "images" / "test"
-        sample_files = list(sample_dir.glob("*.jpg")) if sample_dir.exists() else []
-        sample_options = ["None (Use uploaded file)"] + [f.name for f in sample_files[:10]]
-        chosen_sample = st.selectbox("Or Pick Sample Test Image:", sample_options, index=1 if sample_files else 0)
+        sample_files = get_sample_image_list()
+        sample_options = ["None (Use uploaded file)"] + sample_files[:10]
+        chosen_sample = st.selectbox(
+            "Or Pick Sample Test Image:",
+            sample_options,
+            index=1 if sample_files else 0,
+            key="img_sample_selector"
+        )
 
-    # Determine input image source
+    # Determine input image source and compute cache key
     input_image_bgr = None
     image_title = "Input Image"
+    image_source_id = None
 
     if uploaded_file is not None:
-        file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
+        file_bytes = np.asarray(bytearray(uploaded_file.getvalue()), dtype=np.uint8)
         input_image_bgr = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
         image_title = f"Uploaded: {uploaded_file.name}"
+        image_source_id = f"upload_{uploaded_file.name}_{len(uploaded_file.getvalue())}"
     elif chosen_sample != "None (Use uploaded file)" and sample_files:
-        sample_path = sample_dir / chosen_sample
-        if sample_path.exists():
-            input_image_bgr = cv2.imread(str(sample_path))
-            image_title = f"Sample: {chosen_sample}"
+        sample_path = ROOT_DIR / "data" / "images" / "test" / chosen_sample
+        input_image_bgr = read_image_from_path(str(sample_path))
+        image_title = f"Sample: {chosen_sample}"
+        image_source_id = f"sample_{chosen_sample}"
 
-    if input_image_bgr is not None:
-        start_time = time.time()
-        annotated_bgr, detections = run_yolo_detection(
-            yolo_model,
-            input_image_bgr,
-            conf_thresh=conf_threshold,
-            iou_thresh=iou_threshold,
-            max_det=max_detections,
-            agnostic_nms=True
+    # Cache key based strictly on detection inputs (NOT vehicle speed)
+    current_cache_key = None
+    if input_image_bgr is not None and image_source_id is not None:
+        current_cache_key = (
+            image_source_id,
+            selected_model_path,
+            round(conf_threshold, 3),
+            round(iou_threshold, 3),
+            max_detections
         )
-        infer_latency_ms = (time.time() - start_time) * 1000
+
+    # Perform inference only if detection parameters or image changed
+    if input_image_bgr is not None:
+        if st.session_state.cached_img_key != current_cache_key or st.session_state.cached_annotated_bgr is None:
+            start_time = time.time()
+            annotated_bgr, detections = run_yolo_detection(
+                yolo_model,
+                input_image_bgr,
+                conf_thresh=conf_threshold,
+                iou_thresh=iou_threshold,
+                max_det=max_detections,
+                agnostic_nms=True
+            )
+            infer_latency_ms = (time.time() - start_time) * 1000
+
+            # Store in session state for instant retrieval and page switching
+            st.session_state.cached_img_key = current_cache_key
+            st.session_state.cached_input_bgr = input_image_bgr
+            st.session_state.cached_annotated_bgr = annotated_bgr
+            st.session_state.cached_detections = detections
+            st.session_state.cached_infer_latency = infer_latency_ms
+            st.session_state.cached_img_title = image_title
+        else:
+            # Reusing cached detections (e.g., when adjusting speed slider or switching tabs)
+            annotated_bgr = st.session_state.cached_annotated_bgr
+            detections = st.session_state.cached_detections
+            infer_latency_ms = st.session_state.cached_infer_latency
+            image_title = st.session_state.cached_img_title
 
         # High-Impact Detection Summary Cards
         total_detected = len(detections)
@@ -549,7 +603,7 @@ if nav_choice == "📸 Image Sign Detection":
                     """, unsafe_allow_html=True)
 
                 elif cat == "speed":
-                    # Compare with telemetry speed slider
+                    # Compare with telemetry speed slider (updates in 0ms without re-running model)
                     posted_limit = 50  # Default standard urban speed limit baseline
                     is_overspeed = vehicle_speed > posted_limit
                     alert_cls = "alert-critical" if is_overspeed else "alert-speed"
@@ -606,7 +660,8 @@ if nav_choice == "📸 Image Sign Detection":
                 label="📥 Download Annotated Image",
                 data=buffer.tobytes(),
                 file_name="annotated_traffic_signs.jpg",
-                mime="image/jpeg"
+                mime="image/jpeg",
+                key="btn_download_img"
             )
 
         # Detailed Detections Table
@@ -648,7 +703,8 @@ elif nav_choice == "🎥 Video / Dashcam Analysis":
     with col_v1:
         video_file = st.file_uploader(
             "Upload Dashcam Video (.mp4, .avi, .mov)",
-            type=["mp4", "avi", "mov"]
+            type=["mp4", "avi", "mov"],
+            key="video_file_uploader"
         )
 
     with col_v2:
@@ -656,13 +712,14 @@ elif nav_choice == "🎥 Video / Dashcam Analysis":
         root_demo_video = ROOT_DIR / "demo_video.mp4"
         use_sample = st.checkbox(
             "Use Project Sample Clip (5-second dashcam)",
-            value=(video_file is None and sample_video_path.exists())
+            value=(video_file is None and sample_video_path.exists()),
+            key="video_use_sample_chk"
         )
 
     temp_video_path = None
     if video_file is not None:
         tfile = tempfile.NamedTemporaryFile(delete=False, suffix=".mp4")
-        tfile.write(video_file.read())
+        tfile.write(video_file.getvalue())
         temp_video_path = tfile.name
     elif use_sample:
         if sample_video_path.exists():
@@ -683,17 +740,19 @@ elif nav_choice == "🎥 Video / Dashcam Analysis":
         # Video Processing Controls
         col_ctrl1, col_ctrl2 = st.columns([1, 2])
         with col_ctrl1:
-            frame_skip = st.slider("Process Every Nth Frame (Speedup)", 1, 10, 2)
-            max_process_frames = st.slider("Max Frames to Process", 20, min(total_frames, 500), min(total_frames, 100))
+            frame_skip = st.slider("Process Every Nth Frame (Speedup)", 1, 10, 2, key="vid_frame_skip")
+            max_process_frames = st.slider(
+                "Max Frames to Process", 20, min(total_frames, 500), min(total_frames, 100), key="vid_max_frames"
+            )
         with col_ctrl2:
             st.markdown("<br>", unsafe_allow_html=True)
-            start_btn = st.button("🚀 Start Video Sign Detection", type="primary", width="stretch")
+            start_btn = st.button("🚀 Start Video Sign Detection", type="primary", width="stretch", key="btn_start_video")
+
+        video_frame_placeholder = st.empty()
+        status_text = st.empty()
 
         if start_btn:
             progress_bar = st.progress(0)
-            status_text = st.empty()
-            video_frame_placeholder = st.empty()
-            metrics_placeholder = st.empty()
 
             frame_idx = 0
             processed_count = 0
@@ -701,6 +760,7 @@ elif nav_choice == "🎥 Video / Dashcam Analysis":
             category_counts = {"stop": 0, "speed": 0, "danger": 0}
 
             start_proc_time = time.time()
+            last_frame_rgb = None
 
             while cap.isOpened() and processed_count < max_process_frames:
                 ret, frame = cap.read()
@@ -728,8 +788,8 @@ elif nav_choice == "🎥 Video / Dashcam Analysis":
                     cv2.putText(annotated_frame, hud_text, (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 255), 2)
 
                     # Update display
-                    frame_rgb = cv2.cvtColor(annotated_frame, cv2.COLOR_BGR2RGB)
-                    video_frame_placeholder.image(frame_rgb, width="stretch")
+                    last_frame_rgb = cv2.cvtColor(annotated_frame, cv2.COLOR_BGR2RGB)
+                    video_frame_placeholder.image(last_frame_rgb, width="stretch")
 
                     processed_count += 1
                     progress = min(1.0, processed_count / max_process_frames)
@@ -742,19 +802,36 @@ elif nav_choice == "🎥 Video / Dashcam Analysis":
             total_elapsed = time.time() - start_proc_time
             effective_fps = processed_count / total_elapsed if total_elapsed > 0 else 0
 
+            # Save results into session_state for persistent stability across navigation
+            st.session_state.video_processed_summary = {
+                "total_signs": len(total_detections_history),
+                "stop_count": category_counts["stop"],
+                "speed_count": category_counts["speed"],
+                "danger_count": category_counts["danger"],
+                "processed_frames": processed_count,
+                "elapsed": total_elapsed,
+                "effective_fps": effective_fps,
+            }
+            st.session_state.video_last_frame_rgb = last_frame_rgb
             status_text.success(f"Processing complete! Analyzed {processed_count} frames in {total_elapsed:.2f}s ({effective_fps:.1f} FPS).")
 
-            # Final Video Summary Cards
+        elif st.session_state.video_last_frame_rgb is not None:
+            # Display last processed frame stably when returning to this page
+            video_frame_placeholder.image(st.session_state.video_last_frame_rgb, width="stretch")
+
+        # Persistent Video Summary Cards
+        if st.session_state.video_processed_summary is not None:
+            v_summary = st.session_state.video_processed_summary
             st.markdown("### 📊 Dashcam Analysis Summary")
             vcol1, vcol2, vcol3, vcol4 = st.columns(4)
             with vcol1:
-                st.metric("Total Sign Detections", len(total_detections_history))
+                st.metric("Total Sign Detections", v_summary["total_signs"])
             with vcol2:
-                st.metric("🛑 Stop Signs Encountered", category_counts["stop"])
+                st.metric("🛑 Stop Signs Encountered", v_summary["stop_count"])
             with vcol3:
-                st.metric("⚡ Speed Limit Encounters", category_counts["speed"])
+                st.metric("⚡ Speed Limit Encounters", v_summary["speed_count"])
             with vcol4:
-                st.metric("⚠️ Hazard Signs Encountered", category_counts["danger"])
+                st.metric("⚠️ Hazard Signs Encountered", v_summary["danger_count"])
 
     else:
         st.info("👈 Upload a video file or check 'Use Project Sample Clip' to start video analysis.")
@@ -770,7 +847,7 @@ elif nav_choice == "📊 Safety Analytics & Benchmarks":
         "comparing PyTorch, ONNX Runtime, and pure Java neuron inference."
     )
 
-    # Benchmark Cards
+    # Benchmark Cards with consistent height
     st.markdown("### ⚡ Cross-Platform Benchmark Comparison")
     b1, b2, b3, b4 = st.columns(4)
     with b1:
