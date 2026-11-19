@@ -168,12 +168,21 @@ init_session_state()
 def load_yolo_model(model_path: str):
     """Loads and caches the YOLO model weights across all sessions."""
     from ultralytics import YOLO
+    primary_best = ROOT_DIR / "runs" / "detect" / "train-3" / "weights" / "best.pt"
+    fallback = primary_best if primary_best.exists() else (ROOT_DIR / "yolov8n.pt")
+
     if not os.path.exists(model_path):
-        fallback = ROOT_DIR / "yolov8n.pt"
         if fallback.exists():
             return YOLO(str(fallback))
         raise FileNotFoundError(f"Model weights not found at {model_path} or {fallback}")
-    return YOLO(model_path)
+
+    try:
+        return YOLO(model_path)
+    except Exception as e:
+        # If model is not in Ultralytics format (e.g. classifier state_dict), fallback gracefully
+        if fallback.exists() and str(model_path) != str(fallback):
+            return YOLO(str(fallback))
+        raise e
 
 
 @st.cache_data(show_spinner=False)
@@ -366,15 +375,18 @@ with st.sidebar:
     # Model Checkpoint Selection
     available_models = {}
     train3_path = ROOT_DIR / "runs" / "detect" / "train-3" / "weights" / "best.pt"
-    checkpoints_path = ROOT_DIR / "checkpoints" / "best_model.pt"
+    checkpoints_yolo_path = ROOT_DIR / "checkpoints" / "best_yolo.pt"
+    train3_last_path = ROOT_DIR / "runs" / "detect" / "train-3" / "weights" / "last.pt"
     yolo_root_path = ROOT_DIR / "yolov8n.pt"
 
     if train3_path.exists():
-        available_models["YOLOv8 Trained Checkpoint (train-3)"] = str(train3_path)
-    if checkpoints_path.exists():
-        available_models["Mirrored Best Checkpoint"] = str(checkpoints_path)
+        available_models["YOLOv8 Trained Checkpoint (train-3/best.pt)"] = str(train3_path)
+    if checkpoints_yolo_path.exists():
+        available_models["Mirrored Best Checkpoint (checkpoints/best_yolo.pt)"] = str(checkpoints_yolo_path)
+    if train3_last_path.exists():
+        available_models["YOLOv8 Last Epoch (last.pt)"] = str(train3_last_path)
     if yolo_root_path.exists():
-        available_models["YOLOv8 Nano Base Checkpoint"] = str(yolo_root_path)
+        available_models["YOLOv8 Nano Base Checkpoint (yolov8n.pt)"] = str(yolo_root_path)
 
     if not available_models:
         available_models["Default Model (best.pt)"] = "runs/detect/train-3/weights/best.pt"
