@@ -354,7 +354,6 @@ def run_yolo_detection(
 # ==========================================
 with st.sidebar:
     st.markdown("### 🚦 ADAS Road Safety Monitor")
-    st.caption("College PBL Project Demonstration")
     st.markdown("---")
 
     # Navigation Menu with persistent key
@@ -442,7 +441,7 @@ with st.sidebar:
     )
 
     st.markdown("---")
-    st.caption("Developed with YOLOv8, PyTorch & Streamlit | PBL Safety Suite 2026")
+    st.caption("Developed with YOLOv8, PyTorch & Streamlit | ADAS Safety Suite")
 
 
 # Load the active YOLO model (cached via st.cache_resource)
@@ -941,7 +940,7 @@ elif nav_choice == "ℹ️ Project Architecture & Info":
     st.title("ℹ️ Project Overview & Multi-Tier Architecture")
     st.markdown("""
     ### 🚦 Traffic Sign Recognition and Road Safety Monitor
-    **Problem-Based Learning (PBL) Project Demonstration**
+    **Real-Time Autonomous Perception & Road Safety ADAS**
     
     #### 📌 Executive Summary
     This project integrates cutting-edge Computer Vision (YOLOv8) with an intelligent Advanced Driver 
@@ -999,7 +998,7 @@ elif nav_choice == "ℹ️ Project Architecture & Info":
 st.markdown("---")
 st.markdown(
     "<div style='text-align: center; color: #64748B; font-size: 0.85rem;'>"
-    "Traffic Sign Recognition and Road Safety Monitor | College PBL Project | Built with Streamlit & YOLOv8"
+    "Traffic Sign Recognition and Road Safety Monitor | Intelligent ADAS Perception Suite"
     "</div>",
     unsafe_allow_html=True
 )
