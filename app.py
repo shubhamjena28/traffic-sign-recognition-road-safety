@@ -17,8 +17,20 @@ import pandas as pd
 from PIL import Image
 import streamlit as st
 
+# Self-bootstrap when double-clicked in Windows or run via `python app.py`
+if not (hasattr(st, "runtime") and st.runtime.exists()):
+    from streamlit.web import cli as stcli
+    sys.argv = ["streamlit", "run", str(Path(__file__).resolve())]
+    sys.exit(stcli.main())
+
 # Ensure project root is in Python path
 ROOT_DIR = Path(__file__).resolve().parent
+# If executed from outside project directory (e.g., copied to Desktop), resolve back to project root
+if not (ROOT_DIR / "runs").exists() and not (ROOT_DIR / "checkpoints").exists():
+    fallback_proj = Path(r"C:\Users\HP\Desktop\Projects\traffic-sign-recognition-road-safety")
+    if fallback_proj.exists():
+        ROOT_DIR = fallback_proj
+
 if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
