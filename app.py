@@ -54,85 +54,65 @@ st.markdown("""
         font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
     }
     
-    /* Sleek card containers with stable dimensions */
-    .dash-card {
-        background: linear-gradient(135deg, #131B2A 0%, #172338 100%);
-        border: 1px solid #1E2E4A;
-        border-radius: 12px;
-        padding: 20px;
-        margin-bottom: 16px;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-    }
-    
-    /* Metric pill with fixed min-height for layout stability */
+    /* Metric card with clean alignment */
     .metric-box {
         background: #111827;
-        border-radius: 10px;
+        border-radius: 8px;
         border-left: 4px solid #00D2FF;
         padding: 12px 14px;
         text-align: center;
-        min-height: 102px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+        min-height: 85px;
     }
     .metric-value {
-        font-size: 2.1rem;
+        font-size: 1.9rem;
         font-weight: 700;
         color: #FFFFFF;
         line-height: 1.1;
     }
     .metric-label {
-        font-size: 0.80rem;
+        font-size: 0.78rem;
         text-transform: uppercase;
-        letter-spacing: 0.8px;
+        letter-spacing: 0.5px;
         color: #94A3B8;
-        margin-top: 5px;
+        margin-top: 4px;
     }
     
-    /* ADAS Safety Alert Banners - Instant, flicker-free rendering */
+    /* Clean ADAS Safety Alert Banners */
     .alert-banner {
-        border-radius: 10px;
-        padding: 16px 20px;
-        margin: 10px 0;
+        border-radius: 8px;
+        padding: 14px 18px;
+        margin: 8px 0;
         display: flex;
         align-items: center;
-        gap: 16px;
+        gap: 14px;
     }
     .alert-critical {
-        background: rgba(255, 42, 85, 0.15);
-        border: 1px solid #FF2A55;
-        border-left: 6px solid #FF2A55;
+        background: rgba(255, 42, 85, 0.12);
+        border-left: 5px solid #FF2A55;
     }
     .alert-speed {
-        background: rgba(0, 210, 255, 0.15);
-        border: 1px solid #00D2FF;
-        border-left: 6px solid #00D2FF;
+        background: rgba(0, 210, 255, 0.12);
+        border-left: 5px solid #00D2FF;
     }
     .alert-danger {
-        background: rgba(255, 165, 0, 0.15);
-        border: 1px solid #FFA500;
-        border-left: 6px solid #FFA500;
+        background: rgba(255, 165, 0, 0.12);
+        border-left: 5px solid #FFA500;
     }
     .alert-success {
-        background: rgba(0, 230, 118, 0.15);
-        border: 1px solid #00E676;
-        border-left: 6px solid #00E676;
+        background: rgba(0, 230, 118, 0.12);
+        border-left: 5px solid #00E676;
     }
     
     /* Header typography */
     h1, h2, h3, h4 {
         color: #FFFFFF !important;
-        font-weight: 700 !important;
+        font-weight: 600 !important;
     }
     
     /* Sidebar customization */
     [data-testid="stSidebar"] {
         background-color: #0E1422;
         border-right: 1px solid #1E293B;
-    }
-    
-    /* Static glow (eliminated periodic animation redraws for stability) */
-    .critical-glow {
-        box-shadow: 0 0 16px rgba(255, 42, 85, 0.4);
     }
 </style>
 """, unsafe_allow_html=True)
@@ -275,34 +255,21 @@ def annotate_image(
         # Main bounding box
         cv2.rectangle(annotated, (x1, y1), (x2, y2), color, line_thickness, cv2.LINE_AA)
 
-        # Corner accents for modern automotive ADAS feel
-        corner_len = min(15, (x2 - x1) // 4, (y2 - y1) // 4)
-        if corner_len > 3:
-            thick_accent = line_thickness + 2
-            cv2.line(annotated, (x1, y1), (x1 + corner_len, y1), color, thick_accent)
-            cv2.line(annotated, (x1, y1), (x1, y1 + corner_len), color, thick_accent)
-            cv2.line(annotated, (x2, y1), (x2 - corner_len, y1), color, thick_accent)
-            cv2.line(annotated, (x2, y1), (x2, y1 + corner_len), color, thick_accent)
-            cv2.line(annotated, (x1, y2), (x1 + corner_len, y2), color, thick_accent)
-            cv2.line(annotated, (x1, y2), (x1, y2 - corner_len), color, thick_accent)
-            cv2.line(annotated, (x2, y2), (x2 - corner_len, y2), color, thick_accent)
-            cv2.line(annotated, (x2, y2), (x2, y2 - corner_len), color, thick_accent)
-
         # Label badge
         caption = f"{label.upper()} {conf*100:.1f}%"
-        font = cv2.FONT_HERSHEY_DUPLEX
-        font_scale = 0.55
+        font = cv2.FONT_HERSHEY_SIMPLEX
+        font_scale = 0.5
         font_thick = 1
         (txt_w, txt_h), baseline = cv2.getTextSize(caption, font, font_scale, font_thick)
 
-        badge_y1 = max(0, y1 - txt_h - 10)
+        badge_y1 = max(0, y1 - txt_h - 8)
         badge_y2 = y1
-        badge_x2 = min(w - 1, x1 + txt_w + 14)
+        badge_x2 = min(w - 1, x1 + txt_w + 10)
 
         # Background badge with solid color
         cv2.rectangle(annotated, (x1, badge_y1), (badge_x2, badge_y2), color, -1)
         text_color = (0, 0, 0) if cat in ["speed", "danger"] else (255, 255, 255)
-        cv2.putText(annotated, caption, (x1 + 6, badge_y2 - 5), font, font_scale, text_color, font_thick, cv2.LINE_AA)
+        cv2.putText(annotated, caption, (x1 + 4, badge_y2 - 4), font, font_scale, text_color, font_thick, cv2.LINE_AA)
 
     return annotated
 
@@ -594,10 +561,7 @@ if nav_choice == "📸 Image Sign Detection":
             st.markdown(f"""
             <div class="metric-box" style="border-left-color: #00E676;">
                 <div class="metric-value">{total_adas_latency_ms:.1f} ms</div>
-                <div class="metric-label">System ADAS Latency</div>
-                <div style="font-size: 0.72rem; color: #94A3B8; margin-top: 3px;">
-                    Vision: {base_vision_latency_ms:.1f}ms | Telemetry: {telemetry_cycle_ms:.1f}ms
-                </div>
+                <div class="metric-label">Inference Latency</div>
             </div>
             """, unsafe_allow_html=True)
 
@@ -609,10 +573,10 @@ if nav_choice == "📸 Image Sign Detection":
         if total_detected == 0:
             st.markdown("""
             <div class="alert-banner alert-success">
-                <span style="font-size: 2rem;">✅</span>
+                <span style="font-size: 1.8rem;">✅</span>
                 <div>
                     <h4 style="margin: 0; color: #00E676;">ROADWAY CLEAR - NO RESTRICTIVE SIGNS DETECTED</h4>
-                    <p style="margin: 4px 0 0 0; color: #CBD5E1; font-size: 0.95rem;">
+                    <p style="margin: 3px 0 0 0; color: #CBD5E1; font-size: 0.92rem;">
                         No critical regulatory or warning signs identified in current field of view. Maintain standard situational awareness.
                     </p>
                 </div>
@@ -628,14 +592,13 @@ if nav_choice == "📸 Image Sign Detection":
 
                 if cat == "stop":
                     st.markdown(f"""
-                    <div class="alert-banner alert-critical critical-glow">
-                        <span style="font-size: 2.2rem;">🛑</span>
+                    <div class="alert-banner alert-critical">
+                        <span style="font-size: 1.8rem;">🛑</span>
                         <div>
-                            <h4 style="margin: 0; color: #FF2A55;">CRITICAL SAFETY ALERT: STOP SIGN DETECTED ({conf*100:.1f}% Confidence)</h4>
-                            <p style="margin: 4px 0 0 0; color: #FFFFFF; font-size: 0.95rem;">
-                                <strong>Advisory:</strong> Mandated full vehicle halt. Decelerate to 0 km/h before the marked stop line or pedestrian crossing. Yield right-of-way.
+                            <h4 style="margin: 0; color: #FF2A55;">CRITICAL SAFETY ALERT: STOP SIGN DETECTED ({conf*100:.1f}%)</h4>
+                            <p style="margin: 3px 0 0 0; color: #FFFFFF; font-size: 0.92rem;">
+                                Mandated full vehicle halt. Decelerate to 0 km/h before the marked stop line or pedestrian crossing. Yield right-of-way.
                             </p>
-                            <small style="color: #FDA4AF;">Bounding Box: X1={box[0]}, Y1={box[1]}, X2={box[2]}, Y2={box[3]}</small>
                         </div>
                     </div>
                     """, unsafe_allow_html=True)
@@ -645,20 +608,19 @@ if nav_choice == "📸 Image Sign Detection":
                     posted_limit = 50  # Default standard urban speed limit baseline
                     is_overspeed = vehicle_speed > posted_limit
                     alert_cls = "alert-critical" if is_overspeed else "alert-speed"
-                    status_text = f"OVERSPEED VIOLATION (+{vehicle_speed - posted_limit} km/h)" if is_overspeed else "SPEED COMPLIANT"
+                    status_text = f"OVERSPEED (+{vehicle_speed - posted_limit} km/h)" if is_overspeed else "COMPLIANT"
 
                     st.markdown(f"""
                     <div class="alert-banner {alert_cls}">
-                        <span style="font-size: 2.2rem;">⚡</span>
+                        <span style="font-size: 1.8rem;">⚡</span>
                         <div>
                             <h4 style="margin: 0; color: {'#FF2A55' if is_overspeed else '#00D2FF'};">
                                 SPEED REGULATION: {label.upper()} ({conf*100:.1f}%) — [{status_text}]
                             </h4>
-                            <p style="margin: 4px 0 0 0; color: #FFFFFF; font-size: 0.95rem;">
-                                <strong>Telemetry:</strong> Current Speed: <strong>{vehicle_speed} km/h</strong> | Posted Zone: <strong>{posted_limit} km/h</strong> | Est. Braking Distance: <strong>{stopping_distance_m:.1f} m</strong>.<br>
-                                {'⚠️ <strong>WARNING:</strong> Vehicle exceeds posted speed limit! Decelerate immediately to avoid traffic infraction.' if is_overspeed else '✅ Vehicle speed is within safe legal threshold.'}
+                            <p style="margin: 3px 0 0 0; color: #FFFFFF; font-size: 0.92rem;">
+                                Current Speed: <strong>{vehicle_speed} km/h</strong> | Posted Limit: <strong>{posted_limit} km/h</strong> | Est. Stopping Distance: <strong>{stopping_distance_m:.1f} m</strong>.<br>
+                                {'⚠️ <strong>WARNING:</strong> Vehicle exceeds posted speed limit! Decelerate immediately.' if is_overspeed else '✅ Vehicle speed is within safe legal threshold.'}
                             </p>
-                            <small style="color: #94A3B8;">Bounding Box: X1={box[0]}, Y1={box[1]}, X2={box[2]}, Y2={box[3]}</small>
                         </div>
                     </div>
                     """, unsafe_allow_html=True)
@@ -666,13 +628,12 @@ if nav_choice == "📸 Image Sign Detection":
                 elif cat == "danger":
                     st.markdown(f"""
                     <div class="alert-banner alert-danger">
-                        <span style="font-size: 2.2rem;">⚠️</span>
+                        <span style="font-size: 1.8rem;">⚠️</span>
                         <div>
-                            <h4 style="margin: 0; color: #FFA500;">HAZARD ADVISORY: {label.upper()} DETECTED ({conf*100:.1f}% Confidence)</h4>
-                            <p style="margin: 4px 0 0 0; color: #FFFFFF; font-size: 0.95rem;">
-                                <strong>Advisory:</strong> Potentially hazardous driving zone ahead. Reduce speed by 20%, maintain 3-second minimum following distance, and avoid abrupt steering maneuvers.
+                            <h4 style="margin: 0; color: #FFA500;">HAZARD ADVISORY: {label.upper()} DETECTED ({conf*100:.1f}%)</h4>
+                            <p style="margin: 3px 0 0 0; color: #FFFFFF; font-size: 0.92rem;">
+                                Potentially hazardous driving zone ahead. Reduce speed by 20%, maintain 3-second minimum following distance, and avoid abrupt steering maneuvers.
                             </p>
-                            <small style="color: #FDE68A;">Bounding Box: X1={box[0]}, Y1={box[1]}, X2={box[2]}, Y2={box[3]}</small>
                         </div>
                     </div>
                     """, unsafe_allow_html=True)
@@ -821,9 +782,9 @@ elif nav_choice == "🎥 Video / Dashcam Analysis":
                             category_counts[cat] += 1
                         total_detections_history.append(d)
 
-                    # Draw live HUD header on frame
-                    hud_text = f"FRAME {frame_idx}/{total_frames} | SIGNS: {len(frame_dets)}"
-                    cv2.putText(annotated_frame, hud_text, (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 255), 2)
+                    # Draw clean frame status on video
+                    hud_text = f"Frame {frame_idx}/{total_frames} | Signs: {len(frame_dets)}"
+                    cv2.putText(annotated_frame, hud_text, (20, 35), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 230, 118), 2, cv2.LINE_AA)
 
                     # Update display
                     last_frame_rgb = cv2.cvtColor(annotated_frame, cv2.COLOR_BGR2RGB)
